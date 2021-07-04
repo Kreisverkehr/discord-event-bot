@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Tests", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Service", "DiscordEventBot.Service\DiscordEventBot.Service.csproj", "{E365916F-0365-47EE-B97B-802986FE02A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Common", "DiscordEventBot.Common\DiscordEventBot.Common.csproj", "{65474139-0E56-4AEC-AA18-7E884AF6678A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{E365916F-0365-47EE-B97B-802986FE02A4}.Release|x64.Build.0 = Release|Any CPU
 		{E365916F-0365-47EE-B97B-802986FE02A4}.Release|x86.ActiveCfg = Release|Any CPU
 		{E365916F-0365-47EE-B97B-802986FE02A4}.Release|x86.Build.0 = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|x64.Build.0 = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Debug|x86.Build.0 = Debug|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x64.ActiveCfg = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x64.Build.0 = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x86.ActiveCfg = Release|Any CPU
+		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
