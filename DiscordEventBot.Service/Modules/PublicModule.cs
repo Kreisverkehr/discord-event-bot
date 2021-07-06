@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 using DiscordEventBot.Service.Services;
 using System.IO;
 using System.Threading.Tasks;
@@ -68,8 +69,18 @@ namespace DiscordEventBot.Service.Modules
         public async Task UserInfoAsync(IUser user = null)
         {
             user = user ?? Context.User;
+            var guildUser = user as SocketGuildUser;
 
-            await ReplyAsync(user.ToString());
+            var reply = $"Username: {user.Username}\n";
+            reply += $"Discriminator:{user.DiscriminatorValue}\n";
+            if (guildUser != null) reply += $"Nickname: {guildUser.Nickname}\n";
+            reply += $"Registred since:{user.CreatedAt:yyyy-MM-dd HH:mm:ss}\n";
+            if (guildUser != null) reply += $"on this server since:{guildUser.JoinedAt:yyyy-MM-dd HH:mm:ss}\n";
+            reply += $"Status: {user.Status}\n";
+
+            await ReplyAsync(reply);
+
+            await user.SendMessageAsync("I know more about you, but don't tell anyone!");
         }
 
         #endregion Public Methods

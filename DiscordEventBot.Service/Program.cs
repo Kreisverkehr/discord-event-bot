@@ -83,9 +83,10 @@ namespace DiscordEventBot.Service
         #region Private Methods
 
         private static ServiceProvider ConfigureServices(Settings settings) => new ServiceCollection()
+            // add basic stuff
             .AddSingleton<DiscordSocketConfig>()
-            .AddSingleton<Settings>()
             .AddSingleton<DiscordSocketClient>()
+            .AddSingleton<Settings>()
             .AddSingleton<CommandService>()
             .AddSingleton<CommandHandlingService>()
             .AddSingleton<PictureService>()
