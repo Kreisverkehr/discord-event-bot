@@ -23,6 +23,7 @@ namespace DiscordEventBot.Service
 
         public async Task MainAsync()
         {
+            Console.CancelKeyPress += ShutdownRequested;
             using (var services = ConfigureServices())
             {
                 var _settings = services.GetRequiredService<Settings>();
@@ -64,14 +65,18 @@ namespace DiscordEventBot.Service
                 await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
 
                 // Wait infinitely so your bot actually stays connected.
-                await Task.Delay(Timeout.Infinite);
+                try { await Task.Delay(Timeout.Infinite, tokenSource.Token); }
+                catch (TaskCanceledException) { }
+
+                await _client.StopAsync();
             }
         }
-
-        private Program()
+        private CancellationTokenSource tokenSource = new();
+        private void ShutdownRequested(object sender, ConsoleCancelEventArgs e)
         {
-
-
+            e.Cancel = true;
+            Console.WriteLine("Shutdown requested. Please wait.");
+            tokenSource.Cancel();
         }
 
         private static ServiceProvider ConfigureServices() => new ServiceCollection()
