@@ -68,7 +68,7 @@ namespace DiscordEventBot.Service.Services
             var argPos = 0;
             // Perform prefix check. You may want to replace this with (!message.HasCharPrefix('!',
             // ref argPos)) for a more traditional command format like !help.
-            if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos)) return;
+            if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !(rawMessage.Channel is IDMChannel)) return;
 
             var context = new SocketCommandContext(_discord, message);
             // Perform the execution of the command. In this method, the command service will
