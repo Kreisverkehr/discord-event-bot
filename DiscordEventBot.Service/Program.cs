@@ -6,115 +6,112 @@ using DiscordEventBot.Model;
 using DiscordEventBot.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Net.Http;
-using System.Reflection;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Service
 {
-    class Program
+    internal class Program
     {
+        #region Private Fields
+
+        private CancellationTokenSource tokenSource = new();
+
+        #endregion Private Fields
+
+        #region Public Methods
+
         public static void Main(string[] args)
-            => new Program().MainAsync().GetAwaiter().GetResult();
+                    => new Program().MainAsync().GetAwaiter().GetResult();
 
         public async Task MainAsync()
         {
             Console.CancelKeyPress += ShutdownRequested;
-            using (var services = ConfigureServices())
+            Settings settings = new();
+
+            if (!await settings.LoadFromFile())
             {
-                var _settings = services.GetRequiredService<Settings>();
-
-                if (!File.Exists(Settings.SETTINGS_FILE))
-                {
-                    Console.WriteLine("Oops! It seems that there is no previous settings file.");
-                    Console.WriteLine("Fear not! I will create one quickly.");
-                    Console.WriteLine("Just let me ask a few questions:");
-                    Console.Write("Enter your Bot's token: ");
-                    _settings.Token = Console.ReadLine();
-                    Console.WriteLine($"Where do you want your data to be stored? [ENTER] for {_settings.DataStore}");
-                    var dataStoreTmp = Console.ReadLine();
-                    _settings.DataStore = string.IsNullOrWhiteSpace(dataStoreTmp) ? _settings.DataStore : dataStoreTmp;
-                    File.WriteAllBytes(Settings.SETTINGS_FILE, JsonSerializer.SerializeToUtf8Bytes(_settings, new JsonSerializerOptions() { WriteIndented = true }));
-                }
-                else
-                {
-                    byte[] settingBytes = File.ReadAllBytes(Settings.SETTINGS_FILE);
-                    Settings tmp = JsonSerializer.Deserialize<Settings>(settingBytes);
-                    _settings.DiscordClientConfig = tmp.DiscordClientConfig;
-                    _settings.Token = tmp.Token;
-                    _settings.DataStore = tmp.DataStore;
-                    _settings.IsLoadedFromFile = true;
-                }
-
-                using (EventBotContext DbCtx = new())
-                    DbCtx.Database.Migrate();
-
-                var _client = services.GetRequiredService<DiscordSocketClient>();
-                _client.Log += LogAsync;
-
-                services.GetRequiredService<CommandService>().Log += LogAsync;
-
-                // Login and connect.
-                await _client.LoginAsync(TokenType.Bot, _settings.Token);
-                await _client.StartAsync();
-
-                await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
-
-                // Wait infinitely so your bot actually stays connected.
-                try { await Task.Delay(Timeout.Infinite, tokenSource.Token); }
-                catch (TaskCanceledException) { }
-
-                await _client.StopAsync();
+                Console.WriteLine("Oops! It seems that there is no previous settings file.");
+                Console.WriteLine("Fear not! I will create one quickly.");
+                Console.WriteLine("Just let me ask a few questions:");
+                Console.Write("Enter your Bot's token: ");
+                settings.Token = Console.ReadLine();
+                Console.WriteLine($"Where do you want your data to be stored? [ENTER] for {settings.DataStore}");
+                var dataStoreTmp = Console.ReadLine();
+                settings.DataStore = string.IsNullOrWhiteSpace(dataStoreTmp) ? settings.DataStore : dataStoreTmp;
+                File.WriteAllBytes(Settings.SETTINGS_FILE, JsonSerializer.SerializeToUtf8Bytes(settings, new JsonSerializerOptions() { WriteIndented = true }));
             }
-        }
-        private CancellationTokenSource tokenSource = new();
-        private void ShutdownRequested(object sender, ConsoleCancelEventArgs e)
-        {
-            e.Cancel = true;
-            Console.WriteLine("Shutdown requested. Please wait.");
-            tokenSource.Cancel();
+
+            var services = ConfigureServices(settings);
+
+            ConsoleLogger.Filter = (logLevel, source) => logLevel != LogLevel.None && logLevel >= settings.LogLevel;
+
+            using (var ctx = services.GetRequiredService<IDbContextFactory<EventBotContext>>().CreateDbContext())
+                ctx.Database.Migrate();
+
+            // setting discord.net's loglevel to verbose. filtering is done in ConsoleLogger
+            var discordSettings = services.GetRequiredService<DiscordSocketConfig>();
+            discordSettings.LogLevel = LogSeverity.Verbose;
+
+            var _client = services.GetRequiredService<DiscordSocketClient>();
+            _client.Log += ConsoleLogger.LogAsync;
+
+            services.GetRequiredService<CommandService>().Log += ConsoleLogger.LogAsync;
+
+            // Login and connect.
+            await _client.LoginAsync(TokenType.Bot, settings.Token);
+            await _client.StartAsync();
+
+            await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
+
+            // Wait infinitely so your bot actually stays connected.
+            try { await Task.Delay(Timeout.Infinite, tokenSource.Token); }
+            catch (TaskCanceledException) { }
+
+            await _client.StopAsync();
+            await services.DisposeAsync();
+            ConsoleLogger.Log(LogLevel.Information, "Shutdown complete.");
         }
 
-        private static ServiceProvider ConfigureServices() => new ServiceCollection()
-            .AddSingleton<DiscordSocketClient>()
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private static ServiceProvider ConfigureServices(Settings settings) => new ServiceCollection()
+            .AddSingleton<DiscordSocketConfig>()
             .AddSingleton<Settings>()
+            .AddSingleton<DiscordSocketClient>()
             .AddSingleton<CommandService>()
             .AddSingleton<CommandHandlingService>()
             .AddSingleton<PictureService>()
             .AddSingleton<HttpClient>()
-            .AddDbContext<EventBotContext>()
+
+            //configure DB
             .AddEntityFrameworkProxies()
             .AddEntityFrameworkSqlite()
-            .BuildServiceProvider(validateScopes: true)
+            .AddLogging()
+            .AddDbContextFactory<EventBotContext>(options => options
+                .UseSqlite($"Data Source = {settings.DataStore}")
+                .UseLazyLoadingProxies()
+                .LogTo((eventId, logLevel) => true, ConsoleLogger.Log)
+            )
+
+            // build provider
+            .BuildServiceProvider(validateScopes: false)
             ;
 
-        private static Task LogAsync(LogMessage message)
+        private void ShutdownRequested(object sender, ConsoleCancelEventArgs e)
         {
-            switch (message.Severity)
-            {
-                case LogSeverity.Critical:
-                case LogSeverity.Error:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case LogSeverity.Warning:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case LogSeverity.Info:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-                case LogSeverity.Verbose:
-                case LogSeverity.Debug:
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    break;
-            }
-            Console.WriteLine($"{DateTime.Now,-19} [{message.Severity,8}] {message.Source}: {message.Message} {message.Exception}");
-            Console.ResetColor();
-
-            return Task.CompletedTask;
+            e.Cancel = true;
+            ConsoleLogger.Log(LogLevel.Information, "Shutdown requested. Please wait.");
+            tokenSource.Cancel();
         }
+
+        #endregion Private Methods
     }
 }
