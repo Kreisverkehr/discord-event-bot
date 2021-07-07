@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Service.Services
+namespace DiscordEventBot.Common.Services
 {
     public class PictureService
     {

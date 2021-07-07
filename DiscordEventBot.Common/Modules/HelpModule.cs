@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Service.Modules
+namespace DiscordEventBot.Common.Modules
 {
-    public class HelpHandler : ModuleBase<SocketCommandContext>
+    public class HelpModule : ModuleBase<SocketCommandContext>
     {
         private readonly CommandService _service;
 
-        public HelpHandler(CommandService service)
+        public HelpModule(CommandService service)
         {
             _service = service;
         }

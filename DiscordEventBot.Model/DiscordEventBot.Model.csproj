@@ -22,8 +22,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DiscordEventBot.Common\DiscordEventBot.Common.csproj" />
-  </ItemGroup>
-
 </Project>

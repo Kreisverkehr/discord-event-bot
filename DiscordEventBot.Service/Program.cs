@@ -2,8 +2,9 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using DiscordEventBot.Common;
+using DiscordEventBot.Common.Extensions;
+using DiscordEventBot.Common.Services;
 using DiscordEventBot.Model;
-using DiscordEventBot.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -69,7 +70,7 @@ namespace DiscordEventBot.Service
 
             await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
 
-            // Wait infinitely so your bot actually stays connected.
+            // Wait until process is asked to terminate so the bot actually stays connected.
             try { await Task.Delay(Timeout.Infinite, tokenSource.Token); }
             catch (TaskCanceledException) { }
 
@@ -88,9 +89,9 @@ namespace DiscordEventBot.Service
             .AddSingleton<DiscordSocketClient>()
             .AddSingleton<Settings>()
             .AddSingleton<CommandService>()
-            .AddSingleton<CommandHandlingService>()
-            .AddSingleton<PictureService>()
-            .AddSingleton<HttpClient>()
+
+            // configure EventBot's services
+            .AddEventBotServices()
 
             //configure DB
             .AddEntityFrameworkProxies()

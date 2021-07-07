@@ -1,9 +1,9 @@
 ﻿using Discord;
 using Microsoft.Extensions.Logging;
 
-namespace DiscordEventBot.Common
+namespace DiscordEventBot.Common.Extensions
 {
-    public static class Extensions
+    public static class LogSeverityExtensions
     {
         #region Public Methods
 

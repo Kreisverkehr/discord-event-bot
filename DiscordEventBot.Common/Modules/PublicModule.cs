@@ -1,11 +1,11 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DiscordEventBot.Service.Services;
+using DiscordEventBot.Common.Services;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Service.Modules
+namespace DiscordEventBot.Common.Modules
 {
     public class PublicModule : ModuleBase<SocketCommandContext>
     {

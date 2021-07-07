@@ -1,10 +1,11 @@
 ﻿using Discord;
+using DiscordEventBot.Common.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Common
+namespace DiscordEventBot.Service
 {
     public static class ConsoleLogger
     {

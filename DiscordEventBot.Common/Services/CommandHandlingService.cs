@@ -6,7 +6,7 @@ using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Service.Services
+namespace DiscordEventBot.Common.Services
 {
     public class CommandHandlingService
     {
@@ -20,15 +20,13 @@ namespace DiscordEventBot.Service.Services
 
         #region Public Constructors
 
-        public CommandHandlingService(IServiceProvider services)
+        public CommandHandlingService(IServiceProvider services, CommandService commands, DiscordSocketClient discord)
         {
-            _commands = services.GetRequiredService<CommandService>();
-            _discord = services.GetRequiredService<DiscordSocketClient>();
+            _commands = commands;
+            _discord = discord;
             _services = services;
 
-            // Hook CommandExecuted to handle post-command-execution logic.
             _commands.CommandExecuted += CommandExecutedAsync;
-            // Hook MessageReceived so we can process each message to see if it qualifies as a command.
             _discord.MessageReceived += MessageReceivedAsync;
         }
 
@@ -48,14 +46,12 @@ namespace DiscordEventBot.Service.Services
             if (result.IsSuccess)
                 return;
 
-            // the command failed, let's notify the user that something happened.
             await context.Channel.SendMessageAsync($"error: {result}");
         }
 
         public async Task InitializeAsync()
         {
-            // Register modules that are public and inherit ModuleBase<T>.
-            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+            await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
         }
 
         public async Task MessageReceivedAsync(SocketMessage rawMessage)
@@ -64,18 +60,11 @@ namespace DiscordEventBot.Service.Services
             if (!(rawMessage is SocketUserMessage message)) return;
             if (message.Source != MessageSource.User) return;
 
-            // This value holds the offset where the prefix ends
             var argPos = 0;
-            // Perform prefix check. You may want to replace this with (!message.HasCharPrefix('!',
-            // ref argPos)) for a more traditional command format like !help.
             if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !(rawMessage.Channel is IDMChannel)) return;
 
             var context = new SocketCommandContext(_discord, message);
-            // Perform the execution of the command. In this method, the command service will
-            // perform precondition and parsing check then execute the command if one is matched.
             await _commands.ExecuteAsync(context, argPos, _services);
-            // Note that normally a result will be returned by this format, but here we will handle
-            // the result in CommandExecutedAsync,
         }
 
         #endregion Public Methods
