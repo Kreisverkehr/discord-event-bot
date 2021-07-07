@@ -12,7 +12,7 @@ namespace DiscordEventBot.Common.Messages
         #region Private Fields
 
         private CommandInfo _commandInfo;
-        private List<string> aliases;
+        private List<string> _aliases;
 
         #endregion Private Fields
 
@@ -21,7 +21,8 @@ namespace DiscordEventBot.Common.Messages
         public CommandHelpMessage(CommandInfo commandInfo)
         {
             _commandInfo = commandInfo;
-            aliases = _commandInfo.Aliases.Where(a => a.ToUpperInvariant() != _commandInfo.Name.ToUpperInvariant()).ToList();
+            _aliases = _commandInfo.Aliases.Where(a => a.ToUpperInvariant() != _commandInfo.Name.ToUpperInvariant()).ToList();
+            HasEmbed = true;
         }
 
         #endregion Public Constructors
@@ -35,24 +36,10 @@ namespace DiscordEventBot.Common.Messages
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder
                 .WithName("Remarks")
                 .WithValue(_commandInfo.Remarks))
-            .AddFieldIf(() => aliases.Count > 0, builder => builder
-                .WithName("Alias".ToQuantity(aliases.Count, ShowQuantityAs.None))
-                .WithValue(string.Join(", ", aliases) ?? "None"))
+            .AddFieldIf(() => _aliases.Count > 0, builder => builder
+                .WithName("Alias".ToQuantity(_aliases.Count, ShowQuantityAs.None))
+                .WithValue(string.Join(", ", _aliases) ?? "None"))
             ;
-
-        protected override string BuildMessageText()
-        {
-            var msgText = base.BuildMessageText();
-
-            msgText += _commandInfo.GetSignature();
-
-            if (!string.IsNullOrWhiteSpace(_commandInfo.Summary)) msgText += $"\n{_commandInfo.Summary}";
-            if (!string.IsNullOrWhiteSpace(_commandInfo.Remarks)) msgText += $"\n{_commandInfo.Remarks}";
-
-            if (aliases.Count > 0) msgText += $"\n{"Alias".ToQuantity(aliases.Count, ShowQuantityAs.None)}: {string.Join(", ", aliases)}";
-
-            return msgText;
-        }
 
         #endregion Protected Methods
     }

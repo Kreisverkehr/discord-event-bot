@@ -18,6 +18,7 @@ namespace DiscordEventBot.Common.Messages
         {
             _service = service;
             _context = context;
+            HasEmbed = true;
         }
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder
             .WithColor(Color.DarkBlue)

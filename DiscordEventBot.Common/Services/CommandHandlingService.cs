@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Common.TypeReaders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -42,10 +43,18 @@ namespace DiscordEventBot.Common.Services
             if (!command.IsSpecified)
                 return;
 
-            // the command was successful, we don't care about this result, unless we want to log
-            // that a command succeeded.
             if (result.IsSuccess)
+            {
+                switch (result)
+                {
+                    case ResponseMessageResult response:
+                        await response.SendAsync(context.Channel);
+                        break;
+                    default:
+                        return;
+                }
                 return;
+            }
 
             await context.Channel.SendMessageAsync($"error: {result}");
         }

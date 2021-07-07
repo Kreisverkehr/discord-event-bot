@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Messages;
+using DiscordEventBot.Common.RuntimeResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,19 @@ namespace DiscordEventBot.Common.Modules
         [Command("help")]
         [Summary("Displays every command that you can use")]
         [Remarks("This command only displays commands that you are able to use.")]
-        public async Task HelpAsync(CommandInfo command = null)
+        public Task<RuntimeResult> HelpAsync(CommandInfo command = null)
         {
+            MessageBase response;
+
             if(command != null)
             {
-                await ReplyAsync(embed: new CommandHelpMessage(command));
-                return;
+                response = new CommandHelpMessage(command);
+            } else
+            {
+                response = new CommandOverviewMessage(_service, Context);
             }
 
-            await ReplyAsync(embed: new CommandOverviewMessage(_service, Context));
+            return ResponseMessageResult.FromMessageAsync(response);
         }
     }
 }
