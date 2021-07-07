@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using DiscordEventBot.Common.TypeReaders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
@@ -51,6 +52,8 @@ namespace DiscordEventBot.Common.Services
 
         public async Task InitializeAsync()
         {
+            _commands.AddTypeReader<CommandInfo>(new CommandInfoTypeReader());
+
             await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
         }
 

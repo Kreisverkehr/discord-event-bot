@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using DiscordEventBot.Common.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,38 +21,15 @@ namespace DiscordEventBot.Common.Modules
         [Command("help")]
         [Summary("Displays every command that you can use")]
         [Remarks("This command only displays commands that you are able to use.")]
-        public async Task HelpAsync()
+        public async Task HelpAsync(CommandInfo command = null)
         {
-            var builder = new EmbedBuilder()
+            if(command != null)
             {
-                Color = Color.DarkGreen,
-                Title = "Bot Commands",
-                Description = "These are the commands you can use",
-            };
-
-            foreach (var module in _service.Modules)
-            {
-                string description = null;
-                foreach (var cmd in module.Commands)
-                {
-                    var result = await cmd.CheckPreconditionsAsync(Context);
-                    if (result.IsSuccess)
-                        description += $"{cmd.Aliases.First()}\n";
-                }
-
-                if (!string.IsNullOrWhiteSpace(description))
-                {
-                    builder.AddField(x =>
-                    {
-                        x.Name = module.Name;
-                        x.Value = description;
-                        x.IsInline = false;
-                    });
-                }
+                await ReplyAsync(embed: new CommandHelpMessage(command));
+                return;
             }
 
-            await ReplyAsync("", false, builder.Build());
+            await ReplyAsync(embed: new CommandOverviewMessage(_service, Context));
         }
-
     }
 }

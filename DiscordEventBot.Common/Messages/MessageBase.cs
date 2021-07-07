@@ -35,7 +35,7 @@ namespace DiscordEventBot.Common.Messages
         {
             if (isBuilt) return;
             MessageText = BuildMessageText();
-            Embed = BuildEmbed();
+            Embed = BuildEmbed(new EmbedBuilder()).Build();
             isBuilt = true;
         }
 
@@ -43,7 +43,7 @@ namespace DiscordEventBot.Common.Messages
 
         #region Protected Methods
 
-        protected virtual Embed BuildEmbed() => null;
+        protected virtual EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder;
 
         protected virtual string BuildMessageText() => string.Empty;
 
