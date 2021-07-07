@@ -87,7 +87,7 @@ namespace DiscordEventBot.Service
             // add basic stuff
             .AddSingleton<DiscordSocketConfig>()
             .AddSingleton<DiscordSocketClient>()
-            .AddSingleton<Settings>()
+            .AddSingleton(settings)
             .AddSingleton<CommandService>()
 
             // configure EventBot's services
