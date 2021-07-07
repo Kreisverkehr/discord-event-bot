@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -24,44 +24,44 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
-    - name: Publish win-x64
-      run: dotnet publish -p:PublishProfile=win-x64
-    - name: Publish win-arm
-      run: dotnet publish -p:PublishProfile=win-arm
-    - name: Publish linux-x64
-      run: dotnet publish -p:PublishProfile=linux-x64
-    - name: Publish linux-arm
-      run: dotnet publish -p:PublishProfile=linux-arm
-    - name: Publish osx-x64
-      run: dotnet publish -p:PublishProfile=osx-x64
-      
-    - name: Upload win-x64
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: win-x64
-        path: DiscordEventBot.Service/bin/Release/net5.0/publish/win-x64/**
-        retention-days: 1
-    - name: Upload win-arm
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: win-arm
-        path: DiscordEventBot.Service/bin/Release/net5.0/publish/win-arm/**
-        retention-days: 1
-    - name: Upload linux-x64
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: linux-x64
-        path: DiscordEventBot.Service/bin/Release/net5.0/publish/linux-x64/**
-        retention-days: 1
-    - name: Upload linux-arm
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: linux-arm
-        path: DiscordEventBot.Service/bin/Release/net5.0/publish/linux-arm/**
-        retention-days: 1
-    - name: Upload osx-x64
-      uses: actions/upload-artifact@v2.2.4
-      with:
-        name: osx-x64
-        path: DiscordEventBot.Service/bin/Release/net5.0/publish/osx-x64/**
-        retention-days: 1
+#   - name: Publish win-x64
+#     run: dotnet publish -p:PublishProfile=win-x64
+#   - name: Publish win-arm
+#     run: dotnet publish -p:PublishProfile=win-arm
+#   - name: Publish linux-x64
+#     run: dotnet publish -p:PublishProfile=linux-x64
+#   - name: Publish linux-arm
+#     run: dotnet publish -p:PublishProfile=linux-arm
+#   - name: Publish osx-x64
+#     run: dotnet publish -p:PublishProfile=osx-x64
+#     
+#   - name: Upload win-x64
+#     uses: actions/upload-artifact@v2.2.4
+#     with:
+#       name: win-x64
+#       path: DiscordEventBot.Service/bin/Release/net5.0/publish/win-x64/**
+#       retention-days: 1
+#   - name: Upload win-arm
+#     uses: actions/upload-artifact@v2.2.4
+#     with:
+#       name: win-arm
+#       path: DiscordEventBot.Service/bin/Release/net5.0/publish/win-arm/**
+#       retention-days: 1
+#   - name: Upload linux-x64
+#     uses: actions/upload-artifact@v2.2.4
+#     with:
+#       name: linux-x64
+#       path: DiscordEventBot.Service/bin/Release/net5.0/publish/linux-x64/**
+#       retention-days: 1
+#   - name: Upload linux-arm
+#     uses: actions/upload-artifact@v2.2.4
+#     with:
+#       name: linux-arm
+#       path: DiscordEventBot.Service/bin/Release/net5.0/publish/linux-arm/**
+#       retention-days: 1
+#   - name: Upload osx-x64
+#     uses: actions/upload-artifact@v2.2.4
+#     with:
+#       name: osx-x64
+#       path: DiscordEventBot.Service/bin/Release/net5.0/publish/osx-x64/**
+#       retention-days: 1
