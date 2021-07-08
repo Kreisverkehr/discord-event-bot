@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using DiscordEventBot.Common.Attributes;
 using DiscordEventBot.Common.Messages;
 using DiscordEventBot.Common.RuntimeResults;
 using System;
@@ -20,19 +21,19 @@ namespace DiscordEventBot.Common.Modules
         }
 
         [Command("help")]
-        [Summary("Displays every command that you can use")]
-        [Remarks("This provides a filtered list of commands. You will only see what you can use.")]
+        [LocalizedSummary("txt_cmd_help_help_sum")]
+        [LocalizedRemarks("txt_cmd_help_help_rem")]
         public Task<RuntimeResult> HelpAsync() =>
             ResponseMessageResult.FromMessageAsync(new CommandOverviewMessage(_service, Context));
 
         [Command("help")]
-        [Summary("Displays a detailed explaination of the given command")]
+        [LocalizedRemarks("txt_cmd_help_help_cmd_sum")]
         public Task<RuntimeResult> HelpAsync([Remainder] CommandInfo command) =>
             ResponseMessageResult.FromMessageAsync(new CommandHelpMessage(command));
 
         [Command("help")]
-        [Summary("Displays a more detailed overview of the given module")]
-        [Remarks("This provides a filtered list of commands. You will only see what you can use.")]
+        [LocalizedSummary("txt_cmd_help_help_mod_sum")]
+        [LocalizedRemarks("txt_cmd_help_help_rem")]
         public Task<RuntimeResult> HelpAsync(ModuleInfo module) =>
             ResponseMessageResult.FromMessageAsync(new CommandModuleOverviewMessage(module, Context));
     }

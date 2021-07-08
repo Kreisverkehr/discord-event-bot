@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
@@ -47,6 +48,11 @@ namespace DiscordEventBot.Service
                 settings.DataStore = string.IsNullOrWhiteSpace(dataStoreTmp) ? settings.DataStore : dataStoreTmp;
                 File.WriteAllBytes(Settings.SETTINGS_FILE, JsonSerializer.SerializeToUtf8Bytes(settings, new JsonSerializerOptions() { WriteIndented = true }));
             }
+
+            CultureInfo.CurrentUICulture = settings.Culture;
+            CultureInfo.CurrentCulture = settings.Culture;
+            CultureInfo.DefaultThreadCurrentCulture = settings.Culture;
+            CultureInfo.DefaultThreadCurrentUICulture = settings.Culture;
 
             var services = ConfigureServices(settings);
 

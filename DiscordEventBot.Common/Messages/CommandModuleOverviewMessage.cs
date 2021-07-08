@@ -29,7 +29,7 @@ namespace DiscordEventBot.Common.Messages
                 where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
                 select new EmbedFieldBuilder()
                     .WithName(cmd.GetSignature())
-                    .WithValue(string.IsNullOrWhiteSpace(cmd.Summary) ? "No summary :(" : cmd.Summary))
+                    .WithValue(string.IsNullOrWhiteSpace(cmd.Summary) ? Resources.Resources.txt_msg_nosummary : cmd.Summary))
             ;
     }
 }

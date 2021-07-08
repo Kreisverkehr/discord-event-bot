@@ -34,11 +34,11 @@ namespace DiscordEventBot.Common.Messages
             .WithColor(Color.DarkGreen)
             .WithDescription(_commandInfo.Summary)
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder
-                .WithName("Remarks")
+                .WithName(Resources.Resources.txt__word_remarks)
                 .WithValue(_commandInfo.Remarks))
             .AddFieldIf(() => _aliases.Count > 0, builder => builder
-                .WithName("Alias".ToQuantity(_aliases.Count, ShowQuantityAs.None))
-                .WithValue(string.Join(", ", _aliases) ?? "None"))
+                .WithName(Resources.Resources.txt_word_alias.ToQuantity(_aliases.Count, ShowQuantityAs.None))
+                .WithValue(string.Join(", ", _aliases) ?? Resources.Resources.txt_word_none))
             ;
 
         #endregion Protected Methods

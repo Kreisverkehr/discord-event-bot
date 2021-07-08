@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Service
@@ -15,8 +17,22 @@ namespace DiscordEventBot.Service
 
         #region Public Properties
 
+        [JsonIgnore]
+        public CultureInfo Culture { get; set; } = CultureInfo.CurrentUICulture;
+
         public string DataStore { get; set; } = "DiscordEventBot.db";
+
+        public string Language
+        {
+            get { return Culture.Name; }
+            set
+            {
+                Culture = new CultureInfo(value);
+            }
+        }
+
         public LogLevel LogLevel { get; set; } = LogLevel.Information;
+
         public string Token { get; set; }
 
         #endregion Public Properties
@@ -33,6 +49,7 @@ namespace DiscordEventBot.Service
                 tmp = await JsonSerializer.DeserializeAsync<Settings>(settingsFileStream);
             Token = tmp.Token;
             DataStore = tmp.DataStore;
+            Culture = tmp.Culture;
             return true;
         }
 

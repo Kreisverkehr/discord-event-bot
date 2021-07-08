@@ -22,8 +22,8 @@ namespace DiscordEventBot.Common.Messages
         }
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder
             .WithColor(Color.DarkBlue)
-            .WithTitle("Bot command reference")
-            .WithDescription("Here is a list of commands that the bot understands. You may want more details on specific commands. Use `help *command*`")
+            .WithTitle(Resources.Resources.txt_msg_cmdoverview_title)
+            .WithDescription(Resources.Resources.txt_msg_cmdoverview_desc)
             .WithFields(
                 from module in _service.Modules
                 from cmd in module.Commands
