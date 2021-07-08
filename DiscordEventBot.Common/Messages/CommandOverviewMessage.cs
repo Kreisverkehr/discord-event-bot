@@ -30,7 +30,7 @@ namespace DiscordEventBot.Common.Messages
                 where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
                 group cmd by module into cmdByModule
                 select new EmbedFieldBuilder()
-                    .WithName(cmdByModule.Key.Name)
+                    .WithName(cmdByModule.Key.Name + (string.IsNullOrWhiteSpace(cmdByModule.Key.Group) ? "" : $" \"{cmdByModule.Key.Group}\""))
                     .WithValue(string.Join('\n', cmdByModule.Select(c => "> " + c.GetSignature()))))
             ;
     }

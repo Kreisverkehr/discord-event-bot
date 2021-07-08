@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
 {
+    [Group("pub")]
+    [Alias("public", "test")]
+    [Name("public commands")]
     public class PublicModule : ModuleBase<SocketCommandContext>
     {
         #region Public Properties

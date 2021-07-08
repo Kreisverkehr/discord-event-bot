@@ -21,20 +21,19 @@ namespace DiscordEventBot.Common.Modules
 
         [Command("help")]
         [Summary("Displays every command that you can use")]
-        [Remarks("This command only displays commands that you are able to use.")]
-        public Task<RuntimeResult> HelpAsync(CommandInfo command = null)
-        {
-            MessageBase response;
+        [Remarks("This provides a filtered list of commands. You will only see what you can use.")]
+        public Task<RuntimeResult> HelpAsync() =>
+            ResponseMessageResult.FromMessageAsync(new CommandOverviewMessage(_service, Context));
 
-            if(command != null)
-            {
-                response = new CommandHelpMessage(command);
-            } else
-            {
-                response = new CommandOverviewMessage(_service, Context);
-            }
+        [Command("help")]
+        [Summary("Displays a detailed explaination of the given command")]
+        public Task<RuntimeResult> HelpAsync([Remainder] CommandInfo command) =>
+            ResponseMessageResult.FromMessageAsync(new CommandHelpMessage(command));
 
-            return ResponseMessageResult.FromMessageAsync(response);
-        }
+        [Command("help")]
+        [Summary("Displays a more detailed overview of the given module")]
+        [Remarks("This provides a filtered list of commands. You will only see what you can use.")]
+        public Task<RuntimeResult> HelpAsync(ModuleInfo module) =>
+            ResponseMessageResult.FromMessageAsync(new CommandModuleOverviewMessage(module, Context));
     }
 }

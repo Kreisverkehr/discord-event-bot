@@ -62,6 +62,7 @@ namespace DiscordEventBot.Common.Services
         public async Task InitializeAsync()
         {
             _commands.AddTypeReader<CommandInfo>(new CommandInfoTypeReader());
+            _commands.AddTypeReader<ModuleInfo>(new ModuleInfoTypeReader());
 
             await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
         }
