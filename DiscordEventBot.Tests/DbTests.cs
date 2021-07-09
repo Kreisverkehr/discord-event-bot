@@ -2,6 +2,7 @@ using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace DiscordEventBot.Tests
 {
@@ -12,6 +13,9 @@ namespace DiscordEventBot.Tests
 
         public DbTests()
         {
+            // start fresh
+            if (File.Exists("EventBotTest.db")) File.Delete("EventBotTest.db");
+
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
                 DbCtx.Database.Migrate();
         }
@@ -32,10 +36,10 @@ namespace DiscordEventBot.Tests
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
-                Assert.AreEqual(Guid.Empty, evt1.EventID);
+                Assert.AreEqual(0UL, evt1.EventID);
                 DbCtx.Events.Add(evt1);
                 DbCtx.SaveChanges();
-                Assert.AreNotEqual(Guid.Empty, evt1.EventID);
+                Assert.AreNotEqual(0UL, evt1.EventID);
 
                 Event evt2 = new Event()
                 {
@@ -44,10 +48,10 @@ namespace DiscordEventBot.Tests
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
-                Assert.AreEqual(Guid.Empty, evt2.EventID);
+                Assert.AreEqual(0UL, evt2.EventID);
                 DbCtx.Events.Add(evt2);
                 DbCtx.SaveChanges();
-                Assert.AreNotEqual(Guid.Empty, evt2.EventID);
+                Assert.AreNotEqual(0UL, evt2.EventID);
 
                 Assert.AreNotEqual(evt1.EventID, evt2.EventID);
             }
@@ -65,39 +69,33 @@ namespace DiscordEventBot.Tests
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
-                Assert.AreEqual(Guid.Empty, evt1.EventID);
+                Assert.AreEqual(0UL, evt1.EventID);
 
                 AttendeeGroup grp1 = new AttendeeGroup()
                 {
                     Name = "TestGrp1",
                     MaxCapacity = 5
                 };
-                Assert.AreEqual(Guid.Empty, grp1.GroupID);
+                Assert.AreEqual(0UL, grp1.GroupID);
                 evt1.Groups.Add(grp1);
 
-                Attendee att1 = new Attendee()
+                User att1 = new User()
                 {
-                    DiscordUserDiscriminator = "Testuser#0666",
-                    DiscordUserID = 123456789
+                    UserId = 123456789
                 };
-                Assert.AreEqual(Guid.Empty, att1.AttendeeID);
                 grp1.Attendees.Add(att1);
 
-                Attendee att2 = new Attendee()
+                User att2 = new User()
                 {
-                    DiscordUserDiscriminator = "Testuser#6660",
-                    DiscordUserID = 987654321
+                    UserId = 987654321
                 };
-                Assert.AreEqual(Guid.Empty, att2.AttendeeID);
                 grp1.Attendees.Add(att2);
 
                 DbCtx.Events.Add(evt1);
                 DbCtx.SaveChanges();
 
-                Assert.AreNotEqual(Guid.Empty, evt1.EventID);
-                Assert.AreNotEqual(Guid.Empty, grp1.GroupID);
-                Assert.AreNotEqual(Guid.Empty, att1.AttendeeID);
-                Assert.AreNotEqual(Guid.Empty, att2.AttendeeID);
+                Assert.AreNotEqual(0UL, evt1.EventID);
+                Assert.AreNotEqual(0UL, grp1.GroupID);
             }
         }
 
@@ -113,31 +111,25 @@ namespace DiscordEventBot.Tests
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
-                Assert.AreEqual(Guid.Empty, evt1.EventID);
+                Assert.AreEqual(0UL, evt1.EventID);
 
-                Attendee att1 = new Attendee()
+                User att1 = new User()
                 {
-                    DiscordUserDiscriminator = "Testuser#0666",
-                    DiscordUserID = 123456789
+                    //UserId = 123456789
                 };
-                Assert.AreEqual(Guid.Empty, att1.AttendeeID);
                 evt1.Attendees.Add(att1);
 
-                Attendee att2 = new Attendee()
+                User att2 = new User()
                 {
-                    DiscordUserDiscriminator = "Testuser#6660",
-                    DiscordUserID = 987654321
+                    //UserId = 987654321
                 };
-                Assert.AreEqual(Guid.Empty, att2.AttendeeID);
                 evt1.Attendees.Add(att2);
 
                 DbCtx.Events.Add(evt1);
 
                 DbCtx.SaveChanges();
 
-                Assert.AreNotEqual(Guid.Empty, evt1.EventID);
-                Assert.AreNotEqual(Guid.Empty, att1.AttendeeID);
-                Assert.AreNotEqual(Guid.Empty, att2.AttendeeID);
+                Assert.AreNotEqual(0UL, evt1.EventID);
             }
         }
 

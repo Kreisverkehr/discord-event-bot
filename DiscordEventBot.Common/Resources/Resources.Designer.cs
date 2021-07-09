@@ -106,6 +106,33 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Event Commands ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_name {
+            get {
+                return ResourceManager.GetString("txt_mod_event_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Help Commands ähnelt.
+        /// </summary>
+        internal static string txt_mod_help_name {
+            get {
+                return ResourceManager.GetString("txt_mod_help_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You already joined! ähnelt.
+        /// </summary>
+        internal static string txt_msg_alreadyoined {
+            get {
+                return ResourceManager.GetString("txt_msg_alreadyoined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Here is a list of commands that the bot understands. You may want more details on specific commands. Use `help *command*` ähnelt.
         /// </summary>
         internal static string txt_msg_cmdoverview_desc {
@@ -124,11 +151,38 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Event succesfully created. See below for details. ähnelt.
+        /// </summary>
+        internal static string txt_msg_eventcreated {
+            get {
+                return ResourceManager.GetString("txt_msg_eventcreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Event not found ähnelt.
+        /// </summary>
+        internal static string txt_msg_eventnotfound {
+            get {
+                return ResourceManager.GetString("txt_msg_eventnotfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No summary :( ähnelt.
         /// </summary>
         internal static string txt_msg_nosummary {
             get {
                 return ResourceManager.GetString("txt_msg_nosummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OK! ähnelt.
+        /// </summary>
+        internal static string txt_msg_ok {
+            get {
+                return ResourceManager.GetString("txt_msg_ok", resourceCulture);
             }
         }
         
@@ -142,11 +196,29 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Attendee ähnelt.
+        /// </summary>
+        internal static string txt_word_attendee {
+            get {
+                return ResourceManager.GetString("txt_word_attendee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
         /// </summary>
         internal static string txt_word_none {
             get {
                 return ResourceManager.GetString("txt_word_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start time ähnelt.
+        /// </summary>
+        internal static string txt_word_starttime {
+            get {
+                return ResourceManager.GetString("txt_word_starttime", resourceCulture);
             }
         }
     }

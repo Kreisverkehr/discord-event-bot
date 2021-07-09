@@ -129,20 +129,44 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Zeigt jeden Befehl den du benutzen kannst.</value>
   </data>
+  <data name="txt_mod_event_name" xml:space="preserve">
+    <value>Ereignis-Befehle</value>
+  </data>
+  <data name="txt_mod_help_name" xml:space="preserve">
+    <value>Hilfe über Befehle</value>
+  </data>
+  <data name="txt_msg_alreadyoined" xml:space="preserve">
+    <value>Du nimmst gereits an dem Ereignis teil</value>
+  </data>
   <data name="txt_msg_cmdoverview_desc" xml:space="preserve">
     <value>Hier finden Sie eine Liste der Befehle, die der Bot versteht. Möglicherweise möchten Sie mehr Details zu bestimmten Befehlen erfahren. Verwenden Sie `help *Befehl*`</value>
   </data>
   <data name="txt_msg_cmdoverview_title" xml:space="preserve">
     <value>Bot-Befehlsreferenz</value>
   </data>
+  <data name="txt_msg_eventcreated" xml:space="preserve">
+    <value>Ereignis wurde erfolgreich erstellt. Siehe unten für Details.</value>
+  </data>
+  <data name="txt_msg_eventnotfound" xml:space="preserve">
+    <value>Ereignis nicht gefunden</value>
+  </data>
   <data name="txt_msg_nosummary" xml:space="preserve">
     <value>Keine Beschreibung :(</value>
+  </data>
+  <data name="txt_msg_ok" xml:space="preserve">
+    <value>OK!</value>
   </data>
   <data name="txt_word_alias" xml:space="preserve">
     <value>Alias</value>
   </data>
+  <data name="txt_word_attendee" xml:space="preserve">
+    <value>Teilnehmer</value>
+  </data>
   <data name="txt_word_none" xml:space="preserve">
     <value>Keine</value>
+  </data>
+  <data name="txt_word_starttime" xml:space="preserve">
+    <value>Beginn</value>
   </data>
   <data name="txt__word_remarks" xml:space="preserve">
     <value>Bemerkungen</value>

@@ -8,10 +8,10 @@ namespace DiscordEventBot.Model
     {
         #region Public Properties
 
-        public virtual ICollection<Attendee> Attendees { get; set; } = new List<Attendee>();
+        public virtual ICollection<User> Attendees { get; set; } = new List<User>();
 
         [Key]
-        public Guid GroupID { get; set; }
+        public ulong GroupID { get; set; }
 
         public int? MaxCapacity { get; set; }
         public string Name { get; set; }
