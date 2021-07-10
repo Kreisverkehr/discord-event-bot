@@ -147,6 +147,9 @@
   <data name="txt_msg_eventcreated" xml:space="preserve">
     <value>Ereignis wurde erfolgreich erstellt. Siehe unten für Details.</value>
   </data>
+  <data name="txt_msg_eventgroupnotfound" xml:space="preserve">
+    <value>Die Gruppe konnte nicht gefunden werden.</value>
+  </data>
   <data name="txt_msg_eventlist_footer" xml:space="preserve">
     <value>Für weitere Details benutze `event show [id]`</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="txt_msg_nosummary" xml:space="preserve">
     <value>Keine Beschreibung :(</value>
+  </data>
+  <data name="txt_msg_notjoined" xml:space="preserve">
+    <value>Sie können eine Veranstaltung, an der Sie nicht teilnehmen, nicht verlassen.</value>
   </data>
   <data name="txt_msg_ok" xml:space="preserve">
     <value>OK!</value>

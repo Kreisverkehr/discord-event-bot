@@ -3,18 +3,21 @@ using Discord.WebSocket;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Model;
 using Humanizer;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
 {
     public class EventInfoMessage : MessageBase
     {
+        #region Private Fields
+
+        private DiscordSocketClient _client;
         private Event _event;
-        DiscordSocketClient _client;
+
+        #endregion Private Fields
+
+        #region Public Constructors
+
         public EventInfoMessage(Event evt, DiscordSocketClient client)
         {
             _event = evt;
@@ -22,9 +25,11 @@ namespace DiscordEventBot.Common.Messages
             HasEmbed = true;
         }
 
-        protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder)
-        {
-            return base.BuildEmbed(embedBuilder)
+        #endregion Public Constructors
+
+        #region Protected Methods
+
+        protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => base.BuildEmbed(embedBuilder)
                 .WithTitle($"[#{_event.EventID}] {_event.Subject}")
                 .WithDescription(_event.Description)
                 .WithColor(Color.Orange)
@@ -38,7 +43,13 @@ namespace DiscordEventBot.Common.Messages
                     .WithName(Resources.Resources.txt_word_attendee.ToQuantity(_event.Attendees.Count, ShowQuantityAs.None))
                     .WithValue(string.Join('\n', _event.Attendees.Select(at => _client.GetUser(at.UserId).Mention)))
                 )
+                .WithFields(_event.Groups.Select(grp => new EmbedFieldBuilder()
+                    .WithIsInline(true)
+                    .WithName(grp.GetTitle())
+                    .WithValue(string.Join('\n', grp.Attendees.Select(at => _client.GetUser(at.UserId).Mention)) + ".")
+                ))
                 ;
-        }
+
+        #endregion Protected Methods
     }
 }

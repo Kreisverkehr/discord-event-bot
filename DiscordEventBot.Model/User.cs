@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiscordEventBot.Model
 {
@@ -22,6 +23,10 @@ namespace DiscordEventBot.Model
         #endregion Public Constructors
 
         #region Public Properties
+
+        public virtual ICollection<Event> Events { get; set; }
+
+        public virtual ICollection<AttendeeGroup> Groups { get; set; }
 
         /// <summary>
         /// discords userid.

@@ -50,6 +50,9 @@ namespace DiscordEventBot.Common.Services
                     case ResponseMessageResult response:
                         await response.SendAsync(context.Channel);
                         break;
+                    case ReactionResult reaction:
+                        await context.Message.AddReactionAsync(reaction.Emoji);
+                        break;
                     default:
                         return;
                 }

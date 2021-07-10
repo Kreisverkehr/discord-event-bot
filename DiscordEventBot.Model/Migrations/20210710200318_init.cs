@@ -24,9 +24,7 @@ namespace DiscordEventBot.Model.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<ulong>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AttendeeGroupGroupID = table.Column<ulong>(type: "INTEGER", nullable: true),
-                    EventID = table.Column<ulong>(type: "INTEGER", nullable: true)
+                        .Annotation("Sqlite:Autoincrement", true)
                 },
                 constraints: table =>
                 {
@@ -39,12 +37,12 @@ namespace DiscordEventBot.Model.Migrations
                 {
                     EventID = table.Column<ulong>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CreatorUserId = table.Column<ulong>(type: "INTEGER", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     Duration = table.Column<TimeSpan>(type: "TEXT", nullable: false),
                     GuildId = table.Column<ulong>(type: "INTEGER", nullable: true),
-                    Start = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Subject = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -85,10 +83,63 @@ namespace DiscordEventBot.Model.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EventUser",
+                columns: table => new
+                {
+                    AttendeesUserId = table.Column<ulong>(type: "INTEGER", nullable: false),
+                    EventsEventID = table.Column<ulong>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventUser", x => new { x.AttendeesUserId, x.EventsEventID });
+                    table.ForeignKey(
+                        name: "FK_EventUser_Events_EventsEventID",
+                        column: x => x.EventsEventID,
+                        principalTable: "Events",
+                        principalColumn: "EventID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventUser_Users_AttendeesUserId",
+                        column: x => x.AttendeesUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AttendeeGroupUser",
+                columns: table => new
+                {
+                    AttendeesUserId = table.Column<ulong>(type: "INTEGER", nullable: false),
+                    GroupsGroupID = table.Column<ulong>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttendeeGroupUser", x => new { x.AttendeesUserId, x.GroupsGroupID });
+                    table.ForeignKey(
+                        name: "FK_AttendeeGroupUser_AttendeeGroup_GroupsGroupID",
+                        column: x => x.GroupsGroupID,
+                        principalTable: "AttendeeGroup",
+                        principalColumn: "GroupID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AttendeeGroupUser_Users_AttendeesUserId",
+                        column: x => x.AttendeesUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AttendeeGroup_EventID",
                 table: "AttendeeGroup",
                 column: "EventID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AttendeeGroupUser_GroupsGroupID",
+                table: "AttendeeGroupUser",
+                column: "GroupsGroupID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_CreatorUserId",
@@ -101,41 +152,21 @@ namespace DiscordEventBot.Model.Migrations
                 column: "GuildId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_AttendeeGroupGroupID",
-                table: "Users",
-                column: "AttendeeGroupGroupID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_EventID",
-                table: "Users",
-                column: "EventID");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Users_AttendeeGroup_AttendeeGroupGroupID",
-                table: "Users",
-                column: "AttendeeGroupGroupID",
-                principalTable: "AttendeeGroup",
-                principalColumn: "GroupID",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Users_Events_EventID",
-                table: "Users",
-                column: "EventID",
-                principalTable: "Events",
-                principalColumn: "EventID",
-                onDelete: ReferentialAction.Restrict);
+                name: "IX_EventUser_EventsEventID",
+                table: "EventUser",
+                column: "EventsEventID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AttendeeGroup_Events_EventID",
-                table: "AttendeeGroup");
+            migrationBuilder.DropTable(
+                name: "AttendeeGroupUser");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Users_Events_EventID",
-                table: "Users");
+            migrationBuilder.DropTable(
+                name: "EventUser");
+
+            migrationBuilder.DropTable(
+                name: "AttendeeGroup");
 
             migrationBuilder.DropTable(
                 name: "Events");
@@ -145,9 +176,6 @@ namespace DiscordEventBot.Model.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "AttendeeGroup");
         }
     }
 }

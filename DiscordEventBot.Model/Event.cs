@@ -31,9 +31,6 @@ namespace DiscordEventBot.Model
         [Required]
         public virtual Guild Guild { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime ModifiedOn { get; set; } = DateTime.Now;
-
         public DateTime Start { get; set; }
 
         public string Subject { get; set; }

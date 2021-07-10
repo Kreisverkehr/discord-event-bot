@@ -160,6 +160,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This event group cannot be found. ähnelt.
+        /// </summary>
+        internal static string txt_msg_eventgroupnotfound {
+            get {
+                return ResourceManager.GetString("txt_msg_eventgroupnotfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die To view more details about an event type `event show [id]` ähnelt.
         /// </summary>
         internal static string txt_msg_eventlist_footer {
@@ -192,6 +201,15 @@ namespace DiscordEventBot.Common.Resources {
         internal static string txt_msg_nosummary {
             get {
                 return ResourceManager.GetString("txt_msg_nosummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can&apos;t leave an event you are not attending. ähnelt.
+        /// </summary>
+        internal static string txt_msg_notjoined {
+            get {
+                return ResourceManager.GetString("txt_msg_notjoined", resourceCulture);
             }
         }
         

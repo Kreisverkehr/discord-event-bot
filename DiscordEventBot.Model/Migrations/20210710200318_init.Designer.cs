@@ -9,14 +9,29 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscordEventBot.Model.Migrations
 {
     [DbContext(typeof(EventBotContext))]
-    [Migration("20210710164137_use-datetime")]
-    partial class usedatetime
+    [Migration("20210710200318_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.7");
+
+            modelBuilder.Entity("AttendeeGroupUser", b =>
+                {
+                    b.Property<ulong>("AttendeesUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<ulong>("GroupsGroupID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AttendeesUserId", "GroupsGroupID");
+
+                    b.HasIndex("GroupsGroupID");
+
+                    b.ToTable("AttendeeGroupUser");
+                });
 
             modelBuilder.Entity("DiscordEventBot.Model.AttendeeGroup", b =>
                 {
@@ -62,10 +77,6 @@ namespace DiscordEventBot.Model.Migrations
                     b.Property<ulong?>("GuildId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ModifiedOn")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Start")
                         .HasColumnType("TEXT");
 
@@ -98,19 +109,39 @@ namespace DiscordEventBot.Model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<ulong?>("AttendeeGroupGroupID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<ulong?>("EventID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("UserId");
 
-                    b.HasIndex("AttendeeGroupGroupID");
-
-                    b.HasIndex("EventID");
-
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("EventUser", b =>
+                {
+                    b.Property<ulong>("AttendeesUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<ulong>("EventsEventID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AttendeesUserId", "EventsEventID");
+
+                    b.HasIndex("EventsEventID");
+
+                    b.ToTable("EventUser");
+                });
+
+            modelBuilder.Entity("AttendeeGroupUser", b =>
+                {
+                    b.HasOne("DiscordEventBot.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("AttendeesUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DiscordEventBot.Model.AttendeeGroup", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsGroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DiscordEventBot.Model.AttendeeGroup", b =>
@@ -135,26 +166,23 @@ namespace DiscordEventBot.Model.Migrations
                     b.Navigation("Guild");
                 });
 
-            modelBuilder.Entity("DiscordEventBot.Model.User", b =>
+            modelBuilder.Entity("EventUser", b =>
                 {
-                    b.HasOne("DiscordEventBot.Model.AttendeeGroup", null)
-                        .WithMany("Attendees")
-                        .HasForeignKey("AttendeeGroupGroupID");
+                    b.HasOne("DiscordEventBot.Model.User", null)
+                        .WithMany()
+                        .HasForeignKey("AttendeesUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DiscordEventBot.Model.Event", null)
-                        .WithMany("Attendees")
-                        .HasForeignKey("EventID");
-                });
-
-            modelBuilder.Entity("DiscordEventBot.Model.AttendeeGroup", b =>
-                {
-                    b.Navigation("Attendees");
+                        .WithMany()
+                        .HasForeignKey("EventsEventID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DiscordEventBot.Model.Event", b =>
                 {
-                    b.Navigation("Attendees");
-
                     b.Navigation("Groups");
                 });
 #pragma warning restore 612, 618
