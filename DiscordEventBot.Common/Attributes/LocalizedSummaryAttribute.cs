@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiscordEventBot.Common.Attributes
+namespace DiscordEventBot.Common
 {
     public class LocalizedSummaryAttribute : SummaryAttribute
     {

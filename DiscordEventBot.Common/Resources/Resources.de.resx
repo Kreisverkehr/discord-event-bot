@@ -129,8 +129,38 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Zeigt jeden Befehl den du benutzen kannst.</value>
   </data>
+  <data name="txt_mod_event_cmd_add-group_sum" xml:space="preserve">
+    <value>fügt eine Gruppe zu einer Veranstaltung hinzu</value>
+  </data>
+  <data name="txt_mod_event_cmd_create_sum" xml:space="preserve">
+    <value>erstellt eine Veranstaltung für diesen Server</value>
+  </data>
+  <data name="txt_mod_event_cmd_delete_sum" xml:space="preserve">
+    <value>löscht das Ereignis</value>
+  </data>
+  <data name="txt_mod_event_cmd_join-group_sum" xml:space="preserve">
+    <value>Tritt dem Ereignis in der angegebenen Gruppe bei.</value>
+  </data>
+  <data name="txt_mod_event_cmd_join_sum" xml:space="preserve">
+    <value>Tritt der angegebenen Veranstaltung als Teilnehmer bei.</value>
+  </data>
+  <data name="txt_mod_event_cmd_leave-group_sum" xml:space="preserve">
+    <value>Verlässt die Gruppe des Ereignisses</value>
+  </data>
+  <data name="txt_mod_event_cmd_leave_sum" xml:space="preserve">
+    <value>nimmt nicht mehr an der angegebenen Veranstaltung teil</value>
+  </data>
+  <data name="txt_mod_event_cmd_show-next_sum" xml:space="preserve">
+    <value>Zeigt die nächsten Veranstaltungen an</value>
+  </data>
+  <data name="txt_mod_event_cmd_show_sum" xml:space="preserve">
+    <value>Zeigt Details über das angegebene Ereignis an</value>
+  </data>
   <data name="txt_mod_event_name" xml:space="preserve">
     <value>Ereignis-Befehle</value>
+  </data>
+  <data name="txt_mod_event_sum" xml:space="preserve">
+    <value>bietet Befehle für die Verwaltung von Gildenereignissen</value>
   </data>
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Hilfe über Befehle</value>

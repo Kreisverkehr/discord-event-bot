@@ -106,11 +106,101 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_add_group_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_add-group_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die creates an event within this server ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_create_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_create_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die deletes the given event ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_delete_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_delete_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die joins the given event within the given group ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_join_group_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_join-group_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die joins the given event ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_join_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_join_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die leaves the given event group ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_leave_group_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_leave-group_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die leaves the given event ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_leave_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_leave_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die shows the next X events ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_show_next_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_show-next_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die View details about the given event ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_show_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_show_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event Commands ähnelt.
         /// </summary>
         internal static string txt_mod_event_name {
             get {
                 return ResourceManager.GetString("txt_mod_event_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die provides commands for managing guild events ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_sum", resourceCulture);
             }
         }
         

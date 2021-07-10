@@ -11,7 +11,10 @@ namespace DiscordEventBot.Common.Extensions
     {
         public static string GetSignature(this CommandInfo command)
         {
-            var sig = $"**{command.Name}** ";
+            var sig = string.Empty;
+            if (!string.IsNullOrWhiteSpace(command.Module.Group))
+                sig += $"{command.Module.Group} ";
+            sig += $"**{command.Name}** ";
             foreach (var param in command.Parameters)
                 sig += param.FormatMd() + " ";
             return sig;

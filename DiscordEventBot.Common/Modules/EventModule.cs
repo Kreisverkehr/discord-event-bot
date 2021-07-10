@@ -16,6 +16,7 @@ namespace DiscordEventBot.Common.Modules
     [Group("event")]
     [Alias("evt")]
     [LocalizedName("txt_mod_event_name")]
+    [LocalizedSummary("txt_mod_event_sum")]
     public class EventModule : ModuleBase<SocketCommandContext>
     {
         #region Public Properties
@@ -31,6 +32,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("create")]
         [Alias("cr", "new")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_create_sum")]
         public async Task<RuntimeResult> CreateEventAsync(string subject, DateTime startDate, TimeSpan duration, [Remainder] string description = null)
         {
             using (Context.Channel.EnterTypingState())
@@ -56,6 +58,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("join")]
         [Alias("attend", "jn")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_join_sum")]
         public async Task<RuntimeResult> JoinEventAsync(ulong eventId, IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
@@ -82,6 +85,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("leave")]
         [Alias("unattend", "lv")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_leave_sum")]
         public async Task<RuntimeResult> LeaveEventAsync(ulong eventId, IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
@@ -108,6 +112,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("join-group")]
         [Alias("attend-group", "jngrp")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_join-group_sum")]
         public async Task<RuntimeResult> JoinEventGroupAsync(ulong eventId, string groupName, IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
@@ -139,6 +144,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("leave-group")]
         [Alias("unattend-group", "lvgrp")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_leave-group_sum")]
         public async Task<RuntimeResult> LeaveEventGroupAsync(ulong eventId, string groupName, IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
@@ -169,6 +175,7 @@ namespace DiscordEventBot.Common.Modules
 
         [Command("show")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_show_sum")]
         public async Task<RuntimeResult> ShowEventAsync(ulong eventId)
         {
             using (Context.Channel.EnterTypingState())
@@ -186,6 +193,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("delete")]
         [Alias("remove", "rm", "del")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_delete_sum")]
         public async Task<RuntimeResult> DeleteEventAsync(ulong eventId)
         {
             using (Context.Channel.EnterTypingState())
@@ -205,6 +213,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("show-next")]
         [Alias("upcomming")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_show-next_sum")]
         public async Task<RuntimeResult> ShowUpcommingEventsAsync(int count = 10)
         {
             using (Context.Channel.EnterTypingState())
@@ -225,6 +234,7 @@ namespace DiscordEventBot.Common.Modules
         [Command("add-group")]
         [Alias("agrp")]
         [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_add-group_sum")]
         public async Task<RuntimeResult> AddGroupToEventsAsync(ulong eventId, string groupName, int? capacity = null)
         {
             using(Context.Channel.EnterTypingState())

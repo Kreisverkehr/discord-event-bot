@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using DiscordEventBot.Common.Attributes;
 using DiscordEventBot.Common.Messages;
 using DiscordEventBot.Common.RuntimeResults;
 using System;
