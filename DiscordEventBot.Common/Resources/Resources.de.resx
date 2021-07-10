@@ -136,7 +136,7 @@
     <value>Hilfe über Befehle</value>
   </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
-    <value>Du nimmst gereits an dem Ereignis teil</value>
+    <value>Du nimmst bereits an dem Ereignis teil</value>
   </data>
   <data name="txt_msg_cmdoverview_desc" xml:space="preserve">
     <value>Hier finden Sie eine Liste der Befehle, die der Bot versteht. Möglicherweise möchten Sie mehr Details zu bestimmten Befehlen erfahren. Verwenden Sie `help *Befehl*`</value>
