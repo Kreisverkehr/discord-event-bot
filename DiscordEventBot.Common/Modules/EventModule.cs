@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
@@ -18,13 +17,20 @@ namespace DiscordEventBot.Common.Modules
     [LocalizedName("txt_mod_event_name")]
     public class EventModule : ModuleBase<SocketCommandContext>
     {
-        public IDbContextFactory<EventBotContext> DbContextFactory { get; set; }
+        #region Public Properties
+
         public DiscordSocketClient Client { get; set; }
+
+        public IDbContextFactory<EventBotContext> DbContextFactory { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         [Command("create")]
         [Alias("cr", "new")]
         [RequireContext(ContextType.Guild)]
-        public async Task<RuntimeResult> CreateEventAsync(string subject, DateTimeOffset startDate, TimeSpan duration, [Remainder] string description = null)
+        public async Task<RuntimeResult> CreateEventAsync(string subject, DateTime startDate, TimeSpan duration, [Remainder] string description = null)
         {
             using (var dbContext = DbContextFactory.CreateDbContext())
             {
@@ -55,7 +61,7 @@ namespace DiscordEventBot.Common.Modules
                 Event evt = await dbContext.Events.FindAsync(eventId);
                 User user = await dbContext.Users.FindOrCreateAsync(Context.User.Id);
 
-                if (evt == null || evt.Guild.GuildId != Context.Guild.Id) 
+                if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
                     return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
 
                 if (evt.Attendees.Contains(user))
@@ -83,5 +89,26 @@ namespace DiscordEventBot.Common.Modules
                 return await ResponseMessageResult.FromMessageAsync(new EventInfoMessage(evt, Client));
             }
         }
+
+        [Command("show-next")]
+        [Alias("upcomming")]
+        [RequireContext(ContextType.Guild)]
+        public async Task<RuntimeResult> ShowUpcommingEventsAsync(int count = 10)
+        {
+            using (var dbContext = DbContextFactory.CreateDbContext())
+            {
+                IEnumerable<Event> upcommingEvents =
+                    from evt in dbContext.Events.AsQueryable()
+                    where evt.Guild.GuildId == Context.Guild.Id
+                       && evt.Start > DateTime.Now
+                    orderby evt.Start descending
+                    select evt;
+
+                upcommingEvents = upcommingEvents.Take(count);
+                return await ResponseMessageResult.FromMessageAsync(new EventListMessage(upcommingEvents));
+            }
+        }
+
+        #endregion Public Methods
     }
 }

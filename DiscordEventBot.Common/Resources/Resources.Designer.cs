@@ -160,6 +160,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die To view more details about an event type `event show [id]` ähnelt.
+        /// </summary>
+        internal static string txt_msg_eventlist_footer {
+            get {
+                return ResourceManager.GetString("txt_msg_eventlist_footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Upcomming events ähnelt.
+        /// </summary>
+        internal static string txt_msg_eventlist_title {
+            get {
+                return ResourceManager.GetString("txt_msg_eventlist_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event not found ähnelt.
         /// </summary>
         internal static string txt_msg_eventnotfound {

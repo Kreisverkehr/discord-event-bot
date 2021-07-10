@@ -32,7 +32,7 @@ namespace DiscordEventBot.Tests
                 Event evt1 = new Event()
                 {
                     Subject = "Test",
-                    Start = DateTimeOffset.Now,
+                    Start = DateTime.Now,
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
@@ -44,7 +44,7 @@ namespace DiscordEventBot.Tests
                 Event evt2 = new Event()
                 {
                     Subject = "Test2",
-                    Start = DateTimeOffset.Now,
+                    Start = DateTime.Now,
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
@@ -65,7 +65,7 @@ namespace DiscordEventBot.Tests
                 Event evt1 = new Event()
                 {
                     Subject = "Attendee Group Test",
-                    Start = DateTimeOffset.Now,
+                    Start = DateTime.Now,
                     Duration = new TimeSpan(1, 30, 0)
                 };
 
@@ -107,7 +107,7 @@ namespace DiscordEventBot.Tests
                 Event evt1 = new Event()
                 {
                     Subject = "Attendee Test",
-                    Start = DateTimeOffset.Now,
+                    Start = DateTime.Now,
                     Duration = new TimeSpan(1, 30, 0)
                 };
 

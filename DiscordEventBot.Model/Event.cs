@@ -14,7 +14,7 @@ namespace DiscordEventBot.Model
         public virtual ICollection<User> Attendees { get; set; } = new List<User>();
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTimeOffset CreatedOn { get; set; } = DateTimeOffset.Now;
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         [Required]
         public virtual User Creator { get; set; }
@@ -31,7 +31,10 @@ namespace DiscordEventBot.Model
         [Required]
         public virtual Guild Guild { get; set; }
 
-        public DateTimeOffset Start { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime ModifiedOn { get; set; } = DateTime.Now;
+
+        public DateTime Start { get; set; }
 
         public string Subject { get; set; }
 

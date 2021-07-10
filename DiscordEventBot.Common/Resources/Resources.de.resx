@@ -147,6 +147,12 @@
   <data name="txt_msg_eventcreated" xml:space="preserve">
     <value>Ereignis wurde erfolgreich erstellt. Siehe unten für Details.</value>
   </data>
+  <data name="txt_msg_eventlist_footer" xml:space="preserve">
+    <value>Für weitere Details benutze `event show [id]`</value>
+  </data>
+  <data name="txt_msg_eventlist_title" xml:space="preserve">
+    <value>Kommende Veranstaltungen</value>
+  </data>
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Ereignis nicht gefunden</value>
   </data>
