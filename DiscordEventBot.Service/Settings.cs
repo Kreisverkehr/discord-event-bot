@@ -50,6 +50,7 @@ namespace DiscordEventBot.Service
             Token = tmp.Token;
             DataStore = tmp.DataStore;
             Culture = tmp.Culture;
+            LogLevel = tmp.LogLevel;
             return true;
         }
 
