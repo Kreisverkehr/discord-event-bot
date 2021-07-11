@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DiscordEventBot.Service": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

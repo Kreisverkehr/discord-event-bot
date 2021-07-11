@@ -1,59 +1,70 @@
 ﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Globalization;
-using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Service
 {
     public class Settings
     {
-        #region Public Fields
-
-        public const string SETTINGS_FILE = "settings.json";
-
-        #endregion Public Fields
-
         #region Public Properties
 
-        [JsonIgnore]
-        public CultureInfo Culture { get; set; } = CultureInfo.CurrentUICulture;
-
-        public string DataStore { get; set; } = "DiscordEventBot.db";
-
-        public string Language
+        public CultureInfo Culture
         {
-            get { return Culture.Name; }
+            get
+            {
+                string lang;
+                if (!string.IsNullOrWhiteSpace(lang = Environment.GetEnvironmentVariable($"DiscordEventBot{nameof(Culture)}")))
+                    return new CultureInfo(lang);
+                return CultureInfo.CurrentCulture;
+            }
             set
             {
-                Culture = new CultureInfo(value);
+                Environment.SetEnvironmentVariable($"DiscordEventBot{nameof(Culture)}", value.Name);
             }
         }
 
-        public LogLevel LogLevel { get; set; } = LogLevel.Information;
-
-        public string Token { get; set; }
-
-        #endregion Public Properties
-
-        #region Public Methods
-
-        public async Task<bool> LoadFromFile()
+        public string DataStore
         {
-            if (!File.Exists(SETTINGS_FILE))
-                return false;
-
-            Settings tmp;
-            using (Stream settingsFileStream = File.OpenRead(SETTINGS_FILE))
-                tmp = await JsonSerializer.DeserializeAsync<Settings>(settingsFileStream);
-            Token = tmp.Token;
-            DataStore = tmp.DataStore;
-            Culture = tmp.Culture;
-            LogLevel = tmp.LogLevel;
-            return true;
+            get
+            {
+                string ds;
+                if (!string.IsNullOrWhiteSpace(ds = Environment.GetEnvironmentVariable($"DiscordEventBot{nameof(DataStore)}")))
+                    return ds;
+                return "DiscordEventBot.db";
+            }
+            set
+            {
+                Environment.SetEnvironmentVariable($"DiscordEventBot{nameof(DataStore)}", value);
+            }
         }
 
-        #endregion Public Methods
+        public LogLevel LogLevel
+        {
+            get
+            {
+                string loglevel;
+                if (!string.IsNullOrWhiteSpace(loglevel = Environment.GetEnvironmentVariable($"DiscordEventBot{nameof(LogLevel)}")))
+                    return (LogLevel)Enum.Parse(typeof(LogLevel), loglevel, ignoreCase: true);
+                return LogLevel.Information;
+            }
+            set
+            {
+                Environment.SetEnvironmentVariable($"DiscordEventBot{nameof(LogLevel)}", value.ToString());
+            }
+        }
+
+        public string Token
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable($"DiscordEventBot{nameof(Token)}");
+            }
+            set
+            {
+                Environment.SetEnvironmentVariable($"DiscordEventBot{nameof(Token)}", value);
+            }
+        }
+
+        #endregion Public Properties
     }
 }

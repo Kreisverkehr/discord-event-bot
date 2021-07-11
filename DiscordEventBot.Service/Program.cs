@@ -36,17 +36,18 @@ namespace DiscordEventBot.Service
             Console.CancelKeyPress += ShutdownRequested;
             Settings settings = new();
 
-            if (!await settings.LoadFromFile())
+            if (!Convert.ToBoolean(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER")) && string.IsNullOrWhiteSpace(settings.Token))
             {
-                Console.WriteLine("Oops! It seems that there is no previous settings file.");
-                Console.WriteLine("Fear not! I will create one quickly.");
+                Console.WriteLine("Hello there! It seems that you are running me for the first time.");
                 Console.WriteLine("Just let me ask a few questions:");
-                Console.Write("Enter your Bot's token: ");
+                Console.Write("What's your Bot's token? ");
                 settings.Token = Console.ReadLine();
-                Console.WriteLine($"Where do you want your data to be stored? [ENTER] for {settings.DataStore}");
+                Console.WriteLine($"Where do you want your data to be stored? [ENTER] for {Path.GetFullPath(settings.DataStore)}");
                 var dataStoreTmp = Console.ReadLine();
                 settings.DataStore = string.IsNullOrWhiteSpace(dataStoreTmp) ? settings.DataStore : dataStoreTmp;
-                File.WriteAllBytes(Settings.SETTINGS_FILE, JsonSerializer.SerializeToUtf8Bytes(settings, new JsonSerializerOptions() { WriteIndented = true }));
+                Console.WriteLine($"What language do you want me to speak? [ENTER] for {settings.Culture.Name}");
+                var languageTmp = Console.ReadLine();
+                settings.Culture = string.IsNullOrWhiteSpace(languageTmp) ? settings.Culture : new CultureInfo(languageTmp);
             }
 
             CultureInfo.CurrentUICulture = settings.Culture;

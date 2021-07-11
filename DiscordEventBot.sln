@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordEventBot.Model", "DiscordEventBot.Model\DiscordEventBot.Model.csproj", "{167D7CE8-BDAB-4FCA-AFF3-8C887F2E5FCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Tests", "DiscordEventBot.Tests\DiscordEventBot.Tests.csproj", "{D6BFDCD8-2AD5-4B56-90BA-F1E504DE9082}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordEventBot.Tests", "DiscordEventBot.Tests\DiscordEventBot.Tests.csproj", "{D6BFDCD8-2AD5-4B56-90BA-F1E504DE9082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Service", "DiscordEventBot.Service\DiscordEventBot.Service.csproj", "{E365916F-0365-47EE-B97B-802986FE02A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordEventBot.Service", "DiscordEventBot.Service\DiscordEventBot.Service.csproj", "{E365916F-0365-47EE-B97B-802986FE02A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Common", "DiscordEventBot.Common\DiscordEventBot.Common.csproj", "{65474139-0E56-4AEC-AA18-7E884AF6678A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordEventBot.Common", "DiscordEventBot.Common\DiscordEventBot.Common.csproj", "{65474139-0E56-4AEC-AA18-7E884AF6678A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{98D4EF68-9692-402B-81BB-B8E40D4A0343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,18 @@ Global
 		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x64.Build.0 = Release|Any CPU
 		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x86.ActiveCfg = Release|Any CPU
 		{65474139-0E56-4AEC-AA18-7E884AF6678A}.Release|x86.Build.0 = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|x64.Build.0 = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Debug|x86.Build.0 = Debug|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|x64.ActiveCfg = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|x64.Build.0 = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|x86.ActiveCfg = Release|Any CPU
+		{98D4EF68-9692-402B-81BB-B8E40D4A0343}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

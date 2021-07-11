@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  discordeventbot.service:
+    image: ${DOCKER_REGISTRY-}discordeventbotservice
+    build:
+      context: .
+      dockerfile: DiscordEventBot.Service/Dockerfile
+    environment:
+        - DiscordEventBotToken=${DiscordEventBotToken}
+        - DiscordEventBotDataStore=/mnt/datastore/EventBot.db
+    volumes:
+        - datastore:/mnt/datastore
+volumes:
+  datastore:
