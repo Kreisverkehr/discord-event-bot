@@ -15,8 +15,6 @@ namespace DiscordEventBot.Common.Extensions
         public static IServiceCollection AddEventBotServices(this IServiceCollection serviceCollection) => serviceCollection
             .AddSingleton<CommandService>()
             .AddSingleton<CommandHandlingService>()
-            .AddSingleton<PictureService>()
-            .AddSingleton<HttpClient>()
             ;
     }
 }
