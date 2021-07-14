@@ -129,6 +129,21 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Displays every command that you can use</value>
   </data>
+  <data name="txt_mod_admset_cmd_setadminrole_sum" xml:space="preserve">
+    <value>Sets a role that enables any member of it to use the admin commands.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setlang_sum" xml:space="preserve">
+    <value>Sets the language the bot speaks.</value>
+  </data>
+  <data name="txt_mod_adm_cmd_exit_sum" xml:space="preserve">
+    <value>Stops the bot.</value>
+  </data>
+  <data name="txt_mod_adm_name" xml:space="preserve">
+    <value>Admin Commands</value>
+  </data>
+  <data name="txt_mod_adm_sum" xml:space="preserve">
+    <value>Provides administrative commands.</value>
+  </data>
   <data name="txt_mod_event_cmd_add-group_sum" xml:space="preserve">
     <value>adds a group to an event</value>
   </data>

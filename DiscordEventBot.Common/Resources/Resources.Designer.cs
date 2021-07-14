@@ -106,6 +106,51 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stops the bot. ähnelt.
+        /// </summary>
+        internal static string txt_mod_adm_cmd_exit_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_adm_cmd_exit_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Admin Commands ähnelt.
+        /// </summary>
+        internal static string txt_mod_adm_name {
+            get {
+                return ResourceManager.GetString("txt_mod_adm_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Provides administrative commands. ähnelt.
+        /// </summary>
+        internal static string txt_mod_adm_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_adm_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets a role that enables any member of it to use the admin commands. ähnelt.
+        /// </summary>
+        internal static string txt_mod_admset_cmd_setadminrole_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setadminrole_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets the language the bot speaks. ähnelt.
+        /// </summary>
+        internal static string txt_mod_admset_cmd_setlang_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setlang_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event ähnelt.
         /// </summary>
         internal static string txt_mod_event_cmd_add_group_sum {

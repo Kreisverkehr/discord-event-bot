@@ -25,7 +25,7 @@ namespace DiscordEventBot.Common.Messages
             .WithTitle(_module.Name)
             .WithDescription(_module.Summary)
             .WithFields(
-                from cmd in _module.Commands
+                from cmd in _module.GetCommandsRecursive()
                 where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
                 select new EmbedFieldBuilder()
                     .WithName(cmd.GetSignature())

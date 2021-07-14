@@ -129,6 +129,21 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Zeigt jeden Befehl den du benutzen kannst.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setadminrole_sum" xml:space="preserve">
+    <value>Legt eine Rolle fest, die es jedem Mitglied dieser Rolle ermöglicht, die Admin-Befehle zu verwenden.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setlang_sum" xml:space="preserve">
+    <value>Legt die Sprache fest, die der Bot spricht.</value>
+  </data>
+  <data name="txt_mod_adm_cmd_exit_sum" xml:space="preserve">
+    <value>Fährt den bot herunter.</value>
+  </data>
+  <data name="txt_mod_adm_name" xml:space="preserve">
+    <value>Admin Befehle</value>
+  </data>
+  <data name="txt_mod_adm_sum" xml:space="preserve">
+    <value>Befehle zur verwaltung des Bots.</value>
+  </data>
   <data name="txt_mod_event_cmd_add-group_sum" xml:space="preserve">
     <value>fügt eine Gruppe zu einer Veranstaltung hinzu</value>
   </data>

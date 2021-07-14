@@ -5,10 +5,7 @@ using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,14 +13,48 @@ namespace DiscordEventBot.Common.Modules
 {
     [Group("admin")]
     [Alias("adm")]
+    [LocalizedName("txt_mod_adm_name")]
+    [LocalizedSummary("txt_mod_adm_sum")]
     public class AdminModule : ModuleBase<SocketCommandContext>
     {
+        #region Public Properties
+
+        public CancellationTokenSource cancellation { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        [Command("shutdown")]
+        [Alias("exit", "quit")]
+        [LocalizedSummary("txt_mod_adm_cmd_exit_sum")]
+        [RequireOwner]
+        public async Task ShutdownAsync(TimeSpan delay = default(TimeSpan))
+        {
+            // this is intentionally not localized. Every bot owner should understand this.
+            await Context.Message.ReplyAsync("shutting down...");
+            new Thread(() => cancellation.CancelAfter(delay)).Start();
+        }
+
+        #endregion Public Methods
+
+        #region Public Classes
+
         [Group("set")]
         public class AdminSettingsModule : ModuleBase<SocketCommandContext>
         {
+            #region Public Properties
+
             public IDbContextFactory<EventBotContext> DbContextFactory { get; set; }
+
             public ISettings Settings { get; set; }
+
+            #endregion Public Properties
+
+            #region Public Methods
+
             [Command("admin-role")]
+            [LocalizedSummary("txt_mod_admset_cmd_setadminrole_sum")]
             [RequireUserPermission(GuildPermission.Administrator)]
             public async Task<RuntimeResult> SetAdminRoleAsync(IRole role)
             {
@@ -35,10 +66,12 @@ namespace DiscordEventBot.Common.Modules
                 }
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
+
             [Command("language")]
             [Alias("lang")]
+            [LocalizedSummary("txt_mod_admset_cmd_setlang_sum")]
             [RequireOwner]
-            public async Task<RuntimeResult> SetAdminRoleAsync(CultureInfo lang)
+            public async Task<RuntimeResult> SetLanguageAsync(CultureInfo lang)
             {
                 Settings.Culture = lang;
                 Settings.Save();
@@ -48,22 +81,10 @@ namespace DiscordEventBot.Common.Modules
 
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
+
+            #endregion Public Methods
         }
-        public CancellationTokenSource cancellation { get; set; }
-        [Command("shutdown")]
-        [Alias("exit", "quit")]
-        [RequireOwner]
-        public async Task SetAdminRoleAsync(TimeSpan? delay = null)
-        {
-            // this is intentionally not localized. Every bot owner should understand this.
-            await Context.Message.ReplyAsync("shutting down...");
-            new Thread(() =>
-            {
-                if (delay.HasValue)
-                    cancellation.CancelAfter(delay.Value);
-                else
-                    cancellation.Cancel();
-            }).Start();
-        }
+
+        #endregion Public Classes
     }
 }
