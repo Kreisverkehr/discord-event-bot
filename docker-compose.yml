@@ -8,7 +8,7 @@ services:
       dockerfile: DiscordEventBot.Service/Dockerfile
     environment:
         - DiscordEventBotToken=${DiscordEventBotToken}
-        - DiscordEventBotDataStore=/mnt/datastore/EventBot.db
+        - DiscordEventBotDataStore=/mnt/datastore/
     volumes:
         - datastore:/mnt/datastore
 volumes:

@@ -34,7 +34,7 @@ namespace DiscordEventBot.Service
         public async Task MainAsync()
         {
             Console.CancelKeyPress += ShutdownRequested;
-            Settings settings = new();
+            Settings settings = Settings.Load();
 
             if (!Convert.ToBoolean(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER")) && string.IsNullOrWhiteSpace(settings.Token))
             {
@@ -42,12 +42,9 @@ namespace DiscordEventBot.Service
                 Console.WriteLine("Just let me ask a few questions:");
                 Console.Write("What's your Bot's token? ");
                 settings.Token = Console.ReadLine();
-                Console.WriteLine($"Where do you want your data to be stored? [ENTER] for {Path.GetFullPath(settings.DataStore)}");
-                var dataStoreTmp = Console.ReadLine();
-                settings.DataStore = string.IsNullOrWhiteSpace(dataStoreTmp) ? settings.DataStore : dataStoreTmp;
-                Console.WriteLine($"What language do you want me to speak? [ENTER] for {settings.Culture.Name}");
+                Console.WriteLine($"What language do you want me to speak? [ENTER] for {settings.Language}");
                 var languageTmp = Console.ReadLine();
-                settings.Culture = string.IsNullOrWhiteSpace(languageTmp) ? settings.Culture : new CultureInfo(languageTmp);
+                settings.Language = string.IsNullOrWhiteSpace(languageTmp) ? settings.Language : languageTmp;
             }
 
             CultureInfo.CurrentUICulture = settings.Culture;
@@ -106,7 +103,7 @@ namespace DiscordEventBot.Service
             .AddEntityFrameworkSqlite()
             .AddLogging()
             .AddDbContextFactory<EventBotContext>(options => options
-                .UseSqlite($"Data Source = {settings.DataStore}")
+                .UseSqlite($"Data Source = {settings.SQLiteFile}")
                 .UseLazyLoadingProxies()
                 .LogTo((eventId, logLevel) => true, ConsoleLogger.Log)
             )

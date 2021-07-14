@@ -12,5 +12,11 @@ namespace DiscordEventBot.Common
         LogLevel LogLevel { get; set; }
 
         #endregion Public Properties
+
+        #region Public Methods
+
+        void Save();
+
+        #endregion Public Methods
     }
 }

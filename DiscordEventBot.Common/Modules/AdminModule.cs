@@ -41,6 +41,7 @@ namespace DiscordEventBot.Common.Modules
             public async Task<RuntimeResult> SetAdminRoleAsync(CultureInfo lang)
             {
                 Settings.Culture = lang;
+                Settings.Save();
 
                 // this is intentionally not localized. Every bot owner should understand this.
                 await Context.Message.ReplyAsync("please restart me.");
