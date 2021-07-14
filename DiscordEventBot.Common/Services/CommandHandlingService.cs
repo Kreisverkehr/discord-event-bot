@@ -5,6 +5,7 @@ using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Common.TypeReaders;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -66,6 +67,7 @@ namespace DiscordEventBot.Common.Services
         {
             _commands.AddTypeReader<CommandInfo>(new CommandInfoTypeReader());
             _commands.AddTypeReader<ModuleInfo>(new ModuleInfoTypeReader());
+            _commands.AddTypeReader<CultureInfo>(new CultureInfoTypeReader());
 
             await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
         }

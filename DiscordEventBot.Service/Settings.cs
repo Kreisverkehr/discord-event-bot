@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DiscordEventBot.Common;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Globalization;
 
 namespace DiscordEventBot.Service
 {
-    public class Settings
+    public class Settings : ISettings
     {
         #region Public Properties
 

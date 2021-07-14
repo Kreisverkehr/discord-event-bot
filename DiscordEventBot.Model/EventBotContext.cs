@@ -17,6 +17,8 @@ namespace DiscordEventBot.Model
 
         public DbSet<Guild> Guilds { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         #endregion Public Properties
