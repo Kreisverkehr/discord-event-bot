@@ -26,7 +26,8 @@ namespace DiscordEventBot.Common.Messages
             .WithDescription(Resources.Resources.txt_msg_cmdoverview_desc)
             .WithFields(
                 from module in _service.Modules
-                from cmd in module.Commands
+                where module.Parent == null
+                from cmd in module.GetCommandsRecursive()
                 where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
                 group cmd by module into cmdByModule
                 select new EmbedFieldBuilder()

@@ -30,7 +30,7 @@ namespace DiscordEventBot.Common.Messages
         #region Protected Methods
 
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder
-            .WithTitle(_commandInfo.GetSignature())
+            .WithTitle(_commandInfo.GetSignature(simplified:false))
             .WithColor(Color.DarkGreen)
             .WithDescription(_commandInfo.Summary)
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder
