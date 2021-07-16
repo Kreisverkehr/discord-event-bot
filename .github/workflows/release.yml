@@ -51,15 +51,15 @@ jobs:
           - os: ubuntu-latest
             platform: linux/arm64
             tag: linux-arm64
+            file: Dockerfile
           - os: ubuntu-latest
             platform: linux/amd64
             tag: linux-x64
+            file: Dockerfile
           - os: ubuntu-latest
             platform: linux/arm/v7
             tag: linux-armv7
-          - os: windows-latest
-            platform: windows/amd64
-            tag: win-x64
+            file: Dockerfile.armv7
     steps:
     - uses: actions/checkout@v2
       with:
@@ -79,7 +79,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-${{ matrix.tag }} -f ./DiscordEventBot.Service/Dockerfile --platform ${{ matrix.platform }} .  
+    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-${{ matrix.tag }} -f ./DiscordEventBot.Service/${{ matrix.file }} --platform ${{ matrix.platform }} .  
     - run: docker push ${{ steps.repo.outputs.lowercase }}:latest-${{ matrix.tag }}
     
   build-docker-windows:
