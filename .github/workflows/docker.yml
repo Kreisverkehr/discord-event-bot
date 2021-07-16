@@ -13,3 +13,10 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
+      
+    - id: repo
+      uses: ASzc/change-string-case-action@v1
+      with:
+        string: ${{ github.repository }}
+      
+    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64 -f .\DiscordEventBot.Service\Dockerfile --platform linux/arm64 .
