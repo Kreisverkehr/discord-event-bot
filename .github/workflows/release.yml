@@ -1,4 +1,4 @@
-name: .NET
+name: Release
 
 on:
   workflow_dispatch:
@@ -12,18 +12,19 @@ jobs:
   build-natives:
 
     runs-on: ${{ matrix.os }}
-    matrix:
-      include:
-        - os: ubuntu-latest
-          profile: "linux-x64"
-        - os: ubuntu-latest
-          profile: "linux-arm"
-        - os: windows-latest
-          profile: "win-x64"
-        - os: windows-latest
-          profile: "win-arm"
-        - os: macos-latest
-          profile: "osx-x64"
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            profile: "linux-x64"
+          - os: ubuntu-latest
+            profile: "linux-arm"
+          - os: windows-latest
+            profile: "win-x64"
+          - os: windows-latest
+            profile: "win-arm"
+          - os: macos-latest
+            profile: "osx-x64"
 
     steps:
     - uses: actions/checkout@v2
