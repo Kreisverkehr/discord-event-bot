@@ -71,7 +71,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.4
       with:
         name: ${{ matrix.profile }}
-        path: ${{ github.workspace }}/${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
+        path: ${{ github.workspace }}/${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
         retention-days: 1
 
   init-docker-builds:
