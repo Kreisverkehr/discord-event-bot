@@ -57,7 +57,7 @@ jobs:
             tag: linux-x64
             file: Dockerfile
           - os: ubuntu-latest
-            platform: linux/arm/v7
+            platform: linux/amd64
             tag: linux-armv7
             file: Dockerfile.armv7
     steps:
