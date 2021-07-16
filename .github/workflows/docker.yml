@@ -14,9 +14,13 @@ jobs:
         GITHUB_CONTEXT: ${{ toJSON(github) }}
       run: echo "$GITHUB_CONTEXT"
       
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+      
     - id: repo
       uses: ASzc/change-string-case-action@v1
       with:
         string: ${{ github.repository }}
       
-    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64 -f DiscordEventBot.Service/Dockerfile --platform linux/arm64 .
+    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64 -f ./DiscordEventBot.Service/Dockerfile --platform linux/arm64 .
