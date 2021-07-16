@@ -3,6 +3,8 @@ name: Release
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - '.github/**'
     branches: 
       - main
     tags:
