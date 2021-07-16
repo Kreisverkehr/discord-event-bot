@@ -146,3 +146,4 @@ jobs:
       with:
         string: ${{ github.repository }}
     - run: docker manifest create ${{ steps.repo.outputs.lowercase }}:latest ${{ steps.repo.outputs.lowercase }}:latest-win-x64 ${{ steps.repo.outputs.lowercase }}:latest-linux-armv7 ${{ steps.repo.outputs.lowercase }}:latest-linux-x64 ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64
+    - run: docker manifest push ${{ steps.repo.outputs.lowercase }}:latest
