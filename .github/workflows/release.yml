@@ -38,7 +38,7 @@ jobs:
       run: dotnet build DiscordEventBot.sln --no-restore
       
     - name: Publish
-      run: dotnet publish -p:PublishProfile=${{ matrix.profile }}
+      run: dotnet publish DiscordEventBot.sln -p:PublishProfile=${{ matrix.profile }}
 
     - name: Upload
       uses: actions/upload-artifact@v2.2.4
