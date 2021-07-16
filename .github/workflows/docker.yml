@@ -19,4 +19,4 @@ jobs:
       with:
         string: ${{ github.repository }}
       
-    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64 -f ./DiscordEventBot.Service/Dockerfile --platform linux/arm64 .
+    - run: docker build -t ${{ steps.repo.outputs.lowercase }}:latest-linux-arm64 -f DiscordEventBot.Service/Dockerfile --platform linux/arm64 .
