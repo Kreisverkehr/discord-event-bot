@@ -1,0 +1,47 @@
+name: .NET
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+    tags:
+      - v*
+
+jobs:
+  build-natives:
+
+    runs-on: ${{ matrix.os }}
+    matrix:
+      include:
+        - os: ubuntu-latest
+          profile: "linux-x64"
+        - os: ubuntu-latest
+          profile: "linux-arm"
+        - os: windows-latest
+          profile: "win-x64"
+        - os: windows-latest
+          profile: "win-arm"
+        - os: macos-latest
+          profile: "osx-x64"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore DiscordEventBot.sln
+    - name: Build
+      run: dotnet build DiscordEventBot.sln --no-restore
+      
+    - name: Publish
+      run: dotnet publish -p:PublishProfile=${{ matrix.profile }}
+
+    - name: Upload
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: ${{ matrix.profile }}
+        path: DiscordEventBot.Service/bin/Release/net5.0/publish/${{ matrix.profile }}/**
+        retention-days: 1

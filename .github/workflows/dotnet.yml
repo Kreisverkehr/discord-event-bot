@@ -1,7 +1,9 @@
-name: .NET
+name: Build & Test
 
 on:
   push:
+    paths-ignore:
+      - '.github/**'
     branches: [ main ]
   pull_request:
     branches: [ main ]
