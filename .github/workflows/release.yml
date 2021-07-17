@@ -137,7 +137,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: docker manifest create ${{ needs.init-docker-builds.outputs.docker-repo }}:latest ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-win-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-armv7 ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-arm64
+    - run: docker manifest create ${{ needs.init-docker-builds.outputs.docker-repo }}:latest ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-win-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-arm ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:latest-linux-arm64
     - run: docker manifest push ${{ needs.init-docker-builds.outputs.docker-repo }}:latest
   
   create-release:
