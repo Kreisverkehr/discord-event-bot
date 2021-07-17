@@ -71,7 +71,7 @@ jobs:
 
   build-docker:
     runs-on: ${{ matrix.os }}
-    needs: [init-docker-builds, set-version]
+    needs: [init-docker-builds, set-version, build-natives]
     strategy:
       matrix:
         include:
