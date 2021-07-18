@@ -18,16 +18,18 @@ namespace DiscordEventBot.Common.Services
         private readonly CommandService _commands;
         private readonly DiscordSocketClient _discord;
         private readonly IServiceProvider _services;
+        private readonly ResultReasonService _reasons;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public CommandHandlingService(IServiceProvider services, CommandService commands, DiscordSocketClient discord)
+        public CommandHandlingService(IServiceProvider services, CommandService commands, DiscordSocketClient discord, ResultReasonService reasons)
         {
             _commands = commands;
             _discord = discord;
             _services = services;
+            _reasons = reasons;
 
             _commands.CommandExecuted += CommandExecutedAsync;
             _discord.MessageReceived += MessageReceivedAsync;
@@ -39,28 +41,22 @@ namespace DiscordEventBot.Common.Services
 
         public async Task CommandExecutedAsync(Optional<CommandInfo> command, ICommandContext context, IResult result)
         {
-            // command is unspecified when there was a search failure (command not found); we don't
-            // care about these errors
             if (!command.IsSpecified)
-                return;
+                result = await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.UnknownCommand);
 
-            if (result.IsSuccess)
+            _reasons.AddResult(result, context.Message);
+
+            switch (result)
             {
-                switch (result)
-                {
-                    case ResponseMessageResult response:
-                        await response.SendAsync(context.Channel);
-                        break;
-                    case ReactionResult reaction:
-                        await context.Message.AddReactionAsync(reaction.Emoji);
-                        break;
-                    default:
-                        return;
-                }
-                return;
+                case ResponseMessageResult response:
+                    await response.SendAsync(context.Channel);
+                    break;
+                case ReactionResult reaction:
+                    await context.Message.AddReactionAsync(reaction.Emoji);
+                    break;
+                default:
+                    return;
             }
-
-            await context.Channel.SendMessageAsync($"error: {result}");
         }
 
         public async Task InitializeAsync()
