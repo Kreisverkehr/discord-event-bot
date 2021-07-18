@@ -92,7 +92,7 @@ https://docs.stillu.cc/guides/getting_started/first-bot.html
 
 #### Option 1: Use docker-compose
 
-The bot comes as a docker image. You can use the following samples to get it up and running in a matter of minutes.
+The bot comes as a docker image. You can use the following samples to get it up and running in a matter of minutes. You can find sample docker-compose configurations below. Please note that you can either replace `${DiscordEventBotToken}` with your actual token or create an environment variable called `DiscordEventBotToken`.
 
 docker-compose.yml (Linux containers)
 ```yaml
@@ -103,7 +103,7 @@ services:
     image: kreisverkehr/discord-event-bot:latest
     environment:
         - DiscordEventBotToken=${DiscordEventBotToken}
-        - DiscordEventBotDataStore=/mnt/datastore/EventBot.db
+        - DiscordEventBotDataStore=/mnt/datastore
     volumes:
         - datastore:/mnt/datastore
 volumes:
