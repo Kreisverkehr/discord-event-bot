@@ -69,10 +69,10 @@ namespace DiscordEventBot.Common.Modules
                 User dbUser = await dbContext.Users.FindOrCreateAsync(discUser.Id);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 if (evt.Attendees.Contains(dbUser))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_alreadyoined);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_alreadyoined);
 
                 evt.Attendees.Add(dbUser);
 
@@ -96,10 +96,10 @@ namespace DiscordEventBot.Common.Modules
                 User dbUser = await dbContext.Users.FindOrCreateAsync(discUser.Id);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 if (!evt.Attendees.Contains(dbUser))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_notjoined);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_notjoined);
 
                 evt.Attendees.Remove(dbUser);
 
@@ -123,15 +123,15 @@ namespace DiscordEventBot.Common.Modules
                 User dbUser = await dbContext.Users.FindOrCreateAsync(discUser.Id);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 AttendeeGroup grp = evt.Groups.Where(grp => grp.Name.ToUpperInvariant() == groupName.ToUpperInvariant()).FirstOrDefault();
 
                 if (grp == default(AttendeeGroup))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventgroupnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventgroupnotfound);
 
                 if (grp.Attendees.Contains(dbUser))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_alreadyoined);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_alreadyoined);
 
                 grp.Attendees.Add(dbUser);
 
@@ -155,15 +155,15 @@ namespace DiscordEventBot.Common.Modules
                 User dbUser = await dbContext.Users.FindOrCreateAsync(discUser.Id);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 AttendeeGroup grp = evt.Groups.Where(grp => grp.Name.ToUpperInvariant() == groupName.ToUpperInvariant()).FirstOrDefault();
 
                 if (grp == default(AttendeeGroup))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventgroupnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventgroupnotfound);
 
                 if (!grp.Attendees.Contains(dbUser))
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_notjoined);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_notjoined);
 
                 grp.Attendees.Remove(dbUser);
 
@@ -184,7 +184,7 @@ namespace DiscordEventBot.Common.Modules
                 Event evt = await dbContext.Events.FindAsync(eventId);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 return await ResponseMessageResult.FromMessageAsync(new EventInfoMessage(evt, Client));
             }
@@ -202,7 +202,7 @@ namespace DiscordEventBot.Common.Modules
                 Event evt = await dbContext.Events.FindAsync(eventId);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 dbContext.Events.Remove(evt);
                 await dbContext.SaveChangesAsync();
@@ -243,7 +243,7 @@ namespace DiscordEventBot.Common.Modules
                 Event evt = await dbContext.Events.FindAsync(eventId);
 
                 if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                    return await ResponseMessageResult.FromMessageAsync(Resources.Resources.txt_msg_eventnotfound);
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
                 evt.Groups.Add(new AttendeeGroup()
                 {
