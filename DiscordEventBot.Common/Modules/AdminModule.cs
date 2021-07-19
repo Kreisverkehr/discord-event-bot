@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using DiscordEventBot.Common.Attributes.Preconditions;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Model;
@@ -55,6 +56,7 @@ namespace DiscordEventBot.Common.Modules
 
             [Command("admin-role")]
             [LocalizedSummary("txt_mod_admset_cmd_setadminrole_sum")]
+            [RequireContext(ContextType.Guild)]
             [RequireUserPermission(GuildPermission.Administrator)]
             public async Task<RuntimeResult> SetAdminRoleAsync(IRole role)
             {
@@ -79,6 +81,22 @@ namespace DiscordEventBot.Common.Modules
                 // this is intentionally not localized. Every bot owner should understand this.
                 await Context.Message.ReplyAsync("please restart me.");
 
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("bot-channel")]
+            [Alias("bot-chan", "bc")]
+            [LocalizedSummary("txt_mod_admset_cmd_setbc_sum")]
+            [RequireContext(ContextType.Guild)]
+            [RequireBotAdministrator]
+            public async Task<RuntimeResult> SetBotChannelAsync(IGuildChannel channel)
+            {
+                using (var dbContext = DbContextFactory.CreateDbContext())
+                {
+                    var dbGuild = await dbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                    dbGuild.BotChannel = await dbContext.Channels.FindOrCreateAsync(channel.Id);
+                    await dbContext.SaveChangesAsync();
+                }
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 

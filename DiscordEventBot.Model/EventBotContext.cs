@@ -13,6 +13,8 @@ namespace DiscordEventBot.Model
 
         #region Public Properties
 
+        public DbSet<Channel> Channels { get; set; }
+
         public DbSet<Event> Events { get; set; }
 
         public DbSet<Guild> Guilds { get; set; }

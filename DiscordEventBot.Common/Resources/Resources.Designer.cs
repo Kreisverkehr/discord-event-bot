@@ -394,6 +394,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Shhh! I am not allowed to speak in this channel and you should not message me using this channel. I&apos;ve deleted your message before anyone notices. ähnelt.
+        /// </summary>
+        internal static string txt_msg_wrong_channel {
+            get {
+                return ResourceManager.GetString("txt_msg_wrong_channel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alias ähnelt.
         /// </summary>
         internal static string txt_word_alias {
