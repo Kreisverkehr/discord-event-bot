@@ -104,6 +104,7 @@ services:
     environment:
         - DiscordEventBotToken=${DiscordEventBotToken}
         - DiscordEventBotDataStore=/mnt/datastore
+    restart: always
     volumes:
         - datastore:/mnt/datastore
 volumes:
@@ -120,6 +121,7 @@ services:
     environment:
         - DiscordEventBotToken=${DiscordEventBotToken}
         - DiscordEventBotDataStore=C:\volume
+    restart: always
     volumes:
         - datastore:C:/volume
 volumes:
