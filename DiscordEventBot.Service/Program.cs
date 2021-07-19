@@ -56,8 +56,8 @@ namespace DiscordEventBot.Service
 
             ConsoleLogger.Filter = (logLevel, source) => logLevel != LogLevel.None && logLevel >= settings.LogLevel;
 
-            using (var ctx = services.GetRequiredService<IDbContextFactory<EventBotContext>>().CreateDbContext())
-                ctx.Database.Migrate();
+            var ctx = services.GetRequiredService<EventBotContext>();
+            ctx.Database.Migrate();
 
             // setting discord.net's loglevel to verbose. filtering is done in ConsoleLogger
             var discordSettings = services.GetRequiredService<DiscordSocketConfig>();
@@ -103,7 +103,7 @@ namespace DiscordEventBot.Service
             .AddEntityFrameworkProxies()
             .AddEntityFrameworkSqlite()
             .AddLogging()
-            .AddDbContextFactory<EventBotContext>(options => options
+            .AddDbContext<EventBotContext>(options => options
                 .UseSqlite($"Data Source = {settings.SQLiteFile}")
                 .UseLazyLoadingProxies()
                 .LogTo((eventId, logLevel) => true, ConsoleLogger.Log)

@@ -23,18 +23,17 @@ namespace DiscordEventBot.Common.Attributes.Preconditions
                     return Task.FromResult(PreconditionResult.FromSuccess());
 
                 // check if an admin role is set and wether the invoking user has it.
-                using(var dbContext = services.GetRequiredService<IDbContextFactory<EventBotContext>>().CreateDbContext())
-                {
-                    var botAdminRole = dbContext.Guilds.Find(context.Guild.Id)?.AdminRole;
+                var dbContext = services.GetRequiredService<EventBotContext>();
+                var botAdminRole = dbContext.Guilds.Find(context.Guild.Id)?.AdminRole;
 
-                    if(botAdminRole == null)
-                        return Task.FromResult(PreconditionResult.FromError("There is no specific bot admin role set. Only the administrator can run this command."));
+                if (botAdminRole == null)
+                    return Task.FromResult(PreconditionResult.FromError("There is no specific bot admin role set. Only the administrator can run this command."));
 
-                    if (gUser.Roles.Any(r => r.Id == botAdminRole.RoleId))
-                        return Task.FromResult(PreconditionResult.FromSuccess());
+                if (gUser.Roles.Any(r => r.Id == botAdminRole.RoleId))
+                    return Task.FromResult(PreconditionResult.FromSuccess());
 
-                    return Task.FromResult(PreconditionResult.FromError("You don't have the permission to run this command."));
-                }
+                return Task.FromResult(PreconditionResult.FromError("You don't have the permission to run this command."));
+
             }
             else
                 return Task.FromResult(PreconditionResult.FromError("You must be in a guild to run this command."));

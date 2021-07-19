@@ -46,7 +46,7 @@ namespace DiscordEventBot.Common.Modules
         {
             #region Public Properties
 
-            public IDbContextFactory<EventBotContext> DbContextFactory { get; set; }
+            public EventBotContext DbContext { get; set; }
 
             public ISettings Settings { get; set; }
 
@@ -60,12 +60,9 @@ namespace DiscordEventBot.Common.Modules
             [RequireUserPermission(GuildPermission.Administrator)]
             public async Task<RuntimeResult> SetAdminRoleAsync(IRole role)
             {
-                using (var dbContext = DbContextFactory.CreateDbContext())
-                {
-                    var guild = await dbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
-                    guild.AdminRole = await dbContext.Roles.FindOrCreateAsync(role.Id);
-                    await dbContext.SaveChangesAsync();
-                }
+                var guild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                guild.AdminRole = await DbContext.Roles.FindOrCreateAsync(role.Id);
+                await DbContext.SaveChangesAsync();
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
@@ -91,12 +88,9 @@ namespace DiscordEventBot.Common.Modules
             [RequireBotAdministrator]
             public async Task<RuntimeResult> SetBotChannelAsync(IGuildChannel channel)
             {
-                using (var dbContext = DbContextFactory.CreateDbContext())
-                {
-                    var dbGuild = await dbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
-                    dbGuild.BotChannel = await dbContext.Channels.FindOrCreateAsync(channel.Id);
-                    await dbContext.SaveChangesAsync();
-                }
+                var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                dbGuild.BotChannel = await DbContext.Channels.FindOrCreateAsync(channel.Id);
+                await DbContext.SaveChangesAsync();
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
