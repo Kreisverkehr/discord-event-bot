@@ -94,7 +94,9 @@ namespace DiscordEventBot.Common.Messages
                         grp.Attendees.Remove(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
                 }
 
-                if (_groupToEmoji.Values.Contains(reaction.Emote.Name) && !_EmojiToGroup[reaction.Emote.Name].Attendees.Contains(_dbContext.Users.FindOrCreate(reaction.UserId)))
+                if (_groupToEmoji.Values.Contains(reaction.Emote.Name) 
+                    && !_EmojiToGroup[reaction.Emote.Name].Attendees.Contains(_dbContext.Users.FindOrCreate(reaction.UserId))
+                    && ((_EmojiToGroup[reaction.Emote.Name].MaxCapacity.HasValue && _EmojiToGroup[reaction.Emote.Name].Attendees.Count < _EmojiToGroup[reaction.Emote.Name].MaxCapacity.Value) || !_EmojiToGroup[reaction.Emote.Name].MaxCapacity.HasValue))
                 {
                     _EmojiToGroup[reaction.Emote.Name].Attendees.Add(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
                 }

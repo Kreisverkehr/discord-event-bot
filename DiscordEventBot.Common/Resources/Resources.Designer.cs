@@ -367,6 +367,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This group is already full. Please join another group. ähnelt.
+        /// </summary>
+        internal static string txt_msg_groupfull {
+            get {
+                return ResourceManager.GetString("txt_msg_groupfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can&apos;t add more than 11 groups to an event. ähnelt.
+        /// </summary>
+        internal static string txt_msg_groupsfull {
+            get {
+                return ResourceManager.GetString("txt_msg_groupsfull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No summary :( ähnelt.
         /// </summary>
         internal static string txt_msg_nosummary {

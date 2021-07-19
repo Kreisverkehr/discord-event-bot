@@ -118,6 +118,9 @@ namespace DiscordEventBot.Common.Modules
             if (grp.Attendees.Contains(dbUser))
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_alreadyoined);
 
+            if (grp.MaxCapacity.HasValue && grp.Attendees.Count == grp.MaxCapacity.Value)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupfull);
+
             grp.Attendees.Add(dbUser);
 
             await DbContext.SaveChangesAsync();
@@ -210,6 +213,9 @@ namespace DiscordEventBot.Common.Modules
 
             if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
+
+            if (evt.Groups.Count >= 11)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
 
             evt.Groups.Add(new AttendeeGroup()
             {
