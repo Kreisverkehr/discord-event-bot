@@ -180,6 +180,18 @@
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Hilfe über Befehle</value>
   </data>
+  <data name="txt_mod_misc_cmd_why_rem" xml:space="preserve">
+    <value>Wenn Sie auf eine Nachricht eines fehlgeschlagenen Befehls antworten und diesen Befehl verwenden, erhalten Sie den Grund, warum der Befehl aus dieser Nachricht fehlgeschlagen ist.</value>
+  </data>
+  <data name="txt_mod_misc_cmd_why_sum" xml:space="preserve">
+    <value>Ermitteln Sie den Grund, warum Ihr letzter Befehl fehlgeschlagen ist</value>
+  </data>
+  <data name="txt_mod_misc_name" xml:space="preserve">
+    <value>Verschiedene Befehle</value>
+  </data>
+  <data name="txt_mod_misc_sum" xml:space="preserve">
+    <value>Befehle, die in keine andere Kategorie passen</value>
+  </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
     <value>Du nimmst bereits an dem Ereignis teil</value>
   </data>

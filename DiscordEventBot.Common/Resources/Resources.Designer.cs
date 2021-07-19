@@ -259,6 +259,42 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die If you reply to a message of a failed command and use this command, you will get the reason why the command from this message failed. ähnelt.
+        /// </summary>
+        internal static string txt_mod_misc_cmd_why_rem {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_cmd_why_rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Get the reason why your last command failed ähnelt.
+        /// </summary>
+        internal static string txt_mod_misc_cmd_why_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_cmd_why_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Miscellaneous commands ähnelt.
+        /// </summary>
+        internal static string txt_mod_misc_name {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Commands that do not fit in any other category ähnelt.
+        /// </summary>
+        internal static string txt_mod_misc_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You already joined! ähnelt.
         /// </summary>
         internal static string txt_msg_alreadyoined {

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
 {
+    [LocalizedName("txt_mod_misc_name")]
+    [LocalizedSummary("txt_mod_misc_sum")]
     public class MiscModule : ModuleBase<SocketCommandContext>
     {
         private readonly ResultReasonService _reasons;
@@ -19,6 +21,8 @@ namespace DiscordEventBot.Common.Modules
         }
 
         [Command("why")]
+        [LocalizedSummary("txt_mod_misc_cmd_why_sum")]
+        [LocalizedRemarks("txt_mod_misc_cmd_why_rem")]
         public async Task WhyAsync()
         {
             if (Context.Message.ReferencedMessage == null)
