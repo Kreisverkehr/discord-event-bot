@@ -3,7 +3,11 @@ using Discord.WebSocket;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Model;
 using Humanizer;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
 {
@@ -12,26 +16,95 @@ namespace DiscordEventBot.Common.Messages
         #region Private Fields
 
         private DiscordSocketClient _client;
+        private EventBotContext _dbContext;
         private Event _event;
+        private Dictionary<AttendeeGroup, string> _groupToEmoji = new();
+        private Dictionary<string, AttendeeGroup> _EmojiToGroup = new();
+        private Stack<string> _groupEmojiStack = new();
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public EventInfoMessage(Event evt, DiscordSocketClient client)
+        public EventInfoMessage(Event evt, DiscordSocketClient client, EventBotContext dbContext)
         {
             _event = evt;
             _client = client;
+            _dbContext = dbContext;
             HasEmbed = true;
+            InitEmojiStack();
+            foreach (var group in _event.Groups)
+            {
+                _groupToEmoji.Add(group, _groupEmojiStack.Peek());
+                _EmojiToGroup.Add(_groupEmojiStack.Pop(), group);
+            }
+        }
+
+        private void InitEmojiStack()
+        {
+            _groupEmojiStack.Push("🔟");
+            _groupEmojiStack.Push("9️⃣");
+            _groupEmojiStack.Push("8️⃣");
+            _groupEmojiStack.Push("7️⃣");
+            _groupEmojiStack.Push("6️⃣");
+            _groupEmojiStack.Push("5️⃣");
+            _groupEmojiStack.Push("4️⃣");
+            _groupEmojiStack.Push("3️⃣");
+            _groupEmojiStack.Push("2️⃣");
+            _groupEmojiStack.Push("1️⃣");
+            _groupEmojiStack.Push("0️⃣");
         }
 
         #endregion Public Constructors
 
         #region Public Methods
 
-        public override void Sent(IUserMessage message)
+        public override async Task Sent(IUserMessage message)
         {
-            base.Sent(message);
+            await base.Sent(message);
+
+            await message.AddReactionAsync(new Emoji("☑"));
+            await message.AddReactionAsync(new Emoji("⏹"));
+            foreach (var group in _groupToEmoji)
+                await message.AddReactionAsync(new Emoji(group.Value));
+
+            _message = message;
+            _client.ReactionAdded += HandleReaction;
+            new Thread(() =>
+            {
+                Thread.Sleep(new TimeSpan(0, 5, 0));
+                _client.ReactionAdded -= HandleReaction;
+                _message.RemoveAllReactionsAsync().Wait();
+            }).Start();
+        }
+        private IUserMessage _message;
+        private async Task HandleReaction(Cacheable<IUserMessage, ulong> msg, ISocketMessageChannel channel, SocketReaction reaction)
+        {
+            if (msg.Id == _message.Id && reaction.UserId != _client.CurrentUser.Id)
+            {
+                if (reaction.Emote.Name == "☑" && !_event.Attendees.Contains(await _dbContext.Users.FindOrCreateAsync(reaction.UserId)))
+                {
+                    _event.Attendees.Add(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
+                }
+
+                if (reaction.Emote.Name == "⏹")
+                {
+                    _event.Attendees.Remove(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
+                    foreach (var grp in _event.Groups)
+                        grp.Attendees.Remove(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
+                }
+
+                if (_groupToEmoji.Values.Contains(reaction.Emote.Name) && !_EmojiToGroup[reaction.Emote.Name].Attendees.Contains(_dbContext.Users.FindOrCreate(reaction.UserId)))
+                {
+                    _EmojiToGroup[reaction.Emote.Name].Attendees.Add(await _dbContext.Users.FindOrCreateAsync(reaction.UserId));
+                }
+
+                _dbContext.SaveChanges();
+                var rawMsg = await msg.GetOrDownloadAsync();
+                await rawMsg.RemoveReactionAsync(reaction.Emote, reaction.UserId);
+                Rebuild();
+                await rawMsg.ModifyAsync((prop) => prop.Embed = Embed);
+            }
         }
 
         #endregion Public Methods
@@ -54,7 +127,7 @@ namespace DiscordEventBot.Common.Messages
                 )
                 .WithFields(_event.Groups.Select(grp => new EmbedFieldBuilder()
                     .WithIsInline(true)
-                    .WithName(grp.GetTitle())
+                    .WithName(_groupToEmoji[grp] + grp.GetTitle())
                     .WithValue(string.Join('\n', grp.Attendees.Select(at => _client.GetUser(at.UserId).Mention)) + ".")
                 ))
                 ;

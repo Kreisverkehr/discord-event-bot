@@ -33,7 +33,7 @@ namespace DiscordEventBot.Common.RuntimeResults
             else 
                 userMessage = await channel.SendMessageAsync(Message.MessageText);
 
-            Message.Sent(userMessage);
+            await Message.Sent(userMessage);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace DiscordEventBot.Common.Modules
             DbContext.Events.Add(evt);
             await DbContext.SaveChangesAsync();
 
-            return await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client));
+            return await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client, DbContext));
         }
 
         [Command("join")]
@@ -163,7 +163,7 @@ namespace DiscordEventBot.Common.Modules
             if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
-            return await ResponseMessageResult.FromMessageAsync(new EventInfoMessage(evt, Client));
+            return await ResponseMessageResult.FromMessageAsync(new EventInfoMessage(evt, Client, DbContext));
         }
 
         [Command("delete")]
