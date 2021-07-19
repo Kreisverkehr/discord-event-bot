@@ -225,6 +225,9 @@
   <data name="txt_msg_ok" xml:space="preserve">
     <value>OK!</value>
   </data>
+  <data name="txt_msg_wrong_channel" xml:space="preserve">
+    <value>Pssst! Ich darf in diesem Kanal nicht sprechen und du solltest mich nicht über diesen Kanal ansprechen. Ich habe deine Nachricht gelöscht, bevor es jemand merkt.</value>
+  </data>
   <data name="txt_word_alias" xml:space="preserve">
     <value>Alias</value>
   </data>

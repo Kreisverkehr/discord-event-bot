@@ -31,6 +31,7 @@ namespace DiscordEventBot.Model
         public ulong GuildId { get; set; }
 
         public virtual Role AdminRole { get; set; }
+        public virtual Channel BotChannel { get; set; }
 
         #endregion Public Properties
     }
