@@ -22,19 +22,19 @@ namespace DiscordEventBot.Common.Services
         private readonly DiscordSocketClient _discord;
         private readonly IServiceProvider _services;
         private readonly ResultReasonService _reasons;
-        private readonly IDbContextFactory<EventBotContext> _contextFactory;
+        private readonly EventBotContext _dbContext;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public CommandHandlingService(IServiceProvider services, CommandService commands, DiscordSocketClient discord, ResultReasonService reasons, IDbContextFactory<EventBotContext> contextFactory)
+        public CommandHandlingService(IServiceProvider services, CommandService commands, DiscordSocketClient discord, ResultReasonService reasons, EventBotContext dbContext)
         {
             _commands = commands;
             _discord = discord;
             _services = services;
             _reasons = reasons;
-            _contextFactory = contextFactory;
+            _dbContext = dbContext;
 
             _commands.CommandExecuted += CommandExecutedAsync;
             _discord.MessageReceived += MessageReceivedAsync;
@@ -85,17 +85,16 @@ namespace DiscordEventBot.Common.Services
 
             // check if this message was sent in the specified bot channel
             if (rawMessage.Channel is IGuildChannel guildChannel)
-                using (var dbContext = _contextFactory.CreateDbContext())
+            {
+                var guild = await _dbContext.Guilds.FindOrCreateAsync(guildChannel.GuildId);
+                if (guild.BotChannel != null && guildChannel.Id != guild.BotChannel.ChannelId)
                 {
-                    var guild = await dbContext.Guilds.FindOrCreateAsync(guildChannel.GuildId);
-                    if (guild.BotChannel != null && guildChannel.Id != guild.BotChannel.ChannelId)
-                    {
-                        // We have found a violator!
-                        await rawMessage.DeleteAsync();
-                        await rawMessage.Author.SendMessageAsync(Resources.Resources.txt_msg_wrong_channel);
-                        return;
-                    }
+                    // We have found a violator!
+                    await rawMessage.DeleteAsync();
+                    await rawMessage.Author.SendMessageAsync(Resources.Resources.txt_msg_wrong_channel);
+                    return;
                 }
+            }
 
             var context = new SocketCommandContext(_discord, message);
             await _commands.ExecuteAsync(context, argPos, _services);

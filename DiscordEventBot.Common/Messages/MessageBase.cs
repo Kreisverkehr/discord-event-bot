@@ -1,4 +1,5 @@
 ﻿using Discord;
+using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
 {
@@ -13,7 +14,9 @@ namespace DiscordEventBot.Common.Messages
         #region Public Properties
 
         public Embed Embed { get; private set; }
+
         public virtual bool HasEmbed { get; protected set; } = false;
+
         public string MessageText { get; private set; }
 
         #endregion Public Properties
@@ -41,6 +44,12 @@ namespace DiscordEventBot.Common.Messages
             AfterBuild(ref isBuilt);
         }
 
+        public virtual async Task Sent(IUserMessage message)
+        {
+            await Task.CompletedTask;
+            return ;
+        }
+
         #endregion Public Methods
 
         #region Protected Methods
@@ -52,6 +61,12 @@ namespace DiscordEventBot.Common.Messages
         protected virtual EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder;
 
         protected virtual string BuildMessageText() => string.Empty;
+
+        protected void Rebuild()
+        {
+            isBuilt = false;
+            Build();
+        }
 
         #endregion Protected Methods
     }

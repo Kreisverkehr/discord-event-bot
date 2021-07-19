@@ -216,6 +216,12 @@
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Ereignis nicht gefunden</value>
   </data>
+  <data name="txt_msg_groupfull" xml:space="preserve">
+    <value>Diese Gruppe ist bereits voll. Bitte treten Sie einer anderen Gruppe bei.</value>
+  </data>
+  <data name="txt_msg_groupsfull" xml:space="preserve">
+    <value>Sie können nicht mehr als 11 Gruppen zu einem Event hinzufügen.</value>
+  </data>
   <data name="txt_msg_nosummary" xml:space="preserve">
     <value>Keine Beschreibung :(</value>
   </data>
