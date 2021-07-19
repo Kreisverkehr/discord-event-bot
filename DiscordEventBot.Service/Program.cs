@@ -62,6 +62,7 @@ namespace DiscordEventBot.Service
             // setting discord.net's loglevel to verbose. filtering is done in ConsoleLogger
             var discordSettings = services.GetRequiredService<DiscordSocketConfig>();
             discordSettings.LogLevel = LogSeverity.Verbose;
+            discordSettings.MessageCacheSize = 1000;
 
             var _client = services.GetRequiredService<DiscordSocketClient>();
             _client.Log += ConsoleLogger.LogAsync;
