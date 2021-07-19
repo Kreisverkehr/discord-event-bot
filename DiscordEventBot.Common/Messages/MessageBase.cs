@@ -13,7 +13,9 @@ namespace DiscordEventBot.Common.Messages
         #region Public Properties
 
         public Embed Embed { get; private set; }
+
         public virtual bool HasEmbed { get; protected set; } = false;
+
         public string MessageText { get; private set; }
 
         #endregion Public Properties
@@ -39,6 +41,10 @@ namespace DiscordEventBot.Common.Messages
             Embed = BuildEmbed(new EmbedBuilder()).Build();
             isBuilt = true;
             AfterBuild(ref isBuilt);
+        }
+
+        public virtual void Sent(IUserMessage message)
+        {
         }
 
         #endregion Public Methods

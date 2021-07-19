@@ -26,9 +26,14 @@ namespace DiscordEventBot.Common.RuntimeResults
         public async Task SendAsync(IMessageChannel channel)
         {
             Message.Build();
+            IUserMessage userMessage = null;
 
-            if(Message.HasEmbed) await channel.SendMessageAsync(Message.MessageText, embed: Message.Embed);
-            else await channel.SendMessageAsync(Message.MessageText);
+            if(Message.HasEmbed) 
+                userMessage = await channel.SendMessageAsync(Message.MessageText, embed: Message.Embed);
+            else 
+                userMessage = await channel.SendMessageAsync(Message.MessageText);
+
+            Message.Sent(userMessage);
         }
     }
 }

@@ -27,6 +27,15 @@ namespace DiscordEventBot.Common.Messages
 
         #endregion Public Constructors
 
+        #region Public Methods
+
+        public override void Sent(IUserMessage message)
+        {
+            base.Sent(message);
+        }
+
+        #endregion Public Methods
+
         #region Protected Methods
 
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => base.BuildEmbed(embedBuilder)
