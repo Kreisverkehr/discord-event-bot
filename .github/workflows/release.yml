@@ -80,7 +80,7 @@ jobs:
       docker-repo: ${{ steps.repo.outputs.lowercase }}
     steps:
     - id: repo
-      uses: ASzc/change-string-case-action@v1
+      uses: ASzc/change-string-case-action@v2
       with:
         string: ${{ github.repository }}
 
