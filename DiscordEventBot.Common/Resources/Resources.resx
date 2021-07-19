@@ -180,6 +180,18 @@
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Help Commands</value>
   </data>
+  <data name="txt_mod_misc_cmd_why_rem" xml:space="preserve">
+    <value>If you reply to a message of a failed command and use this command, you will get the reason why the command from this message failed.</value>
+  </data>
+  <data name="txt_mod_misc_cmd_why_sum" xml:space="preserve">
+    <value>Get the reason why your last command failed</value>
+  </data>
+  <data name="txt_mod_misc_name" xml:space="preserve">
+    <value>Miscellaneous commands</value>
+  </data>
+  <data name="txt_mod_misc_sum" xml:space="preserve">
+    <value>Commands that do not fit in any other category</value>
+  </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
     <value>You already joined!</value>
   </data>
