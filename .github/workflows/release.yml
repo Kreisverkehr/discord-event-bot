@@ -114,7 +114,7 @@ jobs:
         name: portable
     - run: 7z x portable/${{ github.event.repository.name }}-portable-${{ needs.set-version.outputs.version }}.zip -oapp/
     - name: Set up QEMU
-      if: runner.os <> windows
+      if: runner.os != windows
       id: qemu
       uses: docker/setup-qemu-action@v1
       with:
