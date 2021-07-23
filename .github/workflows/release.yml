@@ -103,7 +103,7 @@ jobs:
             tag: linux-arm
             file: Dockerfile
           - os: windows-latest
-            platform: windows/x64
+            platform: windows/amd64
             tag: win-x64
             file: Dockerfile
     steps:
