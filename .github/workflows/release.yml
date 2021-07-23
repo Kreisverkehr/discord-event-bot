@@ -112,7 +112,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: portable
-    - run: 7z x portable/${{ github.event.repository.name }}-portable-${{ needs.set-version.outputs.version }}.zip -oapp/
+    - run: 7z x ${{ github.event.repository.name }}-portable-${{ needs.set-version.outputs.version }}.zip -oapp/
     - name: Set up QEMU
       if: runner.os != 'windows'
       id: qemu
