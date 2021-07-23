@@ -1,10 +1,33 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace DiscordEventBot.Model.Migrations
 {
     public partial class init : Migration
     {
+        #region Protected Methods
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "AttendeeGroupUser");
+
+            migrationBuilder.DropTable(
+                name: "EventUser");
+
+            migrationBuilder.DropTable(
+                name: "AttendeeGroup");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Guilds");
+
+            migrationBuilder.DropTable(
+                name: "Users");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -157,25 +180,6 @@ namespace DiscordEventBot.Model.Migrations
                 column: "EventsEventID");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "AttendeeGroupUser");
-
-            migrationBuilder.DropTable(
-                name: "EventUser");
-
-            migrationBuilder.DropTable(
-                name: "AttendeeGroup");
-
-            migrationBuilder.DropTable(
-                name: "Events");
-
-            migrationBuilder.DropTable(
-                name: "Guilds");
-
-            migrationBuilder.DropTable(
-                name: "Users");
-        }
+        #endregion Protected Methods
     }
 }

@@ -5,8 +5,6 @@ using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Common.TypeReaders;
 using DiscordEventBot.Model;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -19,10 +17,10 @@ namespace DiscordEventBot.Common.Services
         #region Private Fields
 
         private readonly CommandService _commands;
-        private readonly DiscordSocketClient _discord;
-        private readonly IServiceProvider _services;
-        private readonly ResultReasonService _reasons;
         private readonly EventBotContext _dbContext;
+        private readonly DiscordSocketClient _discord;
+        private readonly ResultReasonService _reasons;
+        private readonly IServiceProvider _services;
 
         #endregion Private Fields
 
@@ -56,9 +54,11 @@ namespace DiscordEventBot.Common.Services
                 case ResponseMessageResult response:
                     await response.SendAsync(context.Channel);
                     break;
+
                 case ReactionResult reaction:
                     await context.Message.AddReactionAsync(reaction.Emoji);
                     break;
+
                 default:
                     return;
             }

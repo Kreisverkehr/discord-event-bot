@@ -16,7 +16,7 @@ namespace DiscordEventBot.Service
 
         #endregion Private Fields
 
-        #region Public Constructors
+        #region Private Constructors
 
         private Settings()
         {
@@ -38,7 +38,7 @@ namespace DiscordEventBot.Service
                 Language = lang;
         }
 
-        #endregion Public Constructors
+        #endregion Private Constructors
 
         #region Public Properties
 

@@ -1,14 +1,11 @@
 ﻿using Discord.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Extensions
 {
     public static class CommandInfoExtensions
     {
+        #region Public Methods
+
         public static string GetSignature(this CommandInfo command, bool simplified = true)
         {
             var sig = string.Empty;
@@ -19,5 +16,7 @@ namespace DiscordEventBot.Common.Extensions
                 sig += param.FormatMd(withType: !simplified) + " ";
             return sig;
         }
+
+        #endregion Public Methods
     }
 }

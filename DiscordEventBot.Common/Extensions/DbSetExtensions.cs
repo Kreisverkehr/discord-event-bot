@@ -17,9 +17,9 @@ namespace DiscordEventBot.Common.Extensions
         /// <param name="entities">  </param>
         /// <param name="keyValues"> </param>
         /// <returns> </returns>
-        public static async Task<TEntity> FindOrCreateAsync<TEntity>(this DbSet<TEntity> entities, params object[] keyValues) where TEntity : class
+        public static TEntity FindOrCreate<TEntity>(this DbSet<TEntity> entities, params object[] keyValues) where TEntity : class
         {
-            TEntity entity = await entities.FindAsync(keyValues);
+            TEntity entity = entities.Find(keyValues);
             if (entity == null)
             {
                 var constructor = typeof(TEntity).GetConstructor(keyValues.Select(v => v.GetType()).ToArray());
@@ -40,9 +40,9 @@ namespace DiscordEventBot.Common.Extensions
         /// <param name="entities">  </param>
         /// <param name="keyValues"> </param>
         /// <returns> </returns>
-        public static TEntity FindOrCreate<TEntity>(this DbSet<TEntity> entities, params object[] keyValues) where TEntity : class
+        public static async Task<TEntity> FindOrCreateAsync<TEntity>(this DbSet<TEntity> entities, params object[] keyValues) where TEntity : class
         {
-            TEntity entity = entities.Find(keyValues);
+            TEntity entity = await entities.FindAsync(keyValues);
             if (entity == null)
             {
                 var constructor = typeof(TEntity).GetConstructor(keyValues.Select(v => v.GetType()).ToArray());

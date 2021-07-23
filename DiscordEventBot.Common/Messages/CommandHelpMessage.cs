@@ -11,8 +11,8 @@ namespace DiscordEventBot.Common.Messages
     {
         #region Private Fields
 
-        private CommandInfo _commandInfo;
         private List<string> _aliases;
+        private CommandInfo _commandInfo;
 
         #endregion Private Fields
 
@@ -30,7 +30,7 @@ namespace DiscordEventBot.Common.Messages
         #region Protected Methods
 
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder
-            .WithTitle(_commandInfo.GetSignature(simplified:false))
+            .WithTitle(_commandInfo.GetSignature(simplified: false))
             .WithColor(Color.DarkGreen)
             .WithDescription(_commandInfo.Summary)
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder

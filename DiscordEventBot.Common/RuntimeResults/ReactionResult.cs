@@ -1,17 +1,20 @@
 ﻿using Discord;
 using Discord.Commands;
 using Humanizer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.RuntimeResults
 {
+    public enum ReactionIntend
+    {
+        Success,
+        Error
+    }
+
     public class ReactionResult : RuntimeResult
     {
-        public Emoji Emoji { get; }
+        #region Public Constructors
+
         public ReactionResult(Emoji emoji, CommandError? error, string reason) : base(error, reason)
         {
             Emoji = emoji;
@@ -21,12 +24,23 @@ namespace DiscordEventBot.Common.RuntimeResults
         {
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
+        public Emoji Emoji { get; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
         public static Task<ReactionResult> FromReactionIntendAsync(ReactionIntend intend, CommandError? error = null, string reason = null)
         {
             switch (intend)
             {
                 case ReactionIntend.Success:
                     return Task.FromResult(new ReactionResult(new Emoji("✅"), error, reason));
+
                 case ReactionIntend.Error:
                     return Task.FromResult(new ReactionResult(new Emoji("❌"), error, reason));
             }
@@ -44,11 +58,7 @@ namespace DiscordEventBot.Common.RuntimeResults
 
             return Error.Humanize();
         }
-    }
 
-    public enum ReactionIntend
-    {
-        Success,
-        Error
+        #endregion Public Methods
     }
 }

@@ -47,7 +47,7 @@ namespace DiscordEventBot.Common.Messages
         public virtual async Task Sent(IUserMessage message)
         {
             await Task.CompletedTask;
-            return ;
+            return;
         }
 
         #endregion Public Methods

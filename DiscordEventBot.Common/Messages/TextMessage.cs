@@ -19,7 +19,7 @@
 
         #region Public Methods
 
-        public static TextMessage FromString (string text) => new(text);
+        public static TextMessage FromString(string text) => new(text);
 
         #endregion Public Methods
 

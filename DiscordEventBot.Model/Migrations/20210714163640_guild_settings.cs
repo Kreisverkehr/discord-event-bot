@@ -4,6 +4,26 @@ namespace DiscordEventBot.Model.Migrations
 {
     public partial class guild_settings : Migration
     {
+        #region Protected Methods
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Guilds_Roles_AdminRoleRoleId",
+                table: "Guilds");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Guilds_AdminRoleRoleId",
+                table: "Guilds");
+
+            migrationBuilder.DropColumn(
+                name: "AdminRoleRoleId",
+                table: "Guilds");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<ulong>(
@@ -38,22 +58,6 @@ namespace DiscordEventBot.Model.Migrations
                 onDelete: ReferentialAction.Restrict);
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Guilds_Roles_AdminRoleRoleId",
-                table: "Guilds");
-
-            migrationBuilder.DropTable(
-                name: "Roles");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Guilds_AdminRoleRoleId",
-                table: "Guilds");
-
-            migrationBuilder.DropColumn(
-                name: "AdminRoleRoleId",
-                table: "Guilds");
-        }
+        #endregion Protected Methods
     }
 }

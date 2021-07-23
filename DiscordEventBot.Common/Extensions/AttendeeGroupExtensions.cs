@@ -1,14 +1,11 @@
 ﻿using DiscordEventBot.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Extensions
 {
     public static class AttendeeGroupExtensions
     {
+        #region Public Methods
+
         public static string GetTitle(this AttendeeGroup group)
         {
             string result = $"{group.Name} [{group.Attendees?.Count ?? 0}";
@@ -17,5 +14,7 @@ namespace DiscordEventBot.Common.Extensions
             result += "]";
             return result;
         }
+
+        #endregion Public Methods
     }
 }

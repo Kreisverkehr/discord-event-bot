@@ -1,14 +1,11 @@
 ﻿using Discord.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Extensions
 {
     public static class ParameterInfoExtensions
     {
+        #region Public Methods
+
         public static string FormatMd(this ParameterInfo parameterInfo, bool withType = true)
         {
             string paramString = $"{parameterInfo.Name}";
@@ -18,5 +15,7 @@ namespace DiscordEventBot.Common.Extensions
             if (parameterInfo.IsMultiple) paramString += "[\\*]";
             return paramString;
         }
+
+        #endregion Public Methods
     }
 }

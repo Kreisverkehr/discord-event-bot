@@ -23,15 +23,16 @@ namespace DiscordEventBot.Model
 
         #region Public Properties
 
+        public virtual Role AdminRole { get; set; }
+
+        public virtual Channel BotChannel { get; set; }
+
         /// <summary>
         /// discords userid.
         /// </summary>
         /// <remarks> I think we can trust discord that this is unique. </remarks>
         [Key]
         public ulong GuildId { get; set; }
-
-        public virtual Role AdminRole { get; set; }
-        public virtual Channel BotChannel { get; set; }
 
         #endregion Public Properties
     }

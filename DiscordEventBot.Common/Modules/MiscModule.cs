@@ -1,10 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
@@ -13,12 +9,22 @@ namespace DiscordEventBot.Common.Modules
     [LocalizedSummary("txt_mod_misc_sum")]
     public class MiscModule : ModuleBase<SocketCommandContext>
     {
+        #region Private Fields
+
         private readonly ResultReasonService _reasons;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public MiscModule(ResultReasonService reasons)
         {
             _reasons = reasons;
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         [Command("why")]
         [LocalizedSummary("txt_mod_misc_cmd_why_sum")]
@@ -35,12 +41,15 @@ namespace DiscordEventBot.Common.Modules
                     {
                         await userMsg.ReplyAsync(result.Item2.ToString());
                     }
-                } 
-            } else
+                }
+            }
+            else
             {
                 IResult result = _reasons.GetResultForMessage(Context.Message.ReferencedMessage.Id);
                 await Context.Message.ReferencedMessage.ReplyAsync(result.ToString());
             }
         }
+
+        #endregion Public Methods
     }
 }

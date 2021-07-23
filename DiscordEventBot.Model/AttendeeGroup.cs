@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DiscordEventBot.Model
@@ -14,6 +13,7 @@ namespace DiscordEventBot.Model
         public ulong GroupID { get; set; }
 
         public int? MaxCapacity { get; set; }
+
         public string Name { get; set; }
 
         #endregion Public Properties

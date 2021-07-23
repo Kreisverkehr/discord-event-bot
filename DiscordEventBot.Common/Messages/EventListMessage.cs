@@ -1,22 +1,30 @@
 ﻿using Discord;
 using DiscordEventBot.Model;
 using Humanizer;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
 {
     public class EventListMessage : MessageBase
     {
-        IEnumerable<Event> _events;
+        #region Private Fields
+
+        private IEnumerable<Event> _events;
+
+        #endregion Private Fields
+
+        #region Public Constructors
+
         public EventListMessage(IEnumerable<Event> events)
         {
             _events = events;
             HasEmbed = true;
         }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
 
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => base.BuildEmbed(embedBuilder)
             .WithTitle(Resources.Resources.txt_msg_eventlist_title)
@@ -26,5 +34,7 @@ namespace DiscordEventBot.Common.Messages
             ))
             .WithFooter(Resources.Resources.txt_msg_eventlist_footer)
             ;
+
+        #endregion Protected Methods
     }
 }

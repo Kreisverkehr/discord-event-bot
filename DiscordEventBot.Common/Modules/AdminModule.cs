@@ -4,7 +4,6 @@ using DiscordEventBot.Common.Attributes.Preconditions;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Model;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Globalization;
 using System.Threading;
@@ -66,6 +65,19 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
+            [Command("bot-channel")]
+            [Alias("bot-chan", "bc")]
+            [LocalizedSummary("txt_mod_admset_cmd_setbc_sum")]
+            [RequireContext(ContextType.Guild)]
+            [RequireBotAdministrator]
+            public async Task<RuntimeResult> SetBotChannelAsync(IGuildChannel channel)
+            {
+                var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                dbGuild.BotChannel = await DbContext.Channels.FindOrCreateAsync(channel.Id);
+                await DbContext.SaveChangesAsync();
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
             [Command("language")]
             [Alias("lang")]
             [LocalizedSummary("txt_mod_admset_cmd_setlang_sum")]
@@ -78,19 +90,6 @@ namespace DiscordEventBot.Common.Modules
                 // this is intentionally not localized. Every bot owner should understand this.
                 await Context.Message.ReplyAsync("please restart me.");
 
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
-            }
-
-            [Command("bot-channel")]
-            [Alias("bot-chan", "bc")]
-            [LocalizedSummary("txt_mod_admset_cmd_setbc_sum")]
-            [RequireContext(ContextType.Guild)]
-            [RequireBotAdministrator]
-            public async Task<RuntimeResult> SetBotChannelAsync(IGuildChannel channel)
-            {
-                var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
-                dbGuild.BotChannel = await DbContext.Channels.FindOrCreateAsync(channel.Id);
-                await DbContext.SaveChangesAsync();
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 

@@ -5,7 +5,6 @@ using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.Messages;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Model;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +28,30 @@ namespace DiscordEventBot.Common.Modules
 
         #region Public Methods
 
+        [Command("add-group")]
+        [Alias("agrp")]
+        [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_add-group_sum")]
+        public async Task<RuntimeResult> AddGroupToEventsAsync(ulong eventId, string groupName, int? capacity = null)
+        {
+            Event evt = await DbContext.Events.FindAsync(eventId);
+
+            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
+
+            if (evt.Groups.Count >= 11)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
+
+            evt.Groups.Add(new AttendeeGroup()
+            {
+                Name = groupName,
+                MaxCapacity = capacity
+            });
+
+            await DbContext.SaveChangesAsync();
+            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+        }
+
         [Command("create")]
         [Alias("cr", "new")]
         [RequireContext(ContextType.Guild)]
@@ -51,6 +74,23 @@ namespace DiscordEventBot.Common.Modules
             return await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client, DbContext));
         }
 
+        [Command("delete")]
+        [Alias("remove", "rm", "del")]
+        [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_delete_sum")]
+        public async Task<RuntimeResult> DeleteEventAsync(ulong eventId)
+        {
+            Event evt = await DbContext.Events.FindAsync(eventId);
+
+            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
+
+            DbContext.Events.Remove(evt);
+            await DbContext.SaveChangesAsync();
+
+            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+        }
+
         [Command("join")]
         [Alias("attend", "jn")]
         [RequireContext(ContextType.Guild)]
@@ -68,29 +108,6 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_alreadyoined);
 
             evt.Attendees.Add(dbUser);
-
-            await DbContext.SaveChangesAsync();
-
-            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
-        }
-
-        [Command("leave")]
-        [Alias("unattend", "lv")]
-        [RequireContext(ContextType.Guild)]
-        [LocalizedSummary("txt_mod_event_cmd_leave_sum")]
-        public async Task<RuntimeResult> LeaveEventAsync(ulong eventId, IGuildUser user = null)
-        {
-            IGuildUser discUser = user ?? Context.User as IGuildUser;
-            Event evt = await DbContext.Events.FindAsync(eventId);
-            User dbUser = await DbContext.Users.FindOrCreateAsync(discUser.Id);
-
-            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
-
-            if (!evt.Attendees.Contains(dbUser))
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_notjoined);
-
-            evt.Attendees.Remove(dbUser);
 
             await DbContext.SaveChangesAsync();
 
@@ -122,6 +139,29 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupfull);
 
             grp.Attendees.Add(dbUser);
+
+            await DbContext.SaveChangesAsync();
+
+            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+        }
+
+        [Command("leave")]
+        [Alias("unattend", "lv")]
+        [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_leave_sum")]
+        public async Task<RuntimeResult> LeaveEventAsync(ulong eventId, IGuildUser user = null)
+        {
+            IGuildUser discUser = user ?? Context.User as IGuildUser;
+            Event evt = await DbContext.Events.FindAsync(eventId);
+            User dbUser = await DbContext.Users.FindOrCreateAsync(discUser.Id);
+
+            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
+
+            if (!evt.Attendees.Contains(dbUser))
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_notjoined);
+
+            evt.Attendees.Remove(dbUser);
 
             await DbContext.SaveChangesAsync();
 
@@ -169,23 +209,6 @@ namespace DiscordEventBot.Common.Modules
             return await ResponseMessageResult.FromMessageAsync(new EventInfoMessage(evt, Client, DbContext));
         }
 
-        [Command("delete")]
-        [Alias("remove", "rm", "del")]
-        [RequireContext(ContextType.Guild)]
-        [LocalizedSummary("txt_mod_event_cmd_delete_sum")]
-        public async Task<RuntimeResult> DeleteEventAsync(ulong eventId)
-        {
-            Event evt = await DbContext.Events.FindAsync(eventId);
-
-            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
-
-            DbContext.Events.Remove(evt);
-            await DbContext.SaveChangesAsync();
-
-            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
-        }
-
         [Command("show-next")]
         [Alias("upcomming")]
         [RequireContext(ContextType.Guild)]
@@ -201,30 +224,6 @@ namespace DiscordEventBot.Common.Modules
 
             upcommingEvents = upcommingEvents.Take(count);
             return await ResponseMessageResult.FromMessageAsync(new EventListMessage(upcommingEvents));
-        }
-
-        [Command("add-group")]
-        [Alias("agrp")]
-        [RequireContext(ContextType.Guild)]
-        [LocalizedSummary("txt_mod_event_cmd_add-group_sum")]
-        public async Task<RuntimeResult> AddGroupToEventsAsync(ulong eventId, string groupName, int? capacity = null)
-        {
-            Event evt = await DbContext.Events.FindAsync(eventId);
-
-            if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
-
-            if (evt.Groups.Count >= 11)
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
-
-            evt.Groups.Add(new AttendeeGroup()
-            {
-                Name = groupName,
-                MaxCapacity = capacity
-            });
-
-            await DbContext.SaveChangesAsync();
-            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
         }
 
         #endregion Public Methods

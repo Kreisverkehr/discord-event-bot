@@ -1,18 +1,20 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
 {
     public class CommandModuleOverviewMessage : MessageBase
     {
-        ModuleInfo _module;
+        #region Private Fields
+
         private SocketCommandContext _context;
+        private ModuleInfo _module;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public CommandModuleOverviewMessage(ModuleInfo module, SocketCommandContext context)
         {
@@ -20,6 +22,11 @@ namespace DiscordEventBot.Common.Messages
             _context = context;
             HasEmbed = true;
         }
+
+        #endregion Public Constructors
+
+        #region Protected Methods
+
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => embedBuilder
             .WithColor(Color.DarkBlue)
             .WithTitle(_module.Name)
@@ -31,5 +38,7 @@ namespace DiscordEventBot.Common.Messages
                     .WithName(cmd.GetSignature())
                     .WithValue(string.IsNullOrWhiteSpace(cmd.Summary) ? Resources.Resources.txt_msg_nosummary : cmd.Summary))
             ;
+
+        #endregion Protected Methods
     }
 }

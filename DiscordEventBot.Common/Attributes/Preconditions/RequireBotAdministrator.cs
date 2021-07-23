@@ -1,18 +1,17 @@
 ﻿using Discord.Commands;
 using Discord.WebSocket;
 using DiscordEventBot.Model;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Attributes.Preconditions
 {
     public class RequireBotAdministratorAttribute : PreconditionAttribute
     {
+        #region Public Methods
+
         public override Task<PreconditionResult> CheckPermissionsAsync(ICommandContext context, CommandInfo command, IServiceProvider services)
         {
             if (context.User is SocketGuildUser gUser)
@@ -33,10 +32,11 @@ namespace DiscordEventBot.Common.Attributes.Preconditions
                     return Task.FromResult(PreconditionResult.FromSuccess());
 
                 return Task.FromResult(PreconditionResult.FromError("You don't have the permission to run this command."));
-
             }
             else
                 return Task.FromResult(PreconditionResult.FromError("You must be in a guild to run this command."));
         }
+
+        #endregion Public Methods
     }
 }

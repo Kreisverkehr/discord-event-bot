@@ -1,32 +1,20 @@
 ﻿using Discord;
 using Discord.Commands;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Services
 {
     public class ResultReasonService
     {
-        private Dictionary<ulong, (ulong, IResult)> _lastUserResult = new();
+        #region Private Fields
+
         private Dictionary<ulong, IResult> _lastMessageResult = new();
+        private Dictionary<ulong, (ulong, IResult)> _lastUserResult = new();
         private Queue<ulong> _messageResultsPurgeQueue = new();
 
-        public (ulong?, IResult) GetLastResultForUser(ulong userId)
-        {
-            if (!_lastUserResult.ContainsKey(userId)) return new(null, null);
+        #endregion Private Fields
 
-            return _lastUserResult[userId];
-        }
-
-        public IResult GetResultForMessage(ulong messageId)
-        {
-            if (!_lastMessageResult.ContainsKey(messageId)) return null;
-
-            return _lastMessageResult[messageId];
-        }
+        #region Public Methods
 
         public void AddResult(IResult result, IMessage message)
         {
@@ -43,5 +31,21 @@ namespace DiscordEventBot.Common.Services
             if (_lastMessageResult.Count > maxBacklog)
                 _lastMessageResult.Remove(_messageResultsPurgeQueue.Dequeue());
         }
+
+        public (ulong?, IResult) GetLastResultForUser(ulong userId)
+        {
+            if (!_lastUserResult.ContainsKey(userId)) return new(null, null);
+
+            return _lastUserResult[userId];
+        }
+
+        public IResult GetResultForMessage(ulong messageId)
+        {
+            if (!_lastMessageResult.ContainsKey(messageId)) return null;
+
+            return _lastMessageResult[messageId];
+        }
+
+        #endregion Public Methods
     }
 }
