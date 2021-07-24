@@ -157,6 +157,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Project Link: [https://github.com/Kreisverkehr/discord-event-bot](https://github.com/Kreisverkehr/discord-event-bot)
+Author: Kreisverkehr#5046 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
