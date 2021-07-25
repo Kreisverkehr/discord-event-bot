@@ -6,4 +6,4 @@ Only the newest Version is able to receive security updates. Please stay up to d
 
 ## Reporting a Vulnerability
 
-If you find a vulnerability, please report it by using the bug template and attaching the `security` label to it.
+Please contact me via Discord (Kreisverkehr#5046)

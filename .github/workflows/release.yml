@@ -86,7 +86,7 @@ jobs:
 
   build-docker:
     runs-on: ${{ matrix.os }}
-    needs: [init-docker-builds, set-version]
+    needs: [init-docker-builds, set-version, build-natives]
     strategy:
       matrix:
         include:
@@ -103,7 +103,7 @@ jobs:
             tag: linux-arm
             file: Dockerfile
           - os: windows-latest
-            platform: windows/x64
+            platform: windows/amd64
             tag: win-x64
             file: Dockerfile
     steps:
@@ -112,9 +112,9 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: portable
-    - run: 7z x portable/${{ github.event.repository.name }}-portable-${{ needs.set-version.outputs.version }}.zip -oapp/
+    - run: 7z x ${{ github.event.repository.name }}-portable-${{ needs.set-version.outputs.version }}.zip -oapp/
     - name: Set up QEMU
-      if: runner.os <> windows
+      if: runner.os != 'windows'
       id: qemu
       uses: docker/setup-qemu-action@v1
       with:
