@@ -78,6 +78,10 @@ namespace DiscordEventBot.Common.Messages
                     .WithName(Resources.Resources.txt_word_starttime)
                     .WithValue(_event.Start.ToString("f"))
                 )
+                .AddField(fb => fb
+                    .WithName(Resources.Resources.txt_word_endtime)
+                    .WithValue(_event.Start.Add(_event.Duration).ToString("f"))
+                )
                 .AddFieldIf(() => _event.Attendees != null && _event.Attendees.Count > 0, fb => fb
                     .WithName(Resources.Resources.txt_word_attendee.ToQuantity(_event.Attendees.Count, ShowQuantityAs.None))
                     .WithValue(string.Join('\n', _event.Attendees.Select(at => _client.GetUser(at.UserId).Mention)))

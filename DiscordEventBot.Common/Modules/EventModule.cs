@@ -18,6 +18,12 @@ namespace DiscordEventBot.Common.Modules
     [LocalizedSummary("txt_mod_event_sum")]
     public class EventModule : ModuleBase<SocketCommandContext>
     {
+        #region Private Fields
+
+        private static readonly int MAX_GROUPS = 11;
+
+        #endregion Private Fields
+
         #region Public Properties
 
         public DiscordSocketClient Client { get; set; }
@@ -39,7 +45,7 @@ namespace DiscordEventBot.Common.Modules
             if (evt == null || evt.Guild.GuildId != Context.Guild.Id)
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_eventnotfound);
 
-            if (evt.Groups.Count >= 11)
+            if (evt.Groups.Count >= MAX_GROUPS)
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
 
             evt.Groups.Add(new AttendeeGroup()
@@ -67,6 +73,35 @@ namespace DiscordEventBot.Common.Modules
                 Guild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id),
                 Description = description
             };
+
+            DbContext.Events.Add(evt);
+            await DbContext.SaveChangesAsync();
+
+            return await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client, DbContext));
+        }
+
+        [Command("create-from-template")]
+        [Alias("crftpl", "newftpl")]
+        [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_createftpl_sum")]
+        public async Task<RuntimeResult> CreateEventFromTeplateAsync(EventTemplate template, DateTime startDate)
+        {
+            var evt = new Event()
+            {
+                Creator = await DbContext.Users.FindOrCreateAsync(Context.User.Id),
+                Subject = template.Subject,
+                Start = startDate,
+                Duration = template.Duration,
+                Guild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id),
+                Description = template.Description
+            };
+
+            foreach (var grp in template.Groups)
+                evt.Groups.Add(new()
+                {
+                    Name = grp.Name,
+                    MaxCapacity = grp.MaxCapacity
+                });
 
             DbContext.Events.Add(evt);
             await DbContext.SaveChangesAsync();
@@ -227,5 +262,92 @@ namespace DiscordEventBot.Common.Modules
         }
 
         #endregion Public Methods
+
+        #region Public Classes
+
+        [Group("template")]
+        [Alias("tpl")]
+        public class TemplateModule : ModuleBase<SocketCommandContext>
+        {
+            #region Public Properties
+
+            public DiscordSocketClient Client { get; set; }
+
+            public EventBotContext DbContext { get; set; }
+
+            #endregion Public Properties
+
+            #region Public Methods
+
+            [Command("add-group")]
+            [Alias("agrp")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_add-group_sum")]
+            public async Task<RuntimeResult> AddGroupToEventsAsync(EventTemplate template, string groupName, int? capacity = null)
+            {
+                if (template.Groups.Count >= MAX_GROUPS)
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
+
+                template.Groups.Add(new AttendeeGroupTemplate()
+                {
+                    Name = groupName,
+                    MaxCapacity = capacity
+                });
+
+                await DbContext.SaveChangesAsync();
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("create")]
+            [Alias("cr", "new")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_create_sum")]
+            public async Task<RuntimeResult> CreateEventTemplateAsync(string name, string subject, TimeSpan duration, [Remainder] string description = null)
+            {
+                var evt = new EventTemplate()
+                {
+                    Name = name,
+                    Subject = subject,
+                    Duration = duration,
+                    Guild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id),
+                    Description = description
+                };
+
+                DbContext.EventTemplates.Add(evt);
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("delete")]
+            [Alias("remove", "rm", "del")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_delete_sum")]
+            [LocalizedRemarks("txt_mod_eventtpl_cmd_delete_rem")]
+            public async Task<RuntimeResult> DeleteEventTemplateAsync(EventTemplate template)
+            {
+                DbContext.EventTemplates.Remove(template);
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("list")]
+            [Alias("ls")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_list_sum")]
+            public async Task<RuntimeResult> ListTemplatesAsync()
+            {
+                return await ResponseMessageResult.FromMessageAsync(new EventTemplateListMessage(
+                    from tpl in DbContext.EventTemplates.AsQueryable()
+                    where tpl.Guild.GuildId == Context.Guild.Id
+                    select tpl
+                    ));
+            }
+
+            #endregion Public Methods
+        }
+
+        #endregion Public Classes
     }
 }

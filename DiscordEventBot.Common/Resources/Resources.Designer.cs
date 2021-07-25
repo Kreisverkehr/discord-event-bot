@@ -169,6 +169,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Creates an event using a template. Every values, except for the start date are pulled from the predefined template. ähnelt.
+        /// </summary>
+        internal static string txt_mod_event_cmd_createftpl_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_createftpl_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die deletes the given event ähnelt.
         /// </summary>
         internal static string txt_mod_event_cmd_delete_sum {
@@ -246,6 +255,51 @@ namespace DiscordEventBot.Common.Resources {
         internal static string txt_mod_event_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event template. ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_add_group_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_add-group_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Creates an event template that can be used to create individual events. ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_create_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This does not delete any events that were created using this template. You need to delete them manually. ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_delete_rem {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_delete_rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deletes a template ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_delete_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_delete_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lists every template in this guild ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_list_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_list_sum", resourceCulture);
             }
         }
         
@@ -439,6 +493,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Duration ähnelt.
+        /// </summary>
+        internal static string txt_word_duration {
+            get {
+                return ResourceManager.GetString("txt_word_duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die End time ähnelt.
+        /// </summary>
+        internal static string txt_word_endtime {
+            get {
+                return ResourceManager.GetString("txt_word_endtime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
         /// </summary>
         internal static string txt_word_none {
@@ -453,6 +525,15 @@ namespace DiscordEventBot.Common.Resources {
         internal static string txt_word_starttime {
             get {
                 return ResourceManager.GetString("txt_word_starttime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Subject ähnelt.
+        /// </summary>
+        internal static string txt_word_subject {
+            get {
+                return ResourceManager.GetString("txt_word_subject", resourceCulture);
             }
         }
     }
