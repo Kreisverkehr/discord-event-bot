@@ -3,9 +3,12 @@ using Discord.WebSocket;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Model;
 using Humanizer;
+using Ical.Net.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +26,8 @@ namespace DiscordEventBot.Common.Messages
         private Dictionary<AttendeeGroup, string> _groupToEmoji = new();
         private IUserMessage _message;
 
+        private CalendarSerializer calendarSerializer = new();
+
         #endregion Private Fields
 
         #region Public Constructors
@@ -33,6 +38,7 @@ namespace DiscordEventBot.Common.Messages
             _client = client;
             _dbContext = dbContext;
             HasEmbed = true;
+            HasAttachment = true;
             InitEmojiStack();
             foreach (var group in _event.Groups)
             {
@@ -67,6 +73,16 @@ namespace DiscordEventBot.Common.Messages
         #endregion Public Methods
 
         #region Protected Methods
+
+        protected override Stream BuildAttachment(ref string name)
+        {
+            name = _event.Subject.ToFilename("ics");
+            MemoryStream data = new MemoryStream();
+            calendarSerializer.Serialize(new List<Event>() { _event }.ToCalendar(_client), data, Encoding.UTF8);
+            data.Flush();
+            data.Position = 0;
+            return data;
+        }
 
         protected override EmbedBuilder BuildEmbed(EmbedBuilder embedBuilder) => base.BuildEmbed(embedBuilder)
                 .WithTitle($"[#{_event.EventID}] {_event.Subject}")

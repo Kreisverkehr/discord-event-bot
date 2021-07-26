@@ -38,10 +38,16 @@ namespace DiscordEventBot.Common.RuntimeResults
             Message.Build();
             IUserMessage userMessage = null;
 
-            if (Message.HasEmbed)
-                userMessage = await channel.SendMessageAsync(Message.MessageText, embed: Message.Embed);
-            else
-                userMessage = await channel.SendMessageAsync(Message.MessageText);
+            if (!Message.HasEmbed && !Message.HasAttachment)
+                userMessage = await channel.SendMessageAsync(text: Message.MessageText);
+            else if (Message.HasEmbed && !Message.HasAttachment)
+                userMessage = await channel.SendMessageAsync(text: Message.MessageText, embed: Message.Embed);
+            else if (!Message.HasEmbed && Message.HasAttachment)
+                userMessage = await channel.SendFileAsync(Message.GetAttachmentData(), Message.GetAttachmentName(), text: Message.MessageText);
+            else //if (Message.HasEmbed && Message.HasAttachment)
+                userMessage = await channel.SendFileAsync(Message.GetAttachmentData(), Message.GetAttachmentName(), text: Message.MessageText, embed: Message.Embed);
+
+
 
             await Message.Sent(userMessage);
         }

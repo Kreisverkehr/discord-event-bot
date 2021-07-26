@@ -19,6 +19,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![Release][release-shield]][release-url]
 [![MIT License][license-shield]][license-url]
 
 
@@ -79,6 +80,8 @@ I alway wondered if there is an open source alternative to various event plannin
 ### Built With
 
 * [Discord.NET](https://github.com/discord-net/Discord.Net)
+* [Humanizer](https://github.com/Humanizr/Humanizer)
+* [ICal.NET](https://github.com/rianjs/ical.net)
 * [.NET](https://github.com/dotnet)
 * [EF Core](https://docs.microsoft.com/ef/core/)
 
@@ -142,11 +145,12 @@ See the [open issues](https://github.com/Kreisverkehr/discord-event-bot/issues) 
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Create an issue which describes the feature you are planning to implement
+2. Fork the Project
+3. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+4. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+5. Push to the Branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
 
 <!-- LICENSE -->
 ## License
@@ -172,4 +176,6 @@ Author: Kreisverkehr#5046
 [issues-url]: https://github.com/Kreisverkehr/discord-event-bot/issues
 [license-shield]: https://img.shields.io/github/license/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
 [license-url]: https://github.com/Kreisverkehr/discord-event-bot/blob/main/LICENSE
+[release-shield]: https://img.shields.io/github/downloads/Kreisverkehr/discord-event-bot/total?style=for-the-badge
+[release-url]: https://github.com/Kreisverkehr/discord-event-bot/releases/latest
 [product-screenshot]: images/Homepage.png

@@ -258,7 +258,7 @@ namespace DiscordEventBot.Common.Modules
                 select evt;
 
             upcommingEvents = upcommingEvents.Take(count);
-            return await ResponseMessageResult.FromMessageAsync(new EventListMessage(upcommingEvents));
+            return await ResponseMessageResult.FromMessageAsync(new EventListMessage(upcommingEvents, Client));
         }
 
         #endregion Public Methods
