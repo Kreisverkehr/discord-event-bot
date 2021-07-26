@@ -1,11 +1,9 @@
 name: Build & Test
 
 on:
-  push:
+  pull_request:
     paths-ignore:
       - '.github/**'
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
