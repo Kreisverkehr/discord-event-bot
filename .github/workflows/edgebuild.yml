@@ -1,6 +1,7 @@
 name: Edge-Build
 
 on:
+  workflow_dispatch:
   push:
     paths-ignore:
       - '.github/**'
