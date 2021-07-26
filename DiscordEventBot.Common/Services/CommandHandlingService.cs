@@ -69,6 +69,7 @@ namespace DiscordEventBot.Common.Services
             _commands.AddTypeReader<CommandInfo>(new CommandInfoTypeReader());
             _commands.AddTypeReader<ModuleInfo>(new ModuleInfoTypeReader());
             _commands.AddTypeReader<CultureInfo>(new CultureInfoTypeReader());
+            _commands.AddTypeReader<EventTemplate>(new EventTemplateTypeReader());
 
             await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
         }

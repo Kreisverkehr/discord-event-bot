@@ -144,8 +144,32 @@
   <data name="txt_mod_adm_sum" xml:space="preserve">
     <value>Provides administrative commands.</value>
   </data>
+  <data name="txt_mod_eventtpl_cmd_add-group_sum" xml:space="preserve">
+    <value>adds a group to an event template.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_create_sum" xml:space="preserve">
+    <value>Creates an event template that can be used to create individual events.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_deletegrp_rem" xml:space="preserve">
+    <value>Deleting a group from an event template does not affect already created events</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_deletegrp_sum" xml:space="preserve">
+    <value>deletes a group from an event template</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_delete_rem" xml:space="preserve">
+    <value>This does not delete any events that were created using this template. You need to delete them manually.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_delete_sum" xml:space="preserve">
+    <value>Deletes a template</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_list_sum" xml:space="preserve">
+    <value>Lists every template in this guild</value>
+  </data>
   <data name="txt_mod_event_cmd_add-group_sum" xml:space="preserve">
     <value>adds a group to an event</value>
+  </data>
+  <data name="txt_mod_event_cmd_createftpl_sum" xml:space="preserve">
+    <value>Creates an event using a template. Every values, except for the start date are pulled from the predefined template.</value>
   </data>
   <data name="txt_mod_event_cmd_create_sum" xml:space="preserve">
     <value>creates an event within this server</value>
@@ -231,6 +255,9 @@
   <data name="txt_msg_ok" xml:space="preserve">
     <value>OK!</value>
   </data>
+  <data name="txt_msg_templateexists" xml:space="preserve">
+    <value>This template already exists. You can modify it using the `event template update` command.</value>
+  </data>
   <data name="txt_msg_wrong_channel" xml:space="preserve">
     <value>Shhh! I am not allowed to speak in this channel and you should not message me using this channel. I've deleted your message before anyone notices.</value>
   </data>
@@ -240,11 +267,20 @@
   <data name="txt_word_attendee" xml:space="preserve">
     <value>Attendee</value>
   </data>
+  <data name="txt_word_duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="txt_word_endtime" xml:space="preserve">
+    <value>End time</value>
+  </data>
   <data name="txt_word_none" xml:space="preserve">
     <value>None</value>
   </data>
   <data name="txt_word_starttime" xml:space="preserve">
     <value>Start time</value>
+  </data>
+  <data name="txt_word_subject" xml:space="preserve">
+    <value>Subject</value>
   </data>
   <data name="txt__word_remarks" xml:space="preserve">
     <value>Remarks</value>

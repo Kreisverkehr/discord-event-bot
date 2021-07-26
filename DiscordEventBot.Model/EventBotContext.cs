@@ -17,6 +17,8 @@ namespace DiscordEventBot.Model
 
         public DbSet<Event> Events { get; set; }
 
+        public DbSet<EventTemplate> EventTemplates { get; set; }
+
         public DbSet<Guild> Guilds { get; set; }
 
         public DbSet<Role> Roles { get; set; }
