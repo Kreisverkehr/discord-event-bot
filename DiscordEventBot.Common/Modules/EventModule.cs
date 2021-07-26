@@ -304,6 +304,9 @@ namespace DiscordEventBot.Common.Modules
             [LocalizedSummary("txt_mod_eventtpl_cmd_create_sum")]
             public async Task<RuntimeResult> CreateEventTemplateAsync(string name, string subject, TimeSpan duration, [Remainder] string description = null)
             {
+                if (DbContext.EventTemplates.AsQueryable().Select(t => t.Name).Contains(name))
+                    return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_templateexists);
+
                 var evt = new EventTemplate()
                 {
                     Name = name,
@@ -319,6 +322,24 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
+            [Command("update")]
+            [Alias("upd")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_update_sum")]
+            public async Task<RuntimeResult> UpdateEventTemplateAsync(EventTemplate template, string subject = null, TimeSpan? duration = null, [Remainder] string description = null)
+            {
+                if (!String.IsNullOrWhiteSpace(subject))
+                    template.Subject = subject;
+                if (duration.HasValue)
+                    template.Duration = duration.Value;
+                if (!string.IsNullOrWhiteSpace(description))
+                    template.Description = description;
+
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
             [Command("delete")]
             [Alias("remove", "rm", "del")]
             [RequireContext(ContextType.Guild)]
@@ -327,6 +348,19 @@ namespace DiscordEventBot.Common.Modules
             public async Task<RuntimeResult> DeleteEventTemplateAsync(EventTemplate template)
             {
                 DbContext.EventTemplates.Remove(template);
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("delete-group")]
+            [Alias("remove-group", "rmgrp", "delgrp")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_deletegrp_sum")]
+            [LocalizedRemarks("txt_mod_eventtpl_cmd_deletegrp_rem")]
+            public async Task<RuntimeResult> DeleteEventTemplateGroupAsync(EventTemplate template, uint groupIndex)
+            {
+                template.Groups.Remove(template.Groups.ToArray()[groupIndex - 1]);
                 await DbContext.SaveChangesAsync();
 
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);

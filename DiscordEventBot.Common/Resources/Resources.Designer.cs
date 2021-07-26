@@ -295,6 +295,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deleting a group from an event template does not affect already created events ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_deletegrp_rem {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die deletes a group from an event template ähnelt.
+        /// </summary>
+        internal static string txt_mod_eventtpl_cmd_deletegrp_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lists every template in this guild ähnelt.
         /// </summary>
         internal static string txt_mod_eventtpl_cmd_list_sum {
@@ -462,6 +480,15 @@ namespace DiscordEventBot.Common.Resources {
         internal static string txt_msg_ok {
             get {
                 return ResourceManager.GetString("txt_msg_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This template already exists. You can modify it using the `event template update` command. ähnelt.
+        /// </summary>
+        internal static string txt_msg_templateexists {
+            get {
+                return ResourceManager.GetString("txt_msg_templateexists", resourceCulture);
             }
         }
         
