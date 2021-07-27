@@ -1,6 +1,7 @@
 ﻿using Discord.Commands;
 using DiscordEventBot.Common.Messages;
 using DiscordEventBot.Common.RuntimeResults;
+using System;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
@@ -11,14 +12,16 @@ namespace DiscordEventBot.Common.Modules
         #region Private Fields
 
         private readonly CommandService _service;
+        private readonly IServiceProvider _serviceProvider;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public HelpModule(CommandService service)
+        public HelpModule(CommandService service, IServiceProvider serviceProvider)
         {
             _service = service;
+            _serviceProvider = serviceProvider;
         }
 
         #endregion Public Constructors
@@ -30,7 +33,7 @@ namespace DiscordEventBot.Common.Modules
         [LocalizedSummary("txt_cmd_help_help_sum")]
         [LocalizedRemarks("txt_cmd_help_help_rem")]
         public Task<RuntimeResult> HelpAsync() =>
-            ResponseMessageResult.FromMessageAsync(new CommandOverviewMessage(_service, Context));
+            ResponseMessageResult.FromMessageAsync(new CommandOverviewMessage(_service, Context, _serviceProvider));
 
         [Command("help")]
         [Alias("about", "man", "hlp", "?")]
@@ -43,7 +46,7 @@ namespace DiscordEventBot.Common.Modules
         [LocalizedSummary("txt_cmd_help_help_mod_sum")]
         [LocalizedRemarks("txt_cmd_help_help_rem")]
         public Task<RuntimeResult> HelpAsync(ModuleInfo module) =>
-            ResponseMessageResult.FromMessageAsync(new CommandModuleOverviewMessage(module, Context));
+            ResponseMessageResult.FromMessageAsync(new CommandModuleOverviewMessage(module, Context, _serviceProvider));
 
         #endregion Public Methods
     }
