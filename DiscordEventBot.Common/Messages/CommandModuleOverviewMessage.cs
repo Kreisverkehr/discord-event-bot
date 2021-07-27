@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Extensions;
+using System;
 using System.Linq;
 
 namespace DiscordEventBot.Common.Messages
@@ -11,15 +12,17 @@ namespace DiscordEventBot.Common.Messages
 
         private SocketCommandContext _context;
         private ModuleInfo _module;
+        private IServiceProvider _serviceProvider;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public CommandModuleOverviewMessage(ModuleInfo module, SocketCommandContext context)
+        public CommandModuleOverviewMessage(ModuleInfo module, SocketCommandContext context, IServiceProvider serviceProvider)
         {
             _module = module;
             _context = context;
+            _serviceProvider = serviceProvider;
             HasEmbed = true;
         }
 
@@ -33,7 +36,7 @@ namespace DiscordEventBot.Common.Messages
             .WithDescription(_module.Summary)
             .WithFields(
                 from cmd in _module.GetCommandsRecursive()
-                where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
+                where cmd.CheckPreconditionsAsync(_context, _serviceProvider).GetAwaiter().GetResult().IsSuccess
                 select new EmbedFieldBuilder()
                     .WithName(cmd.GetSignature())
                     .WithValue(string.IsNullOrWhiteSpace(cmd.Summary) ? Resources.Resources.txt_msg_nosummary : cmd.Summary))

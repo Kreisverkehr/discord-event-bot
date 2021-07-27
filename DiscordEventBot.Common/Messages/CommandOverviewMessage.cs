@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Extensions;
+using System;
 using System.Linq;
 
 namespace DiscordEventBot.Common.Messages
@@ -11,15 +12,17 @@ namespace DiscordEventBot.Common.Messages
 
         private SocketCommandContext _context;
         private CommandService _service;
+        private IServiceProvider _serviceProvider;
 
         #endregion Private Fields
 
         #region Public Constructors
 
-        public CommandOverviewMessage(CommandService service, SocketCommandContext context)
+        public CommandOverviewMessage(CommandService service, SocketCommandContext context, IServiceProvider serviceProvider)
         {
             _service = service;
             _context = context;
+            _serviceProvider = serviceProvider;
             HasEmbed = true;
         }
 
@@ -35,7 +38,7 @@ namespace DiscordEventBot.Common.Messages
                 from module in _service.Modules
                 where module.Parent == null
                 from cmd in module.GetCommandsRecursive()
-                where cmd.CheckPreconditionsAsync(_context).GetAwaiter().GetResult().IsSuccess
+                where cmd.CheckPreconditionsAsync(_context, _serviceProvider).GetAwaiter().GetResult().IsSuccess
                 group cmd by module into cmdByModule
                 select new EmbedFieldBuilder()
                     .WithName(cmdByModule.Key.Name)
