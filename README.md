@@ -20,6 +20,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![Release][release-shield]][release-url]
+[![Docker][docker-shield]][docker-url]
 [![MIT License][license-shield]][license-url]
 
 
@@ -144,6 +145,7 @@ See the [open issues](https://github.com/Kreisverkehr/discord-event-bot/issues) 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Head over to Github and follow the steps. (https://github.com/Kreisverkehr/discord-event-bot)
 
 1. Create an issue which describes the feature you are planning to implement
 2. Fork the Project
@@ -166,16 +168,18 @@ Author: Kreisverkehr#5046
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Kreisverkehr/discord-event-bot.svg?logo=github&style=for-the-badge
 [contributors-url]: https://github.com/Kreisverkehr/discord-event-bot/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Kreisverkehr/discord-event-bot.svg?logo=github&style=for-the-badge
 [forks-url]: https://github.com/Kreisverkehr/discord-event-bot/network/members
-[stars-shield]: https://img.shields.io/github/stars/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Kreisverkehr/discord-event-bot.svg?logo=github&style=for-the-badge
 [stars-url]: https://github.com/Kreisverkehr/discord-event-bot/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Kreisverkehr/discord-event-bot.svg?logo=github&style=for-the-badge
 [issues-url]: https://github.com/Kreisverkehr/discord-event-bot/issues
 [license-shield]: https://img.shields.io/github/license/Kreisverkehr/discord-event-bot.svg?style=for-the-badge
 [license-url]: https://github.com/Kreisverkehr/discord-event-bot/blob/main/LICENSE
-[release-shield]: https://img.shields.io/github/downloads/Kreisverkehr/discord-event-bot/total?style=for-the-badge
+[release-shield]: https://img.shields.io/github/downloads/Kreisverkehr/discord-event-bot/total?logo=github&style=for-the-badge
 [release-url]: https://github.com/Kreisverkehr/discord-event-bot/releases/latest
+[docker-shield]: https://img.shields.io/docker/pulls/kreisverkehr/discord-event-bot?logo=docker&style=for-the-badge
+[docker-url]: https://hub.docker.com/repository/docker/kreisverkehr/discord-event-bot
 [product-screenshot]: images/Homepage.png
