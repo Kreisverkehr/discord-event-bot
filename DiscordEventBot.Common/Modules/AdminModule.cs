@@ -93,6 +93,18 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
+            [Command("prefix")]
+            [LocalizedSummary("txt_mod_admset_cmd_setprefix_sum")]
+            [RequireOwner]
+            public async Task<RuntimeResult> SetPrefixAsync(string prefix)
+            {
+                var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                dbGuild.CommandPrefix = prefix;
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
             #endregion Public Methods
         }
 

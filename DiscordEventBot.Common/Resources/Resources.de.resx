@@ -135,6 +135,9 @@
   <data name="txt_mod_admset_cmd_setlang_sum" xml:space="preserve">
     <value>Legt die Sprache fest, die der Bot spricht.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setprefix_sum" xml:space="preserve">
+    <value>ein benutzerdefiniertes Befehlspräfix für diese Gilde festlegen</value>
+  </data>
   <data name="txt_mod_adm_cmd_exit_sum" xml:space="preserve">
     <value>Fährt den bot herunter.</value>
   </data>

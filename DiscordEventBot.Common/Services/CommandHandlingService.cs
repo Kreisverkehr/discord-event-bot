@@ -80,22 +80,36 @@ namespace DiscordEventBot.Common.Services
             if (!(rawMessage is SocketUserMessage message)) return;
             if (message.Source != MessageSource.User) return;
 
+            // Get guild, if the m,essage comes from a guild channel
+            Guild guild = null;
+            var guildChannel = rawMessage.Channel as IGuildChannel;
+            if (guildChannel != null)
+                guild = await _dbContext.Guilds.FindOrCreateAsync(guildChannel.GuildId);
+
             // check if the message could contain a vaild command
             var argPos = 0;
-            if (!message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !(rawMessage.Channel is IDMChannel)) return;
+            bool containsCommand = false;
+            containsCommand = rawMessage.Channel is IDMChannel; // if this message is sent via dm it is always a command
+            containsCommand = containsCommand || guild != null && !string.IsNullOrWhiteSpace(guild.CommandPrefix) && message.HasStringPrefix(guild.CommandPrefix, ref argPos);
+            containsCommand = containsCommand || message.HasMentionPrefix(_discord.CurrentUser, ref argPos);
+
+            if (!containsCommand) return;
 
             // check if this message was sent in the specified bot channel
-            if (rawMessage.Channel is IGuildChannel guildChannel)
+            if (guildChannel != null)
             {
-                var guild = await _dbContext.Guilds.FindOrCreateAsync(guildChannel.GuildId);
+                if (!string.IsNullOrWhiteSpace(guild.CommandPrefix)) message.HasStringPrefix(guild.CommandPrefix, ref argPos);
+
                 if (guild.BotChannel != null && guildChannel.Id != guild.BotChannel.ChannelId)
                 {
                     // We have found a violator!
                     await rawMessage.DeleteAsync();
                     await rawMessage.Author.SendMessageAsync(Resources.Resources.txt_msg_wrong_channel);
                     return;
-                }
+                } 
             }
+
+            if (argPos == 0 && !message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !(rawMessage.Channel is IDMChannel)) return;
 
             var context = new SocketCommandContext(_discord, message);
             await _commands.ExecuteAsync(context, argPos, _services);
