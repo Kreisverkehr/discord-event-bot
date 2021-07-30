@@ -151,6 +151,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die set a custom command prefix for this guild ähnelt.
+        /// </summary>
+        internal static string txt_mod_admset_cmd_setprefix_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setprefix_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event ähnelt.
         /// </summary>
         internal static string txt_mod_event_cmd_add_group_sum {

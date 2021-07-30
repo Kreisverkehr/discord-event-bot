@@ -135,6 +135,9 @@
   <data name="txt_mod_admset_cmd_setlang_sum" xml:space="preserve">
     <value>Sets the language the bot speaks.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setprefix_sum" xml:space="preserve">
+    <value>set a custom command prefix for this guild</value>
+  </data>
   <data name="txt_mod_adm_cmd_exit_sum" xml:space="preserve">
     <value>Stops the bot.</value>
   </data>

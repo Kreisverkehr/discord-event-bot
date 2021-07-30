@@ -27,6 +27,8 @@ namespace DiscordEventBot.Model
 
         public virtual Channel BotChannel { get; set; }
 
+        public virtual string CommandPrefix { get; set; }
+
         /// <summary>
         /// discords userid.
         /// </summary>
