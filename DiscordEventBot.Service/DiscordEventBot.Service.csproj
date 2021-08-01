@@ -16,11 +16,11 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-    <PackageReference Include="Quartz" Version="3.3.3" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DiscordEventBot.Jobs\DiscordEventBot.Jobs.csproj" />
     <ProjectReference Include="..\DiscordEventBot.Common\DiscordEventBot.Common.csproj" />
     <ProjectReference Include="..\DiscordEventBot.Model\DiscordEventBot.Model.csproj" />
   </ItemGroup>

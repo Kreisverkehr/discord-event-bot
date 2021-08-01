@@ -8,6 +8,7 @@ using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Quartz;
 using System.Threading;
 using System.Threading.Tasks;
 

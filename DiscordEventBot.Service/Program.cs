@@ -1,18 +1,17 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Discord.WebSocket;
 using DiscordEventBot.Common;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.Services;
+using DiscordEventBot.Jobs.Extensions;
 using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Quartz;
 using System;
 using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Service
 {
@@ -25,6 +24,29 @@ namespace DiscordEventBot.Service
         #endregion Private Fields
 
         #region Private Methods
+
+        private static IHostBuilder CreateHostBuilder(string[] args, Settings settings) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) => services
+                    .AddHostedService<DiscordBotService>()
+                    // add basic stuff
+                    .AddSingleton<DiscordSocketConfig>()
+                    .AddSingleton<DiscordSocketClient>()
+                    .AddSingleton<ISettings>(settings)
+                    .AddSingleton<CommandService>()
+
+                    // configure EventBot's services
+                    .AddEventBotServices()
+
+                    //configure DB
+                    .AddDbContext<EventBotContext>(options => options
+                        .UseSqlite($"Data Source = {settings.SQLiteFile}")
+                        .UseLazyLoadingProxies()
+                    )
+                    .AddEntityFrameworkProxies()
+                    .AddLogging()
+                    .AddJobs()
+                );
 
         private static void Main(string[] args)
         {
@@ -50,28 +72,6 @@ namespace DiscordEventBot.Service
             host.Services.GetRequiredService<ShutdownService>().Shutdown = host.StopAsync;
             host.Run();
         }
-        public static IHostBuilder CreateHostBuilder(string[] args, Settings settings) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) => services
-                    .AddHostedService<DiscordBotService>()
-                    // add basic stuff
-                    .AddSingleton<DiscordSocketConfig>()
-                    .AddSingleton<DiscordSocketClient>()
-                    .AddSingleton<ISettings>(settings)
-                    .AddSingleton<CommandService>()
-
-                    // configure EventBot's services
-                    .AddEventBotServices()
-
-                    //configure DB
-                    .AddDbContext<EventBotContext>(options => options
-                        .UseSqlite($"Data Source = {settings.SQLiteFile}")
-                        .UseLazyLoadingProxies()
-                    )
-                    .AddEntityFrameworkProxies()
-                    .AddLogging()
-                );
-
         #endregion Private Methods
     }
 }
