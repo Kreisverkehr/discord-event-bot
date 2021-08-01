@@ -129,14 +129,29 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Zeigt jeden Befehl den du benutzen kannst.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setadminrole_param_role_sum" xml:space="preserve">
+    <value>Die Rolle, der der Zugriff auf bestimmte Befehle gewährt werden soll.</value>
+  </data>
   <data name="txt_mod_admset_cmd_setadminrole_sum" xml:space="preserve">
     <value>Legt eine Rolle fest, die es jedem Mitglied dieser Rolle ermöglicht, die Admin-Befehle zu verwenden.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setbc_param_channel_sum" xml:space="preserve">
+    <value>Der Kanal, in dem der Bot auf Befehle reagiert.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setlang_param_lang_sum" xml:space="preserve">
+    <value>Die Sprache, die der Bot sprechen soll. Z.B. "de" oder "en"</value>
   </data>
   <data name="txt_mod_admset_cmd_setlang_sum" xml:space="preserve">
     <value>Legt die Sprache fest, die der Bot spricht.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setprefix_param_prefix_sum" xml:space="preserve">
+    <value>Das Präfix, auf das der Bot zusätzlich zu einer Erwähnung reagieren soll</value>
+  </data>
   <data name="txt_mod_admset_cmd_setprefix_sum" xml:space="preserve">
     <value>ein benutzerdefiniertes Befehlspräfix für diese Gilde festlegen</value>
+  </data>
+  <data name="txt_mod_adm_cmd_exit_param_delay_sum" xml:space="preserve">
+    <value>Verzögerungszeit, bevor der Bot das Herunterfahren initialisiert.</value>
   </data>
   <data name="txt_mod_adm_cmd_exit_sum" xml:space="preserve">
     <value>Fährt den bot herunter.</value>
@@ -150,14 +165,44 @@
   <data name="txt_mod_eventtpl_cmd_add-group_sum" xml:space="preserve">
     <value>fügt eine Gruppe zu einer Ereignisvorlage hinzu.</value>
   </data>
+  <data name="txt_mod_eventtpl_cmd_addgroup_param_capacity_sum" xml:space="preserve">
+    <value>Die maximale Größe der Gruppe</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_addgroup_param_groupname_sum" xml:space="preserve">
+    <value>Name der Gruppe, die Sie hinzufügen möchten.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_addgroup_param_template_sum" xml:space="preserve">
+    <value>Die ID oder der Name der Vorlage, zu der Sie eine Gruppe hinzufügen möchten.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_create_param_description_sum" xml:space="preserve">
+    <value>Beschreibung des Ereignisses, das diese Vorlage erzeugt.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_create_param_duration_sum" xml:space="preserve">
+    <value>Dauer des Ereignisses, das diese Vorlage erstellt.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_create_param_name_sum" xml:space="preserve">
+    <value>Der Name der Vorlage, die Sie erstellen möchten. Dieser kann nach der Erstellung nicht mehr geändert werden. Wählen Sie einen Namen, der leicht zu merken und einfach zu tippen ist.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_create_param_subject_sum" xml:space="preserve">
+    <value>Titel des Ereignisses, das diese Vorlage erstellt.</value>
+  </data>
   <data name="txt_mod_eventtpl_cmd_create_sum" xml:space="preserve">
     <value>Erzeugt eine Ereignisvorlage, die zum Erstellen einzelner Ereignisse verwendet werden kann.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_deletegrp_param_groupindex_sum" xml:space="preserve">
+    <value>Der Index der Gruppe, die Sie löschen möchten. Dieser Index ist 1-basiert. Um die erste Gruppe zu löschen, geben Sie 1 ein, um die zweite Gruppe zu löschen, geben Sie 2 ein und so weiter.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_deletegrp_param_template_sum" xml:space="preserve">
+    <value>Die ID oder der Name der Vorlage, aus der Sie eine Gruppe löschen möchten.</value>
   </data>
   <data name="txt_mod_eventtpl_cmd_deletegrp_rem" xml:space="preserve">
     <value>Das Löschen einer Gruppe aus einer Ereignisvorlage hat keine Auswirkungen auf bereits erstellte Ereignisse</value>
   </data>
   <data name="txt_mod_eventtpl_cmd_deletegrp_sum" xml:space="preserve">
     <value>löscht eine Gruppe aus einer Ereignis-Vorlage</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_delete_param_template_sum" xml:space="preserve">
+    <value>Die ID oder der Name der Vorlage, die Sie löschen möchten.</value>
   </data>
   <data name="txt_mod_eventtpl_cmd_delete_rem" xml:space="preserve">
     <value>Dadurch werden keine Ereignisse gelöscht, die mit dieser Vorlage erstellt wurden. Sie müssen sie manuell löschen.</value>
@@ -168,14 +213,56 @@
   <data name="txt_mod_eventtpl_cmd_list_sum" xml:space="preserve">
     <value>Listet jede Vorlage in dieser Gilde auf</value>
   </data>
+  <data name="txt_mod_eventtpl_cmd_update_param_description_sum" xml:space="preserve">
+    <value>Die neue Beschreibung. Leer lassen, wenn Sie sie nicht ändern wollen.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_update_param_duration_sum" xml:space="preserve">
+    <value>Die neue Dauer des Ereignisses. Z. B. 2h30m30s für 2 Stunden, 30 Minuten und 30 Sekunden. Sie können jede Komponente weglassen, die Sie nicht benötigen. Wenn Ihr Ereignis nur 30 Minuten dauert, können Sie "30m" schreiben. Geben Sie "null" an, wenn Sie die Dauer nicht ändern möchten.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_update_param_subject_sum" xml:space="preserve">
+    <value>Der neue Titel. Lassen Sie ihn leer, wenn Sie ihn nicht ändern wollen.</value>
+  </data>
+  <data name="txt_mod_eventtpl_cmd_update_param_template_sum" xml:space="preserve">
+    <value>Die ID oder der Name der Vorlage, die Sie ändern möchten.</value>
+  </data>
   <data name="txt_mod_event_cmd_add-group_sum" xml:space="preserve">
     <value>fügt eine Gruppe zu einer Veranstaltung hinzu</value>
+  </data>
+  <data name="txt_mod_event_cmd_addgroup_param_capacity_sum" xml:space="preserve">
+    <value>Kapazität der neuen Gruppe. Begrenzt die Anzahl der Teilnehmer in dieser Gruppe, wenn festgelegt.</value>
+  </data>
+  <data name="txt_mod_event_cmd_addgroup_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, zu dem die Gruppe hinzugefügt werden soll</value>
+  </data>
+  <data name="txt_mod_event_cmd_addgroup_param_groupname_sum" xml:space="preserve">
+    <value>Name der neuen Gruppe</value>
+  </data>
+  <data name="txt_mod_event_cmd_createftpl_param_startdate_sum" xml:space="preserve">
+    <value>Die Dauer des Ereignisses. Z. B. 2h30m30s für 2 Stunden, 30 Minuten und 30 Sekunden. Sie können jede Komponente weglassen, die Sie nicht benötigen. Wenn Ihre Veranstaltung nur 30 Minuten dauert, können Sie "30m" schreiben.</value>
+  </data>
+  <data name="txt_mod_event_cmd_createftpl_param_template_sum" xml:space="preserve">
+    <value>Die ID oder der Name der Vorlage, aus der Sie Ihr Ereignis erstellen möchten.</value>
   </data>
   <data name="txt_mod_event_cmd_createftpl_sum" xml:space="preserve">
     <value>Erzeugt ein Ereignis unter Verwendung einer Vorlage. Alle Werte, außer dem Startdatum, werden aus der vordefinierten Vorlage gezogen.</value>
   </data>
+  <data name="txt_mod_event_cmd_create_param_description_sum" xml:space="preserve">
+    <value>eine lange und ausführliche Beschreibung Ihrer Veranstaltung. Diese kann so lang sein, wie Sie wollen.</value>
+  </data>
+  <data name="txt_mod_event_cmd_create_param_duration_sum" xml:space="preserve">
+    <value>Die Dauer des Ereignisses. Z. B. 2h30m30s für 2 Stunden, 30 Minuten und 30 Sekunden. Sie können jede Komponente weglassen, die Sie nicht benötigen. Wenn Ihre Veranstaltung nur 30 Minuten dauert, können Sie "30m" schreiben.</value>
+  </data>
+  <data name="txt_mod_event_cmd_create_param_startdate_sum" xml:space="preserve">
+    <value>Startdatum und Uhrzeit des Ereignisses, z.B. "1.1.2020 13:00" für den 1. Januar 2020 um 13 Uhr</value>
+  </data>
+  <data name="txt_mod_event_cmd_create_param_subject_sum" xml:space="preserve">
+    <value>Titel der Veranstaltung.</value>
+  </data>
   <data name="txt_mod_event_cmd_create_sum" xml:space="preserve">
     <value>erstellt eine Veranstaltung für diesen Server</value>
+  </data>
+  <data name="txt_mod_event_cmd_delete_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, das Sie löschen möchten</value>
   </data>
   <data name="txt_mod_event_cmd_delete_sum" xml:space="preserve">
     <value>löscht das Ereignis</value>
@@ -183,17 +270,53 @@
   <data name="txt_mod_event_cmd_join-group_sum" xml:space="preserve">
     <value>Tritt dem Ereignis in der angegebenen Gruppe bei.</value>
   </data>
+  <data name="txt_mod_event_cmd_joingroup_param_eventid_sum" xml:space="preserve">
+    <value>Die ID der Veranstaltung, an der Sie teilnehmen möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_joingroup_param_groupname_sum" xml:space="preserve">
+    <value>Name der Gruppe, der Sie beitreten möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_joingroup_param_user_sum" xml:space="preserve">
+    <value>Der Benutzer, der an der Veranstaltung teilnehmen soll. Sie können ihn entweder erwähnen oder seinen Benutzer- oder Spitznamen schreiben.</value>
+  </data>
+  <data name="txt_mod_event_cmd_join_param_eventid_sum" xml:space="preserve">
+    <value>Die ID der Veranstaltung, an der Sie teilnehmen möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_join_param_user_sum" xml:space="preserve">
+    <value>Der Benutzer, der an der Veranstaltung teilnehmen soll. Sie können ihn entweder erwähnen oder seinen Benutzer- oder Spitznamen schreiben.</value>
+  </data>
   <data name="txt_mod_event_cmd_join_sum" xml:space="preserve">
     <value>Tritt der angegebenen Veranstaltung als Teilnehmer bei.</value>
   </data>
   <data name="txt_mod_event_cmd_leave-group_sum" xml:space="preserve">
     <value>Verlässt die Gruppe des Ereignisses</value>
   </data>
+  <data name="txt_mod_event_cmd_leavegroup_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, das Sie verlassen möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_leavegroup_param_groupname_sum" xml:space="preserve">
+    <value>Der Name der Gruppe, die Sie verlassen möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_leavegroup_param_user_sum" xml:space="preserve">
+    <value>Der Benutzer, der das Ereignis verlassen soll. Sie können ihn entweder erwähnen oder seinen Benutzer- oder Spitznamen schreiben.</value>
+  </data>
+  <data name="txt_mod_event_cmd_leave_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, das Sie verlassen möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_leave_param_user_sum" xml:space="preserve">
+    <value>Der Benutzer, der das Ereignis verlassen soll. Sie können ihn entweder erwähnen oder seinen Benutzer- oder Spitznamen schreiben.</value>
+  </data>
   <data name="txt_mod_event_cmd_leave_sum" xml:space="preserve">
     <value>nimmt nicht mehr an der angegebenen Veranstaltung teil</value>
   </data>
   <data name="txt_mod_event_cmd_show-next_sum" xml:space="preserve">
     <value>Zeigt die nächsten Veranstaltungen an</value>
+  </data>
+  <data name="txt_mod_event_cmd_shownext_param_count_sum" xml:space="preserve">
+    <value>Die Anzahl der Ereignisse, die Sie auflisten möchten. Der Standardwert ist 10.</value>
+  </data>
+  <data name="txt_mod_event_cmd_show_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, das Sie anzeigen möchten</value>
   </data>
   <data name="txt_mod_event_cmd_show_sum" xml:space="preserve">
     <value>Zeigt Details über das angegebene Ereignis an</value>
@@ -203,6 +326,12 @@
   </data>
   <data name="txt_mod_event_sum" xml:space="preserve">
     <value>bietet Befehle für die Verwaltung von Gildenereignissen</value>
+  </data>
+  <data name="txt_mod_help_cmd_help_param_command_sum" xml:space="preserve">
+    <value>Der Name des Befehls, den Sie anzeigen möchten.</value>
+  </data>
+  <data name="txt_mod_help_cmd_help_param_module_sum" xml:space="preserve">
+    <value>Der Name des Moduls, das Sie anzeigen möchten.</value>
   </data>
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Hilfe über Befehle</value>
@@ -264,11 +393,17 @@
   <data name="txt_msg_wrong_channel" xml:space="preserve">
     <value>Pssst! Ich darf in diesem Kanal nicht sprechen und du solltest mich nicht über diesen Kanal ansprechen. Ich habe deine Nachricht gelöscht, bevor es jemand merkt.</value>
   </data>
+  <data name="txt_phrase_isoptional" xml:space="preserve">
+    <value>Ist Optional?</value>
+  </data>
   <data name="txt_word_alias" xml:space="preserve">
     <value>Alias</value>
   </data>
   <data name="txt_word_attendee" xml:space="preserve">
     <value>Teilnehmer</value>
+  </data>
+  <data name="txt_word_datatype" xml:space="preserve">
+    <value>Datentyp</value>
   </data>
   <data name="txt_word_duration" xml:space="preserve">
     <value>Dauer</value>
@@ -276,14 +411,26 @@
   <data name="txt_word_endtime" xml:space="preserve">
     <value>Ende</value>
   </data>
+  <data name="txt_word_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="txt_word_no" xml:space="preserve">
+    <value>Nein</value>
+  </data>
   <data name="txt_word_none" xml:space="preserve">
     <value>Keine</value>
+  </data>
+  <data name="txt_word_parameters" xml:space="preserve">
+    <value>Parameter</value>
   </data>
   <data name="txt_word_starttime" xml:space="preserve">
     <value>Beginn</value>
   </data>
   <data name="txt_word_subject" xml:space="preserve">
     <value>Betreff</value>
+  </data>
+  <data name="txt_word_yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
   <data name="txt__word_remarks" xml:space="preserve">
     <value>Bemerkungen</value>

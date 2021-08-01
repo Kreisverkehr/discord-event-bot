@@ -38,14 +38,19 @@ namespace DiscordEventBot.Common.Modules
         [Command("help")]
         [Alias("about", "man", "hlp", "?")]
         [LocalizedRemarks("txt_cmd_help_help_cmd_sum")]
-        public Task<RuntimeResult> HelpAsync([Remainder] CommandInfo command) =>
+        public Task<RuntimeResult> HelpAsync(
+            [Remainder]
+            [LocalizedSummary("txt_mod_help_cmd_help_param_command_sum")]
+            CommandInfo command) =>
             ResponseMessageResult.FromMessageAsync(new CommandHelpMessage(command));
 
         [Command("help")]
         [Alias("about", "man", "hlp", "?")]
         [LocalizedSummary("txt_cmd_help_help_mod_sum")]
         [LocalizedRemarks("txt_cmd_help_help_rem")]
-        public Task<RuntimeResult> HelpAsync(ModuleInfo module) =>
+        public Task<RuntimeResult> HelpAsync(
+            [LocalizedSummary("txt_mod_help_cmd_help_param_module_sum")]
+            ModuleInfo module) =>
             ResponseMessageResult.FromMessageAsync(new CommandModuleOverviewMessage(module, Context, _serviceProvider));
 
         #endregion Public Methods
