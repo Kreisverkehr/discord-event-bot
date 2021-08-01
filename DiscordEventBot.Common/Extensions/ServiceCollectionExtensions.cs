@@ -12,6 +12,7 @@ namespace DiscordEventBot.Common.Extensions
             .AddSingleton<CommandService>()
             .AddSingleton<CommandHandlingService>()
             .AddSingleton<ResultReasonService>()
+            .AddSingleton<ShutdownService>()
             ;
 
         #endregion Public Methods
