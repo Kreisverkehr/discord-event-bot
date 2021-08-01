@@ -12,7 +12,6 @@ namespace DiscordEventBot.Common.RuntimeResults
         private ResponseMessageResult(MessageBase message) : base(null, null)
         {
             Message = message;
-            Message.Build();
         }
 
         #endregion Private Constructors

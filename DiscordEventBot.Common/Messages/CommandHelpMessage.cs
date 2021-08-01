@@ -36,6 +36,10 @@ namespace DiscordEventBot.Common.Messages
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder
                 .WithName(Resources.Resources.txt__word_remarks)
                 .WithValue(_commandInfo.Remarks))
+            .AddFieldIf(() => _commandInfo.Parameters.Count > 0, builder => builder
+                .WithName(Resources.Resources.txt_word_parameters)
+                .WithValue(string.Join('\n', _commandInfo.Parameters.Select(p => p.GetSummary())))
+                )
             .AddFieldIf(() => _aliases.Count > 0, builder => builder
                 .WithName(Resources.Resources.txt_word_alias.ToQuantity(_aliases.Count, ShowQuantityAs.None))
                 .WithValue(string.Join(", ", _aliases) ?? Resources.Resources.txt_word_none))

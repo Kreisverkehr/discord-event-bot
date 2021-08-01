@@ -38,7 +38,13 @@ namespace DiscordEventBot.Common.Modules
         [Alias("agrp")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_add-group_sum")]
-        public async Task<RuntimeResult> AddGroupToEventsAsync(ulong eventId, string groupName, int? capacity = null)
+        public async Task<RuntimeResult> AddGroupToEventsAsync(
+            [LocalizedSummary("txt_mod_event_cmd_addgroup_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_addgroup_param_groupname_sum")]
+            string groupName,
+            [LocalizedSummary("txt_mod_event_cmd_addgroup_param_capacity_sum")]
+            int capacity = 0)
         {
             Event evt = await DbContext.Events.FindAsync(eventId);
 
@@ -51,7 +57,7 @@ namespace DiscordEventBot.Common.Modules
             evt.Groups.Add(new AttendeeGroup()
             {
                 Name = groupName,
-                MaxCapacity = capacity
+                MaxCapacity = capacity == 0 ? null : capacity
             });
 
             await DbContext.SaveChangesAsync();
@@ -62,7 +68,16 @@ namespace DiscordEventBot.Common.Modules
         [Alias("cr", "new")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_create_sum")]
-        public async Task<RuntimeResult> CreateEventAsync(string subject, DateTime startDate, TimeSpan duration, [Remainder] string description = null)
+        public async Task<RuntimeResult> CreateEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_create_param_subject_sum")]
+            string subject,
+            [LocalizedSummary("txt_mod_event_cmd_create_param_startdate_sum")]
+            DateTime startDate,
+            [LocalizedSummary("txt_mod_event_cmd_create_param_duration_sum")]
+            TimeSpan duration,
+            [Remainder]
+            [LocalizedSummary("txt_mod_event_cmd_create_param_description_sum")]
+            string description = null)
         {
             var evt = new Event()
             {
@@ -84,7 +99,11 @@ namespace DiscordEventBot.Common.Modules
         [Alias("crftpl", "newftpl")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_createftpl_sum")]
-        public async Task<RuntimeResult> CreateEventFromTeplateAsync(EventTemplate template, DateTime startDate)
+        public async Task<RuntimeResult> CreateEventFromTeplateAsync(
+            [LocalizedSummary("txt_mod_event_cmd_createftpl_param_template_sum")]
+            EventTemplate template,
+            [LocalizedSummary("txt_mod_event_cmd_createftpl_param_startdate_sum")]
+            DateTime startDate)
         {
             var evt = new Event()
             {
@@ -113,7 +132,10 @@ namespace DiscordEventBot.Common.Modules
         [Alias("remove", "rm", "del")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_delete_sum")]
-        public async Task<RuntimeResult> DeleteEventAsync(ulong eventId)
+        public async Task<RuntimeResult> DeleteEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_delete_param_eventid_sum")]
+            ulong eventId
+            )
         {
             Event evt = await DbContext.Events.FindAsync(eventId);
 
@@ -130,7 +152,11 @@ namespace DiscordEventBot.Common.Modules
         [Alias("attend", "jn")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_join_sum")]
-        public async Task<RuntimeResult> JoinEventAsync(ulong eventId, IGuildUser user = null)
+        public async Task<RuntimeResult> JoinEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_join_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_join_param_user_sum")]
+            IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
             Event evt = await DbContext.Events.FindAsync(eventId);
@@ -153,7 +179,13 @@ namespace DiscordEventBot.Common.Modules
         [Alias("attend-group", "jngrp")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_join-group_sum")]
-        public async Task<RuntimeResult> JoinEventGroupAsync(ulong eventId, string groupName, IGuildUser user = null)
+        public async Task<RuntimeResult> JoinEventGroupAsync(
+            [LocalizedSummary("txt_mod_event_cmd_joingroup_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_joingroup_param_groupname_sum")]
+            string groupName,
+            [LocalizedSummary("txt_mod_event_cmd_joingroup_param_user_sum")]
+            IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
             Event evt = await DbContext.Events.FindAsync(eventId);
@@ -184,7 +216,11 @@ namespace DiscordEventBot.Common.Modules
         [Alias("unattend", "lv")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_leave_sum")]
-        public async Task<RuntimeResult> LeaveEventAsync(ulong eventId, IGuildUser user = null)
+        public async Task<RuntimeResult> LeaveEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_leave_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_leave_param_user_sum")]
+            IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
             Event evt = await DbContext.Events.FindAsync(eventId);
@@ -207,7 +243,13 @@ namespace DiscordEventBot.Common.Modules
         [Alias("unattend-group", "lvgrp")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_leave-group_sum")]
-        public async Task<RuntimeResult> LeaveEventGroupAsync(ulong eventId, string groupName, IGuildUser user = null)
+        public async Task<RuntimeResult> LeaveEventGroupAsync(
+            [LocalizedSummary("txt_mod_event_cmd_leavegroup_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_leavegroup_param_groupname_sum")]
+            string groupName,
+            [LocalizedSummary("txt_mod_event_cmd_leavegroup_param_user_sum")]
+            IGuildUser user = null)
         {
             IGuildUser discUser = user ?? Context.User as IGuildUser;
             Event evt = await DbContext.Events.FindAsync(eventId);
@@ -234,7 +276,9 @@ namespace DiscordEventBot.Common.Modules
         [Command("show")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_show_sum")]
-        public async Task<RuntimeResult> ShowEventAsync(ulong eventId)
+        public async Task<RuntimeResult> ShowEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_show_param_eventid_sum")]
+            ulong eventId)
         {
             Event evt = await DbContext.Events.FindAsync(eventId);
 
@@ -248,7 +292,9 @@ namespace DiscordEventBot.Common.Modules
         [Alias("upcomming")]
         [RequireContext(ContextType.Guild)]
         [LocalizedSummary("txt_mod_event_cmd_show-next_sum")]
-        public async Task<RuntimeResult> ShowUpcommingEventsAsync(int count = 10)
+        public async Task<RuntimeResult> ShowUpcommingEventsAsync(
+            [LocalizedSummary("txt_mod_event_cmd_shownext_param_count_sum")]
+            int count = 10)
         {
             IEnumerable<Event> upcommingEvents =
                 from evt in DbContext.Events.AsQueryable()
@@ -283,7 +329,13 @@ namespace DiscordEventBot.Common.Modules
             [Alias("agrp")]
             [RequireContext(ContextType.Guild)]
             [LocalizedSummary("txt_mod_eventtpl_cmd_add-group_sum")]
-            public async Task<RuntimeResult> AddGroupToEventsAsync(EventTemplate template, string groupName, int? capacity = null)
+            public async Task<RuntimeResult> AddGroupToEventsAsync(
+                [LocalizedSummary("txt_mod_eventtpl_cmd_addgroup_param_template_sum")]
+                EventTemplate template,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_addgroup_param_groupname_sum")]
+                string groupName,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_addgroup_param_capacity_sum")]
+                int? capacity = null)
             {
                 if (template.Groups.Count >= MAX_GROUPS)
                     return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_groupsfull);
@@ -302,7 +354,16 @@ namespace DiscordEventBot.Common.Modules
             [Alias("cr", "new")]
             [RequireContext(ContextType.Guild)]
             [LocalizedSummary("txt_mod_eventtpl_cmd_create_sum")]
-            public async Task<RuntimeResult> CreateEventTemplateAsync(string name, string subject, TimeSpan duration, [Remainder] string description = null)
+            public async Task<RuntimeResult> CreateEventTemplateAsync(
+                [LocalizedSummary("txt_mod_eventtpl_cmd_create_param_name_sum")]
+                string name,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_create_param_subject_sum")]
+                string subject,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_create_param_duration_sum")]
+                TimeSpan duration,
+                [Remainder]
+                [LocalizedSummary("txt_mod_eventtpl_cmd_create_param_description_sum")]
+                string description = null)
             {
                 if (DbContext.EventTemplates.AsQueryable().Select(t => t.Name).Contains(name))
                     return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Error, CommandError.Unsuccessful, Resources.Resources.txt_msg_templateexists);
@@ -322,30 +383,14 @@ namespace DiscordEventBot.Common.Modules
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
-            [Command("update")]
-            [Alias("upd")]
-            [RequireContext(ContextType.Guild)]
-            [LocalizedSummary("txt_mod_eventtpl_cmd_update_sum")]
-            public async Task<RuntimeResult> UpdateEventTemplateAsync(EventTemplate template, string subject = null, TimeSpan? duration = null, [Remainder] string description = null)
-            {
-                if (!String.IsNullOrWhiteSpace(subject))
-                    template.Subject = subject;
-                if (duration.HasValue)
-                    template.Duration = duration.Value;
-                if (!string.IsNullOrWhiteSpace(description))
-                    template.Description = description;
-
-                await DbContext.SaveChangesAsync();
-
-                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
-            }
-
             [Command("delete")]
             [Alias("remove", "rm", "del")]
             [RequireContext(ContextType.Guild)]
             [LocalizedSummary("txt_mod_eventtpl_cmd_delete_sum")]
             [LocalizedRemarks("txt_mod_eventtpl_cmd_delete_rem")]
-            public async Task<RuntimeResult> DeleteEventTemplateAsync(EventTemplate template)
+            public async Task<RuntimeResult> DeleteEventTemplateAsync(
+                [LocalizedSummary("txt_mod_eventtpl_cmd_delete_param_template_sum")]
+                EventTemplate template)
             {
                 DbContext.EventTemplates.Remove(template);
                 await DbContext.SaveChangesAsync();
@@ -358,7 +403,11 @@ namespace DiscordEventBot.Common.Modules
             [RequireContext(ContextType.Guild)]
             [LocalizedSummary("txt_mod_eventtpl_cmd_deletegrp_sum")]
             [LocalizedRemarks("txt_mod_eventtpl_cmd_deletegrp_rem")]
-            public async Task<RuntimeResult> DeleteEventTemplateGroupAsync(EventTemplate template, uint groupIndex)
+            public async Task<RuntimeResult> DeleteEventTemplateGroupAsync(
+                [LocalizedSummary("txt_mod_eventtpl_cmd_deletegrp_param_template_sum")]
+                EventTemplate template,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_deletegrp_param_groupindex_sum")]
+                uint groupIndex)
             {
                 template.Groups.Remove(template.Groups.ToArray()[groupIndex - 1]);
                 await DbContext.SaveChangesAsync();
@@ -377,6 +426,33 @@ namespace DiscordEventBot.Common.Modules
                     where tpl.Guild.GuildId == Context.Guild.Id
                     select tpl
                     ));
+            }
+
+            [Command("update")]
+            [Alias("upd")]
+            [RequireContext(ContextType.Guild)]
+            [LocalizedSummary("txt_mod_eventtpl_cmd_update_sum")]
+            public async Task<RuntimeResult> UpdateEventTemplateAsync(
+                [LocalizedSummary("txt_mod_eventtpl_cmd_update_param_template_sum")]
+                EventTemplate template,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_update_param_subject_sum")]
+                string subject = null,
+                [LocalizedSummary("txt_mod_eventtpl_cmd_update_param_duration_sum")]
+                TimeSpan? duration = null,
+                [Remainder]
+                [LocalizedSummary("txt_mod_eventtpl_cmd_update_param_description_sum")]
+                string description = null)
+            {
+                if (!String.IsNullOrWhiteSpace(subject))
+                    template.Subject = subject;
+                if (duration.HasValue)
+                    template.Duration = duration.Value;
+                if (!string.IsNullOrWhiteSpace(description))
+                    template.Description = description;
+
+                await DbContext.SaveChangesAsync();
+
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
 
             #endregion Public Methods

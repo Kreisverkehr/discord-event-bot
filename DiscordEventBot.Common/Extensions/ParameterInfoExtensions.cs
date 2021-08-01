@@ -16,6 +16,14 @@ namespace DiscordEventBot.Common.Extensions
             return paramString;
         }
 
+        public static string GetSummary(this ParameterInfo parameterInfo)
+        {
+            return $"**{Resources.Resources.txt_word_name}**: {parameterInfo.Name}\n" + 
+                $"**{Resources.Resources.txt_word_datatype}**: {parameterInfo.Type.Name}\n" + 
+                $"**{Resources.Resources.txt_phrase_isoptional}** {parameterInfo.IsOptional.ToYesNo()}\n" +
+                $"{parameterInfo.Summary}\n";
+        }
+
         #endregion Public Methods
     }
 }
