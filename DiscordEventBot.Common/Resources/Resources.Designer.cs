@@ -772,7 +772,8 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Here is a list of commands that the bot understands. You may want more details on specific commands. Use `help *command*` ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Here you can find a list of commands that the bot understands. You may want to know more details about specific commands. Use `help *command*`. Commands can consist of several words. To execute a command it must be written out in full. E.g. `event create`.
+        ///All parameters are separated by a space. If you want to use a space within a parameter enclose the value with quotes (&quot;). Date values are always specified including the time. The format follows the language of the bot. For example, you can use the format [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string txt_msg_cmdoverview_desc {
             get {

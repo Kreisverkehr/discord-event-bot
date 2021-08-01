@@ -352,7 +352,8 @@
     <value>You already joined!</value>
   </data>
   <data name="txt_msg_cmdoverview_desc" xml:space="preserve">
-    <value>Here is a list of commands that the bot understands. You may want more details on specific commands. Use `help *command*`</value>
+    <value>Here you can find a list of commands that the bot understands. You may want to know more details about specific commands. Use `help *command*`. Commands can consist of several words. To execute a command it must be written out in full. E.g. `event create`.
+All parameters are separated by a space. If you want to use a space within a parameter enclose the value with quotes ("). Date values are always specified including the time. The format follows the language of the bot. For example, you can use the format "12/31/2020 01:00PM".</value>
   </data>
   <data name="txt_msg_cmdoverview_title" xml:space="preserve">
     <value>Bot command reference</value>

@@ -352,7 +352,8 @@
     <value>Du nimmst bereits an dem Ereignis teil</value>
   </data>
   <data name="txt_msg_cmdoverview_desc" xml:space="preserve">
-    <value>Hier finden Sie eine Liste der Befehle, die der Bot versteht. Möglicherweise möchten Sie mehr Details zu bestimmten Befehlen erfahren. Verwenden Sie `help *Befehl*`</value>
+    <value>Hier finden Sie eine Liste der Befehle, die der Bot versteht. Möglicherweise möchten Sie mehr Details zu bestimmten Befehlen erfahren. Verwenden Sie `help *Befehl*`. Befehle können aus mehreren Wörtern bestehen. Um einen Befehl auszuführen muss dieser komplett ausgeschrieben werden. Z.B. `event create`.
+Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein Leerzeichen innerhalb eines Parameters verwenden möchten umschließen Sie den Wert mit Anführungszeichen ("). Die Angabe von Datumswerten erfolgt immer inklusive der Uhrzeit. Das Format folgt dabei der Spache des Bots. Sie können also bspw. folgendes Format verwenden "31.12.2020 13:00".</value>
   </data>
   <data name="txt_msg_cmdoverview_title" xml:space="preserve">
     <value>Bot-Befehlsreferenz</value>
