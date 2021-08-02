@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordEventBot.Common", "D
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{98D4EF68-9692-402B-81BB-B8E40D4A0343}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Jobs", "..\DiscordEventBot.Jobs\DiscordEventBot.Jobs.csproj", "{99BF8542-20F9-4E5D-9932-D3EE8FBE3ABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordEventBot.Jobs", "DiscordEventBot.Jobs\DiscordEventBot.Jobs.csproj", "{99BF8542-20F9-4E5D-9932-D3EE8FBE3ABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
