@@ -83,6 +83,7 @@ I alway wondered if there is an open source alternative to various event plannin
 * [Discord.NET](https://github.com/discord-net/Discord.Net)
 * [Humanizer](https://github.com/Humanizr/Humanizer)
 * [ICal.NET](https://github.com/rianjs/ical.net)
+* [Quartz.NET](https://www.quartz-scheduler.net/)
 * [.NET](https://github.com/dotnet)
 * [EF Core](https://docs.microsoft.com/ef/core/)
 

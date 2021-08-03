@@ -4,6 +4,7 @@ using DiscordEventBot.Common.Attributes.Preconditions;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Model;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Globalization;
 using System.Threading;
@@ -19,7 +20,7 @@ namespace DiscordEventBot.Common.Modules
     {
         #region Public Properties
 
-        public CancellationTokenSource cancellation { get; set; }
+        public IHostApplicationLifetime _appLifetime { get; set; }
 
         #endregion Public Properties
 
@@ -36,7 +37,11 @@ namespace DiscordEventBot.Common.Modules
         {
             // this is intentionally not localized. Every bot owner should understand this.
             await Context.Message.ReplyAsync("shutting down...");
-            new Thread(() => cancellation.CancelAfter(delay)).Start();
+            new Thread(() =>
+            {
+                Thread.Sleep(delay);
+                _appLifetime.StopApplication();
+            }).Start();
         }
 
         #endregion Public Methods

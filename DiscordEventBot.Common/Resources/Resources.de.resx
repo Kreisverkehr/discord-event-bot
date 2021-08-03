@@ -348,6 +348,18 @@
   <data name="txt_mod_misc_sum" xml:space="preserve">
     <value>Befehle, die in keine andere Kategorie passen</value>
   </data>
+  <data name="txt_mod_set_cmd_nt_param_notifytime_sum" xml:space="preserve">
+    <value>Zeit in Minuten, die Sie eine Benachrichtigung erhalten, bevor ein Ereignis beginnt.</value>
+  </data>
+  <data name="txt_mod_set_cmd_nt_sum" xml:space="preserve">
+    <value>Legt die Zeit in Minuten fest, die Sie eine Benachrichtigung vor Beginn eines Ereignisses erhalten möchten.</value>
+  </data>
+  <data name="txt_mod_set_name" xml:space="preserve">
+    <value>Benutzereinstellungen</value>
+  </data>
+  <data name="txt_mod_set_sum" xml:space="preserve">
+    <value>Bietet Befehle, mit denen der Benutzer seine eigenen Einstellungen ändern kann.</value>
+  </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
     <value>Du nimmst bereits an dem Ereignis teil</value>
   </data>
@@ -372,6 +384,9 @@ Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein L
   </data>
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Ereignis nicht gefunden</value>
+  </data>
+  <data name="txt_msg_eventnotification" xml:space="preserve">
+    <value>{0} von Server {1} beginnt um {2:t} Uhr</value>
   </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>Diese Gruppe ist bereits voll. Bitte treten Sie einer anderen Gruppe bei.</value>

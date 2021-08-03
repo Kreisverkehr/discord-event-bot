@@ -348,6 +348,18 @@
   <data name="txt_mod_misc_sum" xml:space="preserve">
     <value>Commands that do not fit in any other category</value>
   </data>
+  <data name="txt_mod_set_cmd_nt_param_notifytime_sum" xml:space="preserve">
+    <value>Time in minutes you will receive a notification before an event starts.</value>
+  </data>
+  <data name="txt_mod_set_cmd_nt_sum" xml:space="preserve">
+    <value>Sets the time in minutes you wish to receive a notification before an event starts.</value>
+  </data>
+  <data name="txt_mod_set_name" xml:space="preserve">
+    <value>User settings</value>
+  </data>
+  <data name="txt_mod_set_sum" xml:space="preserve">
+    <value>Provides commands for the user to change it's own preferences.</value>
+  </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
     <value>You already joined!</value>
   </data>
@@ -372,6 +384,9 @@ All parameters are separated by a space. If you want to use a space within a par
   </data>
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Event not found</value>
+  </data>
+  <data name="txt_msg_eventnotification" xml:space="preserve">
+    <value>{0} from server {1} is starting at {2:t}</value>
   </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>This group is already full. Please join another group.</value>

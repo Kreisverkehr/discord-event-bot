@@ -1,17 +1,15 @@
-﻿using Discord;
-using Discord.Commands;
+﻿using Discord.Commands;
 using Discord.WebSocket;
 using DiscordEventBot.Common;
 using DiscordEventBot.Common.Extensions;
-using DiscordEventBot.Common.Services;
+using DiscordEventBot.Jobs.Extensions;
 using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Service
 {
@@ -19,102 +17,62 @@ namespace DiscordEventBot.Service
     {
         #region Private Fields
 
-        private CancellationTokenSource tokenSource = new();
+        private static Settings _settings;
 
         #endregion Private Fields
 
-        #region Public Methods
+        #region Private Methods
 
-        public static void Main(string[] args)
-                    => new Program().MainAsync().GetAwaiter().GetResult();
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) => services
+                    .AddHostedService<DiscordBotService>()
+                    // add basic stuff
+                    .AddLogging()
+                    .AddSingleton<CancellationTokenSource>()
+                    .AddSingleton(new DiscordSocketConfig()
+                    {
+                        AlwaysDownloadUsers = true,
+                        LogLevel = Discord.LogSeverity.Verbose,
+                        MessageCacheSize = 1000
+                    })
+                    .AddSingleton<DiscordSocketClient>()
+                    .AddSingleton<CommandService>()
+                    .AddSingleton<ISettings>(_settings)
 
-        public async Task MainAsync()
+                    // configure EventBot's services
+                    .AddEventBotServices()
+                    .AddEventBotJobs()
+
+                    //configure DB
+                    .AddDbContext<EventBotContext>(options => options
+                        .UseSqlite($"Data Source = {_settings.SQLiteFile}")
+                        .UseLazyLoadingProxies()
+                    )
+                    .AddEntityFrameworkProxies()
+                );
+
+        private static void Main(string[] args)
         {
-            Console.CancelKeyPress += ShutdownRequested;
-            Settings settings = Settings.Load();
+            _settings = Settings.Load();
 
-            if (!Convert.ToBoolean(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER")) && string.IsNullOrWhiteSpace(settings.Token))
+            if (!Convert.ToBoolean(Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER")) && string.IsNullOrWhiteSpace(_settings.Token))
             {
                 Console.WriteLine("Hello there! It seems that you are running me for the first time.");
                 Console.WriteLine("Just let me ask a few questions:");
                 Console.Write("What's your Bot's token? ");
-                settings.Token = Console.ReadLine();
-                Console.WriteLine($"What language do you want me to speak? [ENTER] for {settings.Language}");
+                _settings.Token = Console.ReadLine();
+                Console.WriteLine($"What language do you want me to speak? [ENTER] for {_settings.Language}");
                 var languageTmp = Console.ReadLine();
-                settings.Language = string.IsNullOrWhiteSpace(languageTmp) ? settings.Language : languageTmp;
+                _settings.Language = string.IsNullOrWhiteSpace(languageTmp) ? _settings.Language : languageTmp;
             }
 
-            CultureInfo.CurrentUICulture = settings.Culture;
-            CultureInfo.CurrentCulture = settings.Culture;
-            CultureInfo.DefaultThreadCurrentCulture = settings.Culture;
-            CultureInfo.DefaultThreadCurrentUICulture = settings.Culture;
+            CultureInfo.CurrentUICulture = _settings.Culture;
+            CultureInfo.CurrentCulture = _settings.Culture;
+            CultureInfo.DefaultThreadCurrentCulture = _settings.Culture;
+            CultureInfo.DefaultThreadCurrentUICulture = _settings.Culture;
 
-            var services = ConfigureServices(settings);
-
-            ConsoleLogger.Filter = (logLevel, source) => logLevel != LogLevel.None && logLevel >= settings.LogLevel;
-
-            var ctx = services.GetRequiredService<EventBotContext>();
-            ctx.Database.Migrate();
-
-            // setting discord.net's loglevel to verbose. filtering is done in ConsoleLogger
-            var discordSettings = services.GetRequiredService<DiscordSocketConfig>();
-            discordSettings.LogLevel = LogSeverity.Verbose;
-            discordSettings.MessageCacheSize = 1000;
-
-            var _client = services.GetRequiredService<DiscordSocketClient>();
-            _client.Log += ConsoleLogger.LogAsync;
-
-            services.GetRequiredService<CommandService>().Log += ConsoleLogger.LogAsync;
-
-            // Login and connect.
-            await _client.LoginAsync(TokenType.Bot, settings.Token);
-            await _client.StartAsync();
-
-            await services.GetRequiredService<CommandHandlingService>().InitializeAsync();
-
-            // Wait until process is asked to terminate so the bot actually stays connected.
-            try { await Task.Delay(Timeout.Infinite, tokenSource.Token); }
-            catch (TaskCanceledException) { }
-
-            await _client.StopAsync();
-            await services.DisposeAsync();
-            ConsoleLogger.Log(LogLevel.Information, "Shutdown complete.");
-        }
-
-        #endregion Public Methods
-
-        #region Private Methods
-
-        private ServiceProvider ConfigureServices(Settings settings) => new ServiceCollection()
-            // add basic stuff
-            .AddSingleton<DiscordSocketConfig>()
-            .AddSingleton<DiscordSocketClient>()
-            .AddSingleton<ISettings>(settings)
-            .AddSingleton<CommandService>()
-            .AddSingleton(tokenSource)
-
-            // configure EventBot's services
-            .AddEventBotServices()
-
-            //configure DB
-            .AddEntityFrameworkProxies()
-            .AddEntityFrameworkSqlite()
-            .AddLogging()
-            .AddDbContext<EventBotContext>(options => options
-                .UseSqlite($"Data Source = {settings.SQLiteFile}")
-                .UseLazyLoadingProxies()
-                .LogTo((eventId, logLevel) => true, ConsoleLogger.Log)
-            )
-
-            // build provider
-            .BuildServiceProvider(validateScopes: false)
-            ;
-
-        private void ShutdownRequested(object sender, ConsoleCancelEventArgs e)
-        {
-            e.Cancel = true;
-            ConsoleLogger.Log(LogLevel.Information, "Shutdown requested. Please wait.");
-            tokenSource.Cancel();
+            CreateHostBuilder(args).Build().Run();
         }
 
         #endregion Private Methods

@@ -9,6 +9,7 @@ WORKDIR /src
 COPY ["DiscordEventBot.Service/DiscordEventBot.Service.csproj", "DiscordEventBot.Service/"]
 COPY ["DiscordEventBot.Model/DiscordEventBot.Model.csproj", "DiscordEventBot.Model/"]
 COPY ["DiscordEventBot.Common/DiscordEventBot.Common.csproj", "DiscordEventBot.Common/"]
+COPY ["DiscordEventBot.Common/DiscordEventBot.Jobs.csproj", "DiscordEventBot.Jobs/"]
 RUN dotnet restore "DiscordEventBot.Service/DiscordEventBot.Service.csproj"
 COPY . .
 WORKDIR "/src/DiscordEventBot.Service"

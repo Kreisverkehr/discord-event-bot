@@ -51,9 +51,9 @@ namespace DiscordEventBot.Common.Messages
 
         #region Public Methods
 
-        public override async Task Sent(IUserMessage message)
+        public override async Task Sent(IUserMessage message, CancellationToken token)
         {
-            await base.Sent(message);
+            await base.Sent(message, token);
 
             await message.AddReactionAsync(new Emoji("☑"));
             await message.AddReactionAsync(new Emoji("⏹"));
@@ -62,9 +62,10 @@ namespace DiscordEventBot.Common.Messages
 
             _message = message;
             _client.ReactionAdded += HandleReaction;
-            new Thread(() =>
+            new Thread(async () =>
             {
-                Thread.Sleep(new TimeSpan(0, 5, 0));
+                try { await Task.Delay(new TimeSpan(1, 0, 0), token); }
+                catch (TaskCanceledException) { }
                 _client.ReactionAdded -= HandleReaction;
                 _message.RemoveAllReactionsAsync().Wait();
             }).Start();
