@@ -385,6 +385,9 @@ All parameters are separated by a space. If you want to use a space within a par
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Event not found</value>
   </data>
+  <data name="txt_msg_eventnotification" xml:space="preserve">
+    <value>{0} from server {1} is starting at {2:t}</value>
+  </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>This group is already full. Please join another group.</value>
   </data>

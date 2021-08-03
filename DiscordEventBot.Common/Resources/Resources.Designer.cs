@@ -22,7 +22,7 @@ namespace DiscordEventBot.Common.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DiscordEventBot.Common.Resources {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DiscordEventBot.Common.Resources.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DiscordEventBot.Common.Resources {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remarks ähnelt.
         /// </summary>
-        internal static string txt__word_remarks {
+        public static string txt__word_remarks {
             get {
                 return ResourceManager.GetString("txt__word_remarks", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Displays a detailed explaination of the given command ähnelt.
         /// </summary>
-        internal static string txt_cmd_help_help_cmd_sum {
+        public static string txt_cmd_help_help_cmd_sum {
             get {
                 return ResourceManager.GetString("txt_cmd_help_help_cmd_sum", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This provides a filtered list of commands. You will only see what you can use. ähnelt.
         /// </summary>
-        internal static string txt_cmd_help_help_mod_sum {
+        public static string txt_cmd_help_help_mod_sum {
             get {
                 return ResourceManager.GetString("txt_cmd_help_help_mod_sum", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This provides a filtered list of commands. You will only see what you can use. ähnelt.
         /// </summary>
-        internal static string txt_cmd_help_help_rem {
+        public static string txt_cmd_help_help_rem {
             get {
                 return ResourceManager.GetString("txt_cmd_help_help_rem", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Displays every command that you can use ähnelt.
         /// </summary>
-        internal static string txt_cmd_help_help_sum {
+        public static string txt_cmd_help_help_sum {
             get {
                 return ResourceManager.GetString("txt_cmd_help_help_sum", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delay time before the bot initialtes the shutdown. ähnelt.
         /// </summary>
-        internal static string txt_mod_adm_cmd_exit_param_delay_sum {
+        public static string txt_mod_adm_cmd_exit_param_delay_sum {
             get {
                 return ResourceManager.GetString("txt_mod_adm_cmd_exit_param_delay_sum", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Stops the bot. ähnelt.
         /// </summary>
-        internal static string txt_mod_adm_cmd_exit_sum {
+        public static string txt_mod_adm_cmd_exit_sum {
             get {
                 return ResourceManager.GetString("txt_mod_adm_cmd_exit_sum", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Admin Commands ähnelt.
         /// </summary>
-        internal static string txt_mod_adm_name {
+        public static string txt_mod_adm_name {
             get {
                 return ResourceManager.GetString("txt_mod_adm_name", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Provides administrative commands. ähnelt.
         /// </summary>
-        internal static string txt_mod_adm_sum {
+        public static string txt_mod_adm_sum {
             get {
                 return ResourceManager.GetString("txt_mod_adm_sum", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The role that should be given access to certain commands. ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setadminrole_param_role_sum {
+        public static string txt_mod_admset_cmd_setadminrole_param_role_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setadminrole_param_role_sum", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Sets a role that enables any member of it to use the admin commands. ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setadminrole_sum {
+        public static string txt_mod_admset_cmd_setadminrole_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setadminrole_sum", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The channel in wich the bot reacts to commands. ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setbc_param_channel_sum {
+        public static string txt_mod_admset_cmd_setbc_param_channel_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setbc_param_channel_sum", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The language the bot should speak. E.g. &quot;de&quot; or &quot;en&quot; ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setlang_param_lang_sum {
+        public static string txt_mod_admset_cmd_setlang_param_lang_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setlang_param_lang_sum", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Sets the language the bot speaks. ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setlang_sum {
+        public static string txt_mod_admset_cmd_setlang_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setlang_sum", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The prefix the bot should react to in addition to a mention ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setprefix_param_prefix_sum {
+        public static string txt_mod_admset_cmd_setprefix_param_prefix_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setprefix_param_prefix_sum", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die set a custom command prefix for this guild ähnelt.
         /// </summary>
-        internal static string txt_mod_admset_cmd_setprefix_sum {
+        public static string txt_mod_admset_cmd_setprefix_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setprefix_sum", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_add_group_sum {
+        public static string txt_mod_event_cmd_add_group_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_add-group_sum", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Capacity of the new group. Limits the number of attendees in this group when set. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_addgroup_param_capacity_sum {
+        public static string txt_mod_event_cmd_addgroup_param_capacity_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_addgroup_param_capacity_sum", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event to wich the group should be added ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_addgroup_param_eventid_sum {
+        public static string txt_mod_event_cmd_addgroup_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_addgroup_param_eventid_sum", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name of the new group ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_addgroup_param_groupname_sum {
+        public static string txt_mod_event_cmd_addgroup_param_groupname_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_addgroup_param_groupname_sum", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die a long and detailed description of your event. This can be as long as you want. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_create_param_description_sum {
+        public static string txt_mod_event_cmd_create_param_description_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_create_param_description_sum", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The duration of the event. E.g. 2h30m30s for 2 hours, 30 minutes and 30 seconds. You can leave out any component that you don&apos;t need. If your event is only 30 minutes you can write &quot;30m&quot; ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_create_param_duration_sum {
+        public static string txt_mod_event_cmd_create_param_duration_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_create_param_duration_sum", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Start date and time of the event.E.g. &quot;1.1.2020 13:00&quot; for 1st January of 2020 at 1 PM ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_create_param_startdate_sum {
+        public static string txt_mod_event_cmd_create_param_startdate_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_create_param_startdate_sum", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Title of the event. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_create_param_subject_sum {
+        public static string txt_mod_event_cmd_create_param_subject_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_create_param_subject_sum", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die creates an event within this server ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_create_sum {
+        public static string txt_mod_event_cmd_create_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_create_sum", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The duration of the event. E.g. 2h30m30s for 2 hours, 30 minutes and 30 seconds. You can leave out any component that you don&apos;t need. If your event is only 30 minutes you can write &quot;30m&quot; ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_createftpl_param_startdate_sum {
+        public static string txt_mod_event_cmd_createftpl_param_startdate_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_createftpl_param_startdate_sum", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id or name of the template you want to create your event from. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_createftpl_param_template_sum {
+        public static string txt_mod_event_cmd_createftpl_param_template_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_createftpl_param_template_sum", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Creates an event using a template. Every values, except for the start date are pulled from the predefined template. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_createftpl_sum {
+        public static string txt_mod_event_cmd_createftpl_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_createftpl_sum", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to delete ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_delete_param_eventid_sum {
+        public static string txt_mod_event_cmd_delete_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_delete_param_eventid_sum", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die deletes the given event ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_delete_sum {
+        public static string txt_mod_event_cmd_delete_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_delete_sum", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die joins the given event within the given group ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_join_group_sum {
+        public static string txt_mod_event_cmd_join_group_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_join-group_sum", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to join ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_join_param_eventid_sum {
+        public static string txt_mod_event_cmd_join_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_join_param_eventid_sum", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The user you want to join the event. You can either mention it or write it&apos;s user- or nickname. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_join_param_user_sum {
+        public static string txt_mod_event_cmd_join_param_user_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_join_param_user_sum", resourceCulture);
             }
@@ -360,7 +360,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die joins the given event ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_join_sum {
+        public static string txt_mod_event_cmd_join_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_join_sum", resourceCulture);
             }
@@ -369,7 +369,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to join ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_joingroup_param_eventid_sum {
+        public static string txt_mod_event_cmd_joingroup_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_joingroup_param_eventid_sum", resourceCulture);
             }
@@ -378,7 +378,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name of the group you want to join ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_joingroup_param_groupname_sum {
+        public static string txt_mod_event_cmd_joingroup_param_groupname_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_joingroup_param_groupname_sum", resourceCulture);
             }
@@ -387,7 +387,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The user you want to join the event. You can either mention it or write it&apos;s user- or nickname. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_joingroup_param_user_sum {
+        public static string txt_mod_event_cmd_joingroup_param_user_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_joingroup_param_user_sum", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die leaves the given event group ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leave_group_sum {
+        public static string txt_mod_event_cmd_leave_group_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leave-group_sum", resourceCulture);
             }
@@ -405,7 +405,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to leave ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leave_param_eventid_sum {
+        public static string txt_mod_event_cmd_leave_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leave_param_eventid_sum", resourceCulture);
             }
@@ -414,7 +414,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The user you want to leave the event. You can either mention it or write it&apos;s user- or nickname. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leave_param_user_sum {
+        public static string txt_mod_event_cmd_leave_param_user_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leave_param_user_sum", resourceCulture);
             }
@@ -423,7 +423,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die leaves the given event ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leave_sum {
+        public static string txt_mod_event_cmd_leave_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leave_sum", resourceCulture);
             }
@@ -432,7 +432,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to leave ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leavegroup_param_eventid_sum {
+        public static string txt_mod_event_cmd_leavegroup_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leavegroup_param_eventid_sum", resourceCulture);
             }
@@ -441,7 +441,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The name of the group you want to leave ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leavegroup_param_groupname_sum {
+        public static string txt_mod_event_cmd_leavegroup_param_groupname_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leavegroup_param_groupname_sum", resourceCulture);
             }
@@ -450,7 +450,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The user you want to leave the event. You can either mention it or write it&apos;s user- or nickname. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_leavegroup_param_user_sum {
+        public static string txt_mod_event_cmd_leavegroup_param_user_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_leavegroup_param_user_sum", resourceCulture);
             }
@@ -459,7 +459,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die shows the next X events ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_show_next_sum {
+        public static string txt_mod_event_cmd_show_next_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_show-next_sum", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to view ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_show_param_eventid_sum {
+        public static string txt_mod_event_cmd_show_param_eventid_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_show_param_eventid_sum", resourceCulture);
             }
@@ -477,7 +477,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die View details about the given event ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_show_sum {
+        public static string txt_mod_event_cmd_show_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_show_sum", resourceCulture);
             }
@@ -486,7 +486,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The number of events you want to list. Default is 10. ähnelt.
         /// </summary>
-        internal static string txt_mod_event_cmd_shownext_param_count_sum {
+        public static string txt_mod_event_cmd_shownext_param_count_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_cmd_shownext_param_count_sum", resourceCulture);
             }
@@ -495,7 +495,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event Commands ähnelt.
         /// </summary>
-        internal static string txt_mod_event_name {
+        public static string txt_mod_event_name {
             get {
                 return ResourceManager.GetString("txt_mod_event_name", resourceCulture);
             }
@@ -504,7 +504,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die provides commands for managing guild events ähnelt.
         /// </summary>
-        internal static string txt_mod_event_sum {
+        public static string txt_mod_event_sum {
             get {
                 return ResourceManager.GetString("txt_mod_event_sum", resourceCulture);
             }
@@ -513,7 +513,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die adds a group to an event template. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_add_group_sum {
+        public static string txt_mod_eventtpl_cmd_add_group_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_add-group_sum", resourceCulture);
             }
@@ -522,7 +522,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The maximum capacity of the group ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_addgroup_param_capacity_sum {
+        public static string txt_mod_eventtpl_cmd_addgroup_param_capacity_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_addgroup_param_capacity_sum", resourceCulture);
             }
@@ -531,7 +531,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name of the group you want to add. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_addgroup_param_groupname_sum {
+        public static string txt_mod_eventtpl_cmd_addgroup_param_groupname_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_addgroup_param_groupname_sum", resourceCulture);
             }
@@ -540,7 +540,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id or name of the template you want to add a group to. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_addgroup_param_template_sum {
+        public static string txt_mod_eventtpl_cmd_addgroup_param_template_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_addgroup_param_template_sum", resourceCulture);
             }
@@ -549,7 +549,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Description of the event that this template creates. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_create_param_description_sum {
+        public static string txt_mod_eventtpl_cmd_create_param_description_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_param_description_sum", resourceCulture);
             }
@@ -558,7 +558,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Duration of the event that this template creates. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_create_param_duration_sum {
+        public static string txt_mod_eventtpl_cmd_create_param_duration_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_param_duration_sum", resourceCulture);
             }
@@ -567,7 +567,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The name of the template you want to create. This cannot be changed after the creation. Choose a name that is easy to remember and easy to type. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_create_param_name_sum {
+        public static string txt_mod_eventtpl_cmd_create_param_name_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_param_name_sum", resourceCulture);
             }
@@ -576,7 +576,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Title of the event that this template creates. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_create_param_subject_sum {
+        public static string txt_mod_eventtpl_cmd_create_param_subject_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_param_subject_sum", resourceCulture);
             }
@@ -585,7 +585,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Creates an event template that can be used to create individual events. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_create_sum {
+        public static string txt_mod_eventtpl_cmd_create_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_create_sum", resourceCulture);
             }
@@ -594,7 +594,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id or name of the template you want to delete. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_delete_param_template_sum {
+        public static string txt_mod_eventtpl_cmd_delete_param_template_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_delete_param_template_sum", resourceCulture);
             }
@@ -603,7 +603,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This does not delete any events that were created using this template. You need to delete them manually. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_delete_rem {
+        public static string txt_mod_eventtpl_cmd_delete_rem {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_delete_rem", resourceCulture);
             }
@@ -612,7 +612,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Deletes a template ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_delete_sum {
+        public static string txt_mod_eventtpl_cmd_delete_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_delete_sum", resourceCulture);
             }
@@ -621,7 +621,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The index of the group you want to delete. This index is 1-based. To delete the first group secify 1. To delete the second group specify 2 and so on. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_deletegrp_param_groupindex_sum {
+        public static string txt_mod_eventtpl_cmd_deletegrp_param_groupindex_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_param_groupindex_sum", resourceCulture);
             }
@@ -630,7 +630,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id or name of the template you want to delete a group from. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_deletegrp_param_template_sum {
+        public static string txt_mod_eventtpl_cmd_deletegrp_param_template_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_param_template_sum", resourceCulture);
             }
@@ -639,7 +639,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Deleting a group from an event template does not affect already created events ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_deletegrp_rem {
+        public static string txt_mod_eventtpl_cmd_deletegrp_rem {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_rem", resourceCulture);
             }
@@ -648,7 +648,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die deletes a group from an event template ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_deletegrp_sum {
+        public static string txt_mod_eventtpl_cmd_deletegrp_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_deletegrp_sum", resourceCulture);
             }
@@ -657,7 +657,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Lists every template in this guild ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_list_sum {
+        public static string txt_mod_eventtpl_cmd_list_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_list_sum", resourceCulture);
             }
@@ -666,7 +666,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The new description. Leave empty if you don&apos;t want to change it. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_update_param_description_sum {
+        public static string txt_mod_eventtpl_cmd_update_param_description_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_update_param_description_sum", resourceCulture);
             }
@@ -675,7 +675,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The new duration of the event. E.g. 2h30m30s for 2 hours, 30 minutes and 30 seconds. You can leave out any component that you don&apos;t need. If your event is only 30 minutes you can write &quot;30m&quot;. specify &quot;null&quot; if you don&apos;t want to change it. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_update_param_duration_sum {
+        public static string txt_mod_eventtpl_cmd_update_param_duration_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_update_param_duration_sum", resourceCulture);
             }
@@ -684,7 +684,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The new title. Leave empty if you don&apos;t want to change it. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_update_param_subject_sum {
+        public static string txt_mod_eventtpl_cmd_update_param_subject_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_update_param_subject_sum", resourceCulture);
             }
@@ -693,7 +693,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The id or name of the template you want to change. ähnelt.
         /// </summary>
-        internal static string txt_mod_eventtpl_cmd_update_param_template_sum {
+        public static string txt_mod_eventtpl_cmd_update_param_template_sum {
             get {
                 return ResourceManager.GetString("txt_mod_eventtpl_cmd_update_param_template_sum", resourceCulture);
             }
@@ -702,7 +702,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The name of the command you want to view. ähnelt.
         /// </summary>
-        internal static string txt_mod_help_cmd_help_param_command_sum {
+        public static string txt_mod_help_cmd_help_param_command_sum {
             get {
                 return ResourceManager.GetString("txt_mod_help_cmd_help_param_command_sum", resourceCulture);
             }
@@ -711,7 +711,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The name of the module you want to view. ähnelt.
         /// </summary>
-        internal static string txt_mod_help_cmd_help_param_module_sum {
+        public static string txt_mod_help_cmd_help_param_module_sum {
             get {
                 return ResourceManager.GetString("txt_mod_help_cmd_help_param_module_sum", resourceCulture);
             }
@@ -720,7 +720,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Help Commands ähnelt.
         /// </summary>
-        internal static string txt_mod_help_name {
+        public static string txt_mod_help_name {
             get {
                 return ResourceManager.GetString("txt_mod_help_name", resourceCulture);
             }
@@ -729,7 +729,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die If you reply to a message of a failed command and use this command, you will get the reason why the command from this message failed. ähnelt.
         /// </summary>
-        internal static string txt_mod_misc_cmd_why_rem {
+        public static string txt_mod_misc_cmd_why_rem {
             get {
                 return ResourceManager.GetString("txt_mod_misc_cmd_why_rem", resourceCulture);
             }
@@ -738,7 +738,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Get the reason why your last command failed ähnelt.
         /// </summary>
-        internal static string txt_mod_misc_cmd_why_sum {
+        public static string txt_mod_misc_cmd_why_sum {
             get {
                 return ResourceManager.GetString("txt_mod_misc_cmd_why_sum", resourceCulture);
             }
@@ -747,7 +747,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Miscellaneous commands ähnelt.
         /// </summary>
-        internal static string txt_mod_misc_name {
+        public static string txt_mod_misc_name {
             get {
                 return ResourceManager.GetString("txt_mod_misc_name", resourceCulture);
             }
@@ -756,7 +756,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Commands that do not fit in any other category ähnelt.
         /// </summary>
-        internal static string txt_mod_misc_sum {
+        public static string txt_mod_misc_sum {
             get {
                 return ResourceManager.GetString("txt_mod_misc_sum", resourceCulture);
             }
@@ -765,7 +765,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Time in minutes you will receive a notification before an event starts. ähnelt.
         /// </summary>
-        internal static string txt_mod_set_cmd_nt_param_notifytime_sum {
+        public static string txt_mod_set_cmd_nt_param_notifytime_sum {
             get {
                 return ResourceManager.GetString("txt_mod_set_cmd_nt_param_notifytime_sum", resourceCulture);
             }
@@ -774,7 +774,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Sets the time in minutes you wish to receive a notification before an event starts. ähnelt.
         /// </summary>
-        internal static string txt_mod_set_cmd_nt_sum {
+        public static string txt_mod_set_cmd_nt_sum {
             get {
                 return ResourceManager.GetString("txt_mod_set_cmd_nt_sum", resourceCulture);
             }
@@ -783,7 +783,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die User settings ähnelt.
         /// </summary>
-        internal static string txt_mod_set_name {
+        public static string txt_mod_set_name {
             get {
                 return ResourceManager.GetString("txt_mod_set_name", resourceCulture);
             }
@@ -792,7 +792,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Provides commands for the user to change it&apos;s own preferences. ähnelt.
         /// </summary>
-        internal static string txt_mod_set_sum {
+        public static string txt_mod_set_sum {
             get {
                 return ResourceManager.GetString("txt_mod_set_sum", resourceCulture);
             }
@@ -801,7 +801,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You already joined! ähnelt.
         /// </summary>
-        internal static string txt_msg_alreadyoined {
+        public static string txt_msg_alreadyoined {
             get {
                 return ResourceManager.GetString("txt_msg_alreadyoined", resourceCulture);
             }
@@ -811,7 +811,7 @@ namespace DiscordEventBot.Common.Resources {
         ///   Sucht eine lokalisierte Zeichenfolge, die Here you can find a list of commands that the bot understands. You may want to know more details about specific commands. Use `help *command*`. Commands can consist of several words. To execute a command it must be written out in full. E.g. `event create`.
         ///All parameters are separated by a space. If you want to use a space within a parameter enclose the value with quotes (&quot;). Date values are always specified including the time. The format follows the language of the bot. For example, you can use the format [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string txt_msg_cmdoverview_desc {
+        public static string txt_msg_cmdoverview_desc {
             get {
                 return ResourceManager.GetString("txt_msg_cmdoverview_desc", resourceCulture);
             }
@@ -820,7 +820,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bot command reference ähnelt.
         /// </summary>
-        internal static string txt_msg_cmdoverview_title {
+        public static string txt_msg_cmdoverview_title {
             get {
                 return ResourceManager.GetString("txt_msg_cmdoverview_title", resourceCulture);
             }
@@ -829,7 +829,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event succesfully created. See below for details. ähnelt.
         /// </summary>
-        internal static string txt_msg_eventcreated {
+        public static string txt_msg_eventcreated {
             get {
                 return ResourceManager.GetString("txt_msg_eventcreated", resourceCulture);
             }
@@ -838,7 +838,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This event group cannot be found. ähnelt.
         /// </summary>
-        internal static string txt_msg_eventgroupnotfound {
+        public static string txt_msg_eventgroupnotfound {
             get {
                 return ResourceManager.GetString("txt_msg_eventgroupnotfound", resourceCulture);
             }
@@ -847,7 +847,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die To view more details about an event type `event show [id]` ähnelt.
         /// </summary>
-        internal static string txt_msg_eventlist_footer {
+        public static string txt_msg_eventlist_footer {
             get {
                 return ResourceManager.GetString("txt_msg_eventlist_footer", resourceCulture);
             }
@@ -856,7 +856,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Upcomming events ähnelt.
         /// </summary>
-        internal static string txt_msg_eventlist_title {
+        public static string txt_msg_eventlist_title {
             get {
                 return ResourceManager.GetString("txt_msg_eventlist_title", resourceCulture);
             }
@@ -865,16 +865,25 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event not found ähnelt.
         /// </summary>
-        internal static string txt_msg_eventnotfound {
+        public static string txt_msg_eventnotfound {
             get {
                 return ResourceManager.GetString("txt_msg_eventnotfound", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die {0} from server {1} is starting at {2:t} ähnelt.
+        /// </summary>
+        public static string txt_msg_eventnotification {
+            get {
+                return ResourceManager.GetString("txt_msg_eventnotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This group is already full. Please join another group. ähnelt.
         /// </summary>
-        internal static string txt_msg_groupfull {
+        public static string txt_msg_groupfull {
             get {
                 return ResourceManager.GetString("txt_msg_groupfull", resourceCulture);
             }
@@ -883,7 +892,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You can&apos;t add more than 11 groups to an event. ähnelt.
         /// </summary>
-        internal static string txt_msg_groupsfull {
+        public static string txt_msg_groupsfull {
             get {
                 return ResourceManager.GetString("txt_msg_groupsfull", resourceCulture);
             }
@@ -892,7 +901,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No summary :( ähnelt.
         /// </summary>
-        internal static string txt_msg_nosummary {
+        public static string txt_msg_nosummary {
             get {
                 return ResourceManager.GetString("txt_msg_nosummary", resourceCulture);
             }
@@ -901,7 +910,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You can&apos;t leave an event you are not attending. ähnelt.
         /// </summary>
-        internal static string txt_msg_notjoined {
+        public static string txt_msg_notjoined {
             get {
                 return ResourceManager.GetString("txt_msg_notjoined", resourceCulture);
             }
@@ -910,7 +919,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die OK! ähnelt.
         /// </summary>
-        internal static string txt_msg_ok {
+        public static string txt_msg_ok {
             get {
                 return ResourceManager.GetString("txt_msg_ok", resourceCulture);
             }
@@ -919,7 +928,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This template already exists. You can modify it using the `event template update` command. ähnelt.
         /// </summary>
-        internal static string txt_msg_templateexists {
+        public static string txt_msg_templateexists {
             get {
                 return ResourceManager.GetString("txt_msg_templateexists", resourceCulture);
             }
@@ -928,7 +937,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Shhh! I am not allowed to speak in this channel and you should not message me using this channel. I&apos;ve deleted your message before anyone notices. ähnelt.
         /// </summary>
-        internal static string txt_msg_wrong_channel {
+        public static string txt_msg_wrong_channel {
             get {
                 return ResourceManager.GetString("txt_msg_wrong_channel", resourceCulture);
             }
@@ -937,7 +946,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Is optional? ähnelt.
         /// </summary>
-        internal static string txt_phrase_isoptional {
+        public static string txt_phrase_isoptional {
             get {
                 return ResourceManager.GetString("txt_phrase_isoptional", resourceCulture);
             }
@@ -946,7 +955,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alias ähnelt.
         /// </summary>
-        internal static string txt_word_alias {
+        public static string txt_word_alias {
             get {
                 return ResourceManager.GetString("txt_word_alias", resourceCulture);
             }
@@ -955,7 +964,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Attendee ähnelt.
         /// </summary>
-        internal static string txt_word_attendee {
+        public static string txt_word_attendee {
             get {
                 return ResourceManager.GetString("txt_word_attendee", resourceCulture);
             }
@@ -964,7 +973,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Type ähnelt.
         /// </summary>
-        internal static string txt_word_datatype {
+        public static string txt_word_datatype {
             get {
                 return ResourceManager.GetString("txt_word_datatype", resourceCulture);
             }
@@ -973,7 +982,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Duration ähnelt.
         /// </summary>
-        internal static string txt_word_duration {
+        public static string txt_word_duration {
             get {
                 return ResourceManager.GetString("txt_word_duration", resourceCulture);
             }
@@ -982,7 +991,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die End time ähnelt.
         /// </summary>
-        internal static string txt_word_endtime {
+        public static string txt_word_endtime {
             get {
                 return ResourceManager.GetString("txt_word_endtime", resourceCulture);
             }
@@ -991,7 +1000,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
-        internal static string txt_word_name {
+        public static string txt_word_name {
             get {
                 return ResourceManager.GetString("txt_word_name", resourceCulture);
             }
@@ -1000,7 +1009,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No ähnelt.
         /// </summary>
-        internal static string txt_word_no {
+        public static string txt_word_no {
             get {
                 return ResourceManager.GetString("txt_word_no", resourceCulture);
             }
@@ -1009,7 +1018,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
         /// </summary>
-        internal static string txt_word_none {
+        public static string txt_word_none {
             get {
                 return ResourceManager.GetString("txt_word_none", resourceCulture);
             }
@@ -1018,7 +1027,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Parameters ähnelt.
         /// </summary>
-        internal static string txt_word_parameters {
+        public static string txt_word_parameters {
             get {
                 return ResourceManager.GetString("txt_word_parameters", resourceCulture);
             }
@@ -1027,7 +1036,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Start time ähnelt.
         /// </summary>
-        internal static string txt_word_starttime {
+        public static string txt_word_starttime {
             get {
                 return ResourceManager.GetString("txt_word_starttime", resourceCulture);
             }
@@ -1036,7 +1045,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Subject ähnelt.
         /// </summary>
-        internal static string txt_word_subject {
+        public static string txt_word_subject {
             get {
                 return ResourceManager.GetString("txt_word_subject", resourceCulture);
             }
@@ -1045,7 +1054,7 @@ namespace DiscordEventBot.Common.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Yes ähnelt.
         /// </summary>
-        internal static string txt_word_yes {
+        public static string txt_word_yes {
             get {
                 return ResourceManager.GetString("txt_word_yes", resourceCulture);
             }

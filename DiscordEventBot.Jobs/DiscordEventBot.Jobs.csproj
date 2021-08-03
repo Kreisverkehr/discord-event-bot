@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiscordEventBot.Common\DiscordEventBot.Common.csproj" />
     <ProjectReference Include="..\DiscordEventBot.Model\DiscordEventBot.Model.csproj" />
   </ItemGroup>
 

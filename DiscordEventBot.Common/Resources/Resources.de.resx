@@ -385,6 +385,9 @@ Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein L
   <data name="txt_msg_eventnotfound" xml:space="preserve">
     <value>Ereignis nicht gefunden</value>
   </data>
+  <data name="txt_msg_eventnotification" xml:space="preserve">
+    <value>{0} von Server {1} beginnt um {2:t} Uhr</value>
+  </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>Diese Gruppe ist bereits voll. Bitte treten Sie einer anderen Gruppe bei.</value>
   </data>
