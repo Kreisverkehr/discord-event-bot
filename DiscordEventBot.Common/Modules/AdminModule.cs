@@ -3,8 +3,8 @@ using Discord.Commands;
 using DiscordEventBot.Common.Attributes.Preconditions;
 using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
-using DiscordEventBot.Common.Services;
 using DiscordEventBot.Model;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Globalization;
 using System.Threading;
@@ -20,7 +20,7 @@ namespace DiscordEventBot.Common.Modules
     {
         #region Public Properties
 
-        public ShutdownService shutdownService { get; set; }
+        public IHostApplicationLifetime _appLifetime { get; set; }
 
         #endregion Public Properties
 
@@ -39,8 +39,8 @@ namespace DiscordEventBot.Common.Modules
             await Context.Message.ReplyAsync("shutting down...");
             new Thread(() =>
             {
-                Thread.Sleep(delay); 
-                shutdownService.Shutdown(default);
+                Thread.Sleep(delay);
+                _appLifetime.StopApplication();
             }).Start();
         }
 

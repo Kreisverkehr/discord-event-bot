@@ -1,5 +1,6 @@
 ﻿using Discord;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Messages
@@ -63,7 +64,7 @@ namespace DiscordEventBot.Common.Messages
 
         public string GetAttachmentName() => _attachmentName;
 
-        public virtual async Task Sent(IUserMessage message)
+        public virtual async Task Sent(IUserMessage message, CancellationToken token)
         {
             await Task.CompletedTask;
             return;

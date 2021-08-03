@@ -8,7 +8,6 @@ using DiscordEventBot.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Quartz;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,6 +24,7 @@ namespace DiscordEventBot.Service
         private readonly CommandHandlingService _handlingService;
         private readonly ILogger _logger;
         private readonly Settings _settings;
+        private readonly CancellationTokenSource _tokenSource;
 
         #endregion Private Fields
 
@@ -34,11 +34,11 @@ namespace DiscordEventBot.Service
             ILogger<DiscordBotService> logger,
             IHostApplicationLifetime appLifetime,
             ISettings settings,
-            DiscordSocketConfig clientConfig,
             DiscordSocketClient client,
             CommandService commandService,
             CommandHandlingService handlingService,
-            EventBotContext dbContext)
+            EventBotContext dbContext,
+            CancellationTokenSource tokenSource)
         {
             _logger = logger;
             _appLifetime = appLifetime;
@@ -47,8 +47,7 @@ namespace DiscordEventBot.Service
             _commandService = commandService;
             _handlingService = handlingService;
             _client = client;
-            clientConfig.LogLevel = LogSeverity.Verbose;
-            clientConfig.MessageCacheSize = 1000;
+            _tokenSource = tokenSource;
         }
 
         #endregion Public Constructors
@@ -58,9 +57,7 @@ namespace DiscordEventBot.Service
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             _dbContext.Database.Migrate();
-
             _client.Log += Log;
-
             _commandService.Log += Log;
 
             // Login and connect.
@@ -72,6 +69,7 @@ namespace DiscordEventBot.Service
 
         public async Task StopAsync(CancellationToken cancellationToken)
         {
+            _tokenSource.Cancel();
             await _client.StopAsync();
             _logger.LogInformation("Shutdown complete");
         }

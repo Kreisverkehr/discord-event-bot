@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Quartz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiscordEventBot.Jobs.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddJobs(this IServiceCollection services) => services
+        #region Public Methods
+
+        public static IServiceCollection AddEventBotJobs(this IServiceCollection services) => services
             .AddQuartz(config =>
             {
                 config.SchedulerId = "discord-event-bot-scheduler";
@@ -26,9 +23,10 @@ namespace DiscordEventBot.Jobs.Extensions
                     .WithIdentity("every minute")
                     .WithDailyTimeIntervalSchedule(x => x.WithIntervalInMinutes(1))
                 );
-                
             })
             .AddQuartzHostedService()
             ;
+
+        #endregion Public Methods
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using DiscordEventBot.Common.Messages;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.RuntimeResults
@@ -32,7 +33,7 @@ namespace DiscordEventBot.Common.RuntimeResults
 
         public static Task<RuntimeResult> FromMessageAsync(string messageText) => Task.FromResult(FromMessage(messageText));
 
-        public async Task SendAsync(IMessageChannel channel)
+        public async Task SendAsync(IMessageChannel channel, CancellationToken token)
         {
             Message.Build();
             IUserMessage userMessage = null;
@@ -46,9 +47,7 @@ namespace DiscordEventBot.Common.RuntimeResults
             else //if (Message.HasEmbed && Message.HasAttachment)
                 userMessage = await channel.SendFileAsync(Message.GetAttachmentData(), Message.GetAttachmentName(), text: Message.MessageText, embed: Message.Embed);
 
-
-
-            await Message.Sent(userMessage);
+            await Message.Sent(userMessage, token);
         }
 
         #endregion Public Methods

@@ -18,8 +18,8 @@ namespace DiscordEventBot.Common.Extensions
 
         public static string GetSummary(this ParameterInfo parameterInfo)
         {
-            return $"**{Resources.Resources.txt_word_name}**: {parameterInfo.Name}\n" + 
-                $"**{Resources.Resources.txt_word_datatype}**: {parameterInfo.Type.Name}\n" + 
+            return $"**{Resources.Resources.txt_word_name}**: {parameterInfo.Name}\n" +
+                $"**{Resources.Resources.txt_word_datatype}**: {parameterInfo.Type.Name}\n" +
                 $"**{Resources.Resources.txt_phrase_isoptional}** {parameterInfo.IsOptional.ToYesNo()}\n" +
                 $"{parameterInfo.Summary}\n";
         }

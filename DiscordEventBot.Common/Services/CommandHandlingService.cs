@@ -5,9 +5,11 @@ using DiscordEventBot.Common.Extensions;
 using DiscordEventBot.Common.RuntimeResults;
 using DiscordEventBot.Common.TypeReaders;
 using DiscordEventBot.Model;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Services
@@ -52,7 +54,7 @@ namespace DiscordEventBot.Common.Services
             switch (result)
             {
                 case ResponseMessageResult response:
-                    await response.SendAsync(context.Channel);
+                    await response.SendAsync(context.Channel, _services.GetRequiredService<CancellationTokenSource>().Token);
                     break;
 
                 case ReactionResult reaction:
@@ -106,7 +108,7 @@ namespace DiscordEventBot.Common.Services
                     await rawMessage.DeleteAsync();
                     await rawMessage.Author.SendMessageAsync(Resources.Resources.txt_msg_wrong_channel);
                     return;
-                } 
+                }
             }
 
             if (argPos == 0 && !message.HasMentionPrefix(_discord.CurrentUser, ref argPos) && !(rawMessage.Channel is IDMChannel)) return;
