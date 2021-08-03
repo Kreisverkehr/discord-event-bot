@@ -49,7 +49,7 @@ namespace DiscordEventBot.Common.Extensions
                 if (constructor == null) throw new NotSupportedException($"{typeof(TEntity).FullName} must provide a constructor that matches the key types");
 
                 entity = constructor.Invoke(keyValues) as TEntity;
-                entities.Add(entity);
+                await entities.AddAsync(entity);
             }
 
             return entity;

@@ -28,6 +28,8 @@ namespace DiscordEventBot.Model
 
         public virtual ICollection<AttendeeGroup> Groups { get; set; }
 
+        public int MinutesBeforeEventNotify { get; set; }
+
         /// <summary>
         /// discords userid.
         /// </summary>

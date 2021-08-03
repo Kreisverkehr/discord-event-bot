@@ -763,6 +763,42 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time in minutes you will receive a notification before an event starts. ähnelt.
+        /// </summary>
+        internal static string txt_mod_set_cmd_nt_param_notifytime_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_set_cmd_nt_param_notifytime_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets the time in minutes you wish to receive a notification before an event starts. ähnelt.
+        /// </summary>
+        internal static string txt_mod_set_cmd_nt_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_set_cmd_nt_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die User settings ähnelt.
+        /// </summary>
+        internal static string txt_mod_set_name {
+            get {
+                return ResourceManager.GetString("txt_mod_set_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Provides commands for the user to change it&apos;s own preferences. ähnelt.
+        /// </summary>
+        internal static string txt_mod_set_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_set_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You already joined! ähnelt.
         /// </summary>
         internal static string txt_msg_alreadyoined {

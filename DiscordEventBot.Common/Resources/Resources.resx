@@ -348,6 +348,18 @@
   <data name="txt_mod_misc_sum" xml:space="preserve">
     <value>Commands that do not fit in any other category</value>
   </data>
+  <data name="txt_mod_set_cmd_nt_param_notifytime_sum" xml:space="preserve">
+    <value>Time in minutes you will receive a notification before an event starts.</value>
+  </data>
+  <data name="txt_mod_set_cmd_nt_sum" xml:space="preserve">
+    <value>Sets the time in minutes you wish to receive a notification before an event starts.</value>
+  </data>
+  <data name="txt_mod_set_name" xml:space="preserve">
+    <value>User settings</value>
+  </data>
+  <data name="txt_mod_set_sum" xml:space="preserve">
+    <value>Provides commands for the user to change it's own preferences.</value>
+  </data>
   <data name="txt_msg_alreadyoined" xml:space="preserve">
     <value>You already joined!</value>
   </data>
