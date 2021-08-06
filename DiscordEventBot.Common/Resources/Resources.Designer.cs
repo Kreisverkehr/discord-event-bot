@@ -745,6 +745,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This will delete every message in the channel where the command was used. Use with caution! This can trigger your ratelimit very fast in large channels and your bot will stay frozen. ähnelt.
+        /// </summary>
+        public static string txt_mod_misc_cmd_clear_rem {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_cmd_clear_rem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deletes every message in this channel. ähnelt.
+        /// </summary>
+        public static string txt_mod_misc_cmd_clear_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_misc_cmd_clear_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die If you reply to a message of a failed command and use this command, you will get the reason why the command from this message failed. ähnelt.
         /// </summary>
         public static string txt_mod_misc_cmd_why_rem {
