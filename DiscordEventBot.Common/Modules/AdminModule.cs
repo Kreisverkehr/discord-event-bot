@@ -67,8 +67,7 @@ namespace DiscordEventBot.Common.Modules
             [RequireUserPermission(GuildPermission.Administrator)]
             public async Task<RuntimeResult> SetAdminRoleAsync(
                 [LocalizedSummary("txt_mod_admset_cmd_setadminrole_param_role_sum")]
-                IRole role
-                )
+                IRole role)
             {
                 var guild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
                 guild.AdminRole = await DbContext.Roles.FindOrCreateAsync(role.Id);
@@ -83,11 +82,25 @@ namespace DiscordEventBot.Common.Modules
             [RequireBotAdministrator]
             public async Task<RuntimeResult> SetBotChannelAsync(
                 [LocalizedSummary("txt_mod_admset_cmd_setbc_param_channel_sum")]
-                IGuildChannel channel
-                )
+                IGuildChannel channel)
             {
                 var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
                 dbGuild.BotChannel = await DbContext.Channels.FindOrCreateAsync(channel.Id);
+                await DbContext.SaveChangesAsync();
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            [Command("announcement-channel")]
+            [Alias("announ-chan", "ac")]
+            [LocalizedSummary("txt_mod_admset_cmd_setac_sum")]
+            [RequireContext(ContextType.Guild)]
+            [RequireBotAdministrator]
+            public async Task<RuntimeResult> SetAnnouncementChannelAsync(
+                [LocalizedSummary("txt_mod_admset_cmd_setac_param_channel_sum")]
+                IGuildChannel channel)
+            {
+                var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
+                dbGuild.AnnouncementChannel = await DbContext.Channels.FindOrCreateAsync(channel.Id);
                 await DbContext.SaveChangesAsync();
                 return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
             }
@@ -98,8 +111,7 @@ namespace DiscordEventBot.Common.Modules
             [RequireOwner]
             public async Task<RuntimeResult> SetLanguageAsync(
                 [LocalizedSummary("txt_mod_admset_cmd_setlang_param_lang_sum")]
-                CultureInfo lang
-                )
+                CultureInfo lang)
             {
                 Settings.Culture = lang;
                 Settings.Save();
@@ -115,8 +127,7 @@ namespace DiscordEventBot.Common.Modules
             [RequireOwner]
             public async Task<RuntimeResult> SetPrefixAsync(
                 [LocalizedSummary("txt_mod_admset_cmd_setprefix_param_prefix_sum")]
-                string prefix
-                )
+                string prefix)
             {
                 var dbGuild = await DbContext.Guilds.FindOrCreateAsync(Context.Guild.Id);
                 dbGuild.CommandPrefix = prefix;
