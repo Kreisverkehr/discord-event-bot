@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscordEventBot.Model.Migrations
 {
     [DbContext(typeof(EventBotContext))]
-    [Migration("20210806175302_announcements")]
+    [Migration("20210806182304_announcements")]
     partial class announcements
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,6 +170,11 @@ namespace DiscordEventBot.Model.Migrations
 
                     b.Property<string>("CommandPrefix")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("NotificationTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(15);
 
                     b.HasKey("GuildId");
 

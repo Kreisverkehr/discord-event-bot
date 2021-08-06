@@ -169,6 +169,11 @@ namespace DiscordEventBot.Model.Migrations
                     b.Property<string>("CommandPrefix")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("NotificationTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(15);
+
                     b.HasKey("GuildId");
 
                     b.HasIndex("AdminRoleRoleId");
