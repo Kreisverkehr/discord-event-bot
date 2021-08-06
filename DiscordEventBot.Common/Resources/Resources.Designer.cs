@@ -998,6 +998,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Example ähnelt.
+        /// </summary>
+        public static string txt_word_example {
+            get {
+                return ResourceManager.GetString("txt_word_example", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         public static string txt_word_name {

@@ -33,6 +33,10 @@ namespace DiscordEventBot.Common.Messages
             .WithTitle(_commandInfo.GetSignature(simplified: false))
             .WithColor(Color.DarkGreen)
             .WithDescription(_commandInfo.Summary)
+            .AddField(builder => builder
+                .WithName(Resources.Resources.txt_word_example)
+                .WithValue(_commandInfo.GetExample())
+            )
             .AddFieldIf(() => !string.IsNullOrEmpty(_commandInfo.Remarks), builder => builder
                 .WithName(Resources.Resources.txt__word_remarks)
                 .WithValue(_commandInfo.Remarks))

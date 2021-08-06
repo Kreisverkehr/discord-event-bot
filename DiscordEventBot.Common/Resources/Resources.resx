@@ -427,6 +427,9 @@ All parameters are separated by a space. If you want to use a space within a par
   <data name="txt_word_endtime" xml:space="preserve">
     <value>End time</value>
   </data>
+  <data name="txt_word_example" xml:space="preserve">
+    <value>Example</value>
+  </data>
   <data name="txt_word_name" xml:space="preserve">
     <value>Name</value>
   </data>
