@@ -4,6 +4,27 @@ namespace DiscordEventBot.Model.Migrations
 {
     public partial class announcements : Migration
     {
+        #region Protected Methods
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Guilds_Channels_AnnouncementChannelChannelId",
+                table: "Guilds");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Guilds_AnnouncementChannelChannelId",
+                table: "Guilds");
+
+            migrationBuilder.DropColumn(
+                name: "AnnouncementChannelChannelId",
+                table: "Guilds");
+
+            migrationBuilder.DropColumn(
+                name: "NotificationTime",
+                table: "Guilds");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<ulong>(
@@ -33,23 +54,6 @@ namespace DiscordEventBot.Model.Migrations
                 onDelete: ReferentialAction.Restrict);
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Guilds_Channels_AnnouncementChannelChannelId",
-                table: "Guilds");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Guilds_AnnouncementChannelChannelId",
-                table: "Guilds");
-
-            migrationBuilder.DropColumn(
-                name: "AnnouncementChannelChannelId",
-                table: "Guilds");
-
-            migrationBuilder.DropColumn(
-                name: "NotificationTime",
-                table: "Guilds");
-        }
+        #endregion Protected Methods
     }
 }

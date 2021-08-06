@@ -899,6 +899,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This event is starting in {0} ähnelt.
+        /// </summary>
+        public static string txt_msg_eventupcomming {
+            get {
+                return ResourceManager.GetString("txt_msg_eventupcomming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die This group is already full. Please join another group. ähnelt.
         /// </summary>
         public static string txt_msg_groupfull {

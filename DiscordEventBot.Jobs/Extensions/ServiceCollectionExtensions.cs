@@ -19,9 +19,11 @@ namespace DiscordEventBot.Jobs.Extensions
                 {
                     tp.MaxConcurrency = 10;
                 });
-                config.ScheduleJob<NotifyUpcommingEventJob>(trigger => trigger
-                    .WithIdentity("every minute")
+                config.ScheduleJob<NotifyUsersOnUpcommingEventJob>(trigger => trigger
                     .WithDailyTimeIntervalSchedule(x => x.WithIntervalInMinutes(1))
+                );
+                config.ScheduleJob<NotifyGuildsOnUpcommingEventJob>(trigger => trigger
+                    .WithDailyTimeIntervalSchedule(x => x.WithIntervalInMinutes(5))
                 );
             })
             .AddQuartzHostedService()
