@@ -427,6 +427,9 @@ Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein L
   <data name="txt_word_endtime" xml:space="preserve">
     <value>Ende</value>
   </data>
+  <data name="txt_word_example" xml:space="preserve">
+    <value>Beispiel</value>
+  </data>
   <data name="txt_word_name" xml:space="preserve">
     <value>Name</value>
   </data>
