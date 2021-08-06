@@ -8,6 +8,7 @@ using DiscordEventBot.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DiscordEventBot.Common.Modules
@@ -29,6 +30,8 @@ namespace DiscordEventBot.Common.Modules
         public DiscordSocketClient Client { get; set; }
 
         public EventBotContext DbContext { get; set; }
+
+        public CancellationTokenSource TokenSource { get; set; }
 
         #endregion Public Properties
 
@@ -92,7 +95,15 @@ namespace DiscordEventBot.Common.Modules
             DbContext.Events.Add(evt);
             await DbContext.SaveChangesAsync();
 
-            return await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client, DbContext));
+            var eventAnnouncement = await ResponseMessageResult.FromMessageAsync(new EventCreatedMessage(evt, Client, DbContext)) as ResponseMessageResult;
+            if (evt.Guild.AnnouncementChannel != null)
+            {
+                var channel = Context.Guild.GetTextChannel(evt.Guild.AnnouncementChannel.ChannelId);
+                await eventAnnouncement.SendAsync(channel, TokenSource.Token);
+                return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+            }
+
+            return eventAnnouncement;
         }
 
         [Command("create-from-template")]
