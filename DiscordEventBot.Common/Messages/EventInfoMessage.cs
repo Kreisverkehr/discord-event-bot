@@ -25,7 +25,6 @@ namespace DiscordEventBot.Common.Messages
         private Stack<string> _groupEmojiStack = new();
         private Dictionary<AttendeeGroup, string> _groupToEmoji = new();
         private IUserMessage _message;
-
         private CalendarSerializer calendarSerializer = new();
 
         #endregion Private Fields
@@ -48,6 +47,12 @@ namespace DiscordEventBot.Common.Messages
         }
 
         #endregion Public Constructors
+
+        #region Protected Properties
+
+        protected Event Event { get { return _event; } }
+
+        #endregion Protected Properties
 
         #region Public Methods
 

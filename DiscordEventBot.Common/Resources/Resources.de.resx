@@ -129,6 +129,12 @@
   <data name="txt_cmd_help_help_sum" xml:space="preserve">
     <value>Zeigt jeden Befehl den du benutzen kannst.</value>
   </data>
+  <data name="txt_mod_admset_cmd_setac_param_channel_sum" xml:space="preserve">
+    <value>Der zu verwendende Kanal</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setac_sum" xml:space="preserve">
+    <value>Legt einen Ankündigungskanal fest, den der Bot für Ankündigungen wie neue oder anstehende Ereignisse verwenden kann</value>
+  </data>
   <data name="txt_mod_admset_cmd_setadminrole_param_role_sum" xml:space="preserve">
     <value>Die Rolle, der der Zugriff auf bestimmte Befehle gewährt werden soll.</value>
   </data>
@@ -387,6 +393,9 @@ Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein L
   </data>
   <data name="txt_msg_eventnotification" xml:space="preserve">
     <value>{0} von Server {1} beginnt um {2:t} Uhr</value>
+  </data>
+  <data name="txt_msg_eventupcomming" xml:space="preserve">
+    <value>Dieses Ereignis beginnt in {0}</value>
   </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>Diese Gruppe ist bereits voll. Bitte treten Sie einer anderen Gruppe bei.</value>

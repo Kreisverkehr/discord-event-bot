@@ -11,7 +11,7 @@ namespace DiscordEventBot.Jobs
 {
     [PersistJobDataAfterExecution]
     [DisallowConcurrentExecution]
-    public class NotifyUpcommingEventJob : IJob
+    public class NotifyUsersOnUpcommingEventJob : IJob
     {
         #region Private Fields
 
@@ -22,7 +22,7 @@ namespace DiscordEventBot.Jobs
 
         #region Public Constructors
 
-        public NotifyUpcommingEventJob(EventBotContext dbContext, DiscordSocketClient client)
+        public NotifyUsersOnUpcommingEventJob(EventBotContext dbContext, DiscordSocketClient client)
         {
             _dbContext = dbContext;
             _client = client;

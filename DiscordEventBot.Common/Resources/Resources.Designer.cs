@@ -142,6 +142,24 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The channel to be used ähnelt.
+        /// </summary>
+        public static string txt_mod_admset_cmd_setac_param_channel_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setac_param_channel_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets an announcement channel that the bot can use for announcements like new or upcomming events ähnelt.
+        /// </summary>
+        public static string txt_mod_admset_cmd_setac_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setac_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The role that should be given access to certain commands. ähnelt.
         /// </summary>
         public static string txt_mod_admset_cmd_setadminrole_param_role_sum {
@@ -877,6 +895,15 @@ namespace DiscordEventBot.Common.Resources {
         public static string txt_msg_eventnotification {
             get {
                 return ResourceManager.GetString("txt_msg_eventnotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This event is starting in {0} ähnelt.
+        /// </summary>
+        public static string txt_msg_eventupcomming {
+            get {
+                return ResourceManager.GetString("txt_msg_eventupcomming", resourceCulture);
             }
         }
         

@@ -33,6 +33,7 @@ namespace DiscordEventBot.Model
         {
             modelBuilder.Entity<Event>().HasMany(x => x.Attendees).WithMany(x => x.Events);
             modelBuilder.Entity<Event>().HasOne(x => x.Creator);
+            modelBuilder.Entity<Guild>().Property(x => x.NotificationTime).HasDefaultValue(15);
         }
 
         #endregion Protected Methods

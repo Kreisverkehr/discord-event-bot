@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiscordEventBot.Model
 {
@@ -25,6 +26,8 @@ namespace DiscordEventBot.Model
 
         public virtual Role AdminRole { get; set; }
 
+        public virtual Channel AnnouncementChannel { get; set; }
+
         public virtual Channel BotChannel { get; set; }
 
         public virtual string CommandPrefix { get; set; }
@@ -35,6 +38,8 @@ namespace DiscordEventBot.Model
         /// <remarks> I think we can trust discord that this is unique. </remarks>
         [Key]
         public ulong GuildId { get; set; }
+
+        public int NotificationTime { get; set; }
 
         #endregion Public Properties
     }
