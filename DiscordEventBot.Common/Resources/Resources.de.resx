@@ -342,6 +342,12 @@
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Hilfe über Befehle</value>
   </data>
+  <data name="txt_mod_misc_cmd_clear_rem" xml:space="preserve">
+    <value>Dadurch werden alle Nachrichten in dem Kanal gelöscht, in dem der Befehl verwendet wurde. Mit Vorsicht verwenden! Dies kann in großen Channels sehr schnell das Ratelimit auslösen und der Bot bleibt eingefroren.</value>
+  </data>
+  <data name="txt_mod_misc_cmd_clear_sum" xml:space="preserve">
+    <value>Löscht alle Nachrichten in diesem Kanal.</value>
+  </data>
   <data name="txt_mod_misc_cmd_why_rem" xml:space="preserve">
     <value>Wenn Sie auf eine Nachricht eines fehlgeschlagenen Befehls antworten und diesen Befehl verwenden, erhalten Sie den Grund, warum der Befehl aus dieser Nachricht fehlgeschlagen ist.</value>
   </data>

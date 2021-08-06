@@ -342,6 +342,12 @@
   <data name="txt_mod_help_name" xml:space="preserve">
     <value>Help Commands</value>
   </data>
+  <data name="txt_mod_misc_cmd_clear_rem" xml:space="preserve">
+    <value>This will delete every message in the channel where the command was used. Use with caution! This can trigger your ratelimit very fast in large channels and your bot will stay frozen.</value>
+  </data>
+  <data name="txt_mod_misc_cmd_clear_sum" xml:space="preserve">
+    <value>Deletes every message in this channel.</value>
+  </data>
   <data name="txt_mod_misc_cmd_why_rem" xml:space="preserve">
     <value>If you reply to a message of a failed command and use this command, you will get the reason why the command from this message failed.</value>
   </data>

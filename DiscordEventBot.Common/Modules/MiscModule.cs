@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using DiscordEventBot.Common.Attributes.Preconditions;
 using DiscordEventBot.Common.Services;
 using System.Threading.Tasks;
 
@@ -48,6 +49,17 @@ namespace DiscordEventBot.Common.Modules
                 IResult result = _reasons.GetResultForMessage(Context.Message.ReferencedMessage.Id);
                 await Context.Message.ReferencedMessage.ReplyAsync(result.ToString());
             }
+        }
+        [Command("clear")]
+        [Alias("clscr")]
+        [LocalizedSummary("txt_mod_misc_cmd_clear_sum")]
+        [LocalizedRemarks("txt_mod_misc_cmd_clear_rem")]
+        [RequireOwner]
+        public async Task ClearAsync()
+        {
+            var messages = await Context.Channel.GetMessagesAsync(int.MaxValue).FlattenAsync();
+            foreach (var msg in messages)
+                await msg.DeleteAsync();
         }
 
         #endregion Public Methods
