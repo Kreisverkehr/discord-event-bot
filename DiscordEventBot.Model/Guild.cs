@@ -25,6 +25,8 @@ namespace DiscordEventBot.Model
 
         public virtual Role AdminRole { get; set; }
 
+        public virtual Channel AnnouncementChannel { get; set; }
+
         public virtual Channel BotChannel { get; set; }
 
         public virtual string CommandPrefix { get; set; }
