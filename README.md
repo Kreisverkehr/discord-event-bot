@@ -182,5 +182,5 @@ Author: Kreisverkehr#5046
 [release-shield]: https://img.shields.io/github/downloads/Kreisverkehr/discord-event-bot/total?logo=github&style=for-the-badge
 [release-url]: https://github.com/Kreisverkehr/discord-event-bot/releases/latest
 [docker-shield]: https://img.shields.io/docker/pulls/kreisverkehr/discord-event-bot?logo=docker&style=for-the-badge
-[docker-url]: https://hub.docker.com/repository/docker/kreisverkehr/discord-event-bot
+[docker-url]: https://hub.docker.com/r/kreisverkehr/discord-event-bot
 [product-screenshot]: images/Homepage.png
