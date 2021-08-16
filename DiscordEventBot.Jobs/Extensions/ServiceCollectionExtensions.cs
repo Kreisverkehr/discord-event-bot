@@ -25,6 +25,9 @@ namespace DiscordEventBot.Jobs.Extensions
                 config.ScheduleJob<NotifyGuildsOnUpcommingEventJob>(trigger => trigger
                     .WithDailyTimeIntervalSchedule(x => x.WithIntervalInMinutes(5))
                 );
+                config.ScheduleJob<NotifyOwnerOnNewRelease>(trigger => trigger
+                    .WithDailyTimeIntervalSchedule(x => x.StartingDailyAt(new(0, 0)).OnEveryDay())
+                );
             })
             .AddQuartzHostedService()
             ;
