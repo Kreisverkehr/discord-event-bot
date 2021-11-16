@@ -30,7 +30,7 @@ jobs:
       run: dotnet publish DiscordEventBot.sln -p:PublishProfile=${{ matrix.profile }}
     - uses: papeloto/action-zip@v1
       with:
-        files: DiscordEventBot.Service/bin/Release/net5.0/publish/${{ matrix.profile }}/
+        files: DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/
         dest: ${{ github.event.repository.name }}-${{ matrix.profile }}-edge.zip
     - name: Upload
       uses: actions/upload-artifact@v2.2.4
