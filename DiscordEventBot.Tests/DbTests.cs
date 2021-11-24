@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace DiscordEventBot.Tests
 {
@@ -13,8 +14,7 @@ namespace DiscordEventBot.Tests
 
         public DbTests()
         {
-            using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
-                DbCtx.Database.Migrate();
+
         }
 
         #endregion Public Constructors
@@ -26,6 +26,7 @@ namespace DiscordEventBot.Tests
         {
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
             {
+                DbCtx.Database.Migrate();
                 Event evt1 = new()
                 {
                     Subject = "Test",
@@ -63,6 +64,7 @@ namespace DiscordEventBot.Tests
         {
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
             {
+                DbCtx.Database.Migrate();
                 Event evt1 = new Event()
                 {
                     Subject = "Attendee Group Test",
@@ -107,6 +109,7 @@ namespace DiscordEventBot.Tests
         {
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
             {
+                DbCtx.Database.Migrate();
                 Event evt1 = new Event()
                 {
                     Subject = "Attendee Test",
@@ -142,9 +145,9 @@ namespace DiscordEventBot.Tests
 
         #region Private Methods
 
-        private DbContextOptions<EventBotContext> ConfigureDb() =>
+        private DbContextOptions<EventBotContext> ConfigureDb([CallerMemberName] string testName = "") =>
                                     new DbContextOptionsBuilder<EventBotContext>()
-            .UseSqlite($"Data Source = EventBotTest{Environment.ProcessId}.db")
+            .UseSqlite($"Data Source = EventBotTest{testName}.db")
             .UseLazyLoadingProxies()
             .Options;
 
