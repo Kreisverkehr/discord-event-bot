@@ -13,9 +13,6 @@ namespace DiscordEventBot.Tests
 
         public DbTests()
         {
-            // start fresh
-            if (File.Exists("EventBotTest.db")) File.Delete("EventBotTest.db");
-
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
                 DbCtx.Database.Migrate();
         }
@@ -29,11 +26,13 @@ namespace DiscordEventBot.Tests
         {
             using (EventBotContext DbCtx = new EventBotContext(ConfigureDb()))
             {
-                Event evt1 = new Event()
+                Event evt1 = new()
                 {
                     Subject = "Test",
                     Start = DateTime.Now,
-                    Duration = new TimeSpan(1, 30, 0)
+                    Duration = new TimeSpan(1, 30, 0),
+                    Creator = new() { UserId = 0},
+                    Guild = new() { GuildId = 0 },
                 };
 
                 Assert.AreEqual(0UL, evt1.EventID);
@@ -45,7 +44,9 @@ namespace DiscordEventBot.Tests
                 {
                     Subject = "Test2",
                     Start = DateTime.Now,
-                    Duration = new TimeSpan(1, 30, 0)
+                    Duration = new TimeSpan(1, 30, 0),
+                    Creator = new() { UserId = 0 },
+                    Guild = new() { GuildId = 0 },
                 };
 
                 Assert.AreEqual(0UL, evt2.EventID);
@@ -66,7 +67,9 @@ namespace DiscordEventBot.Tests
                 {
                     Subject = "Attendee Group Test",
                     Start = DateTime.Now,
-                    Duration = new TimeSpan(1, 30, 0)
+                    Duration = new TimeSpan(1, 30, 0),
+                    Creator = new() { UserId = 0 },
+                    Guild = new() { GuildId = 0 },
                 };
 
                 Assert.AreEqual(0UL, evt1.EventID);
@@ -108,7 +111,9 @@ namespace DiscordEventBot.Tests
                 {
                     Subject = "Attendee Test",
                     Start = DateTime.Now,
-                    Duration = new TimeSpan(1, 30, 0)
+                    Duration = new TimeSpan(1, 30, 0),
+                    Creator = new() { UserId = 0 },
+                    Guild = new() { GuildId = 0 },
                 };
 
                 Assert.AreEqual(0UL, evt1.EventID);
@@ -139,7 +144,7 @@ namespace DiscordEventBot.Tests
 
         private DbContextOptions<EventBotContext> ConfigureDb() =>
                                     new DbContextOptionsBuilder<EventBotContext>()
-            .UseSqlite($"Data Source = EventBotTest.db")
+            .UseSqlite($"Data Source = EventBotTest{Environment.ProcessId}.db")
             .UseLazyLoadingProxies()
             .Options;
 
