@@ -33,7 +33,7 @@ jobs:
         files: DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/
         dest: ${{ github.event.repository.name }}-${{ matrix.profile }}-edge.zip
     - name: Upload
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v2.3.0
       with:
         name: ${{ matrix.profile }}
         path: ${{ github.workspace }}/${{ github.event.repository.name }}-${{ matrix.profile }}-edge.zip
