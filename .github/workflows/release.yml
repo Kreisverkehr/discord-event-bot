@@ -68,7 +68,7 @@ jobs:
         files: DiscordEventBot.Service/bin/Release/net5.0/publish/${{ matrix.profile }}/
         dest: ${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
     - name: Upload
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v2.3.1
       with:
         name: ${{ matrix.profile }}
         path: ${{ github.workspace }}/${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
