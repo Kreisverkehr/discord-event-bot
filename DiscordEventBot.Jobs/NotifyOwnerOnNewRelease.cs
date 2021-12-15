@@ -15,7 +15,7 @@ namespace DiscordEventBot.Jobs
     {
         #region Private Fields
 
-        private readonly Version _currentVersion = new("0.2.1");
+        private readonly Version _currentVersion = new("0.3.0");
         private readonly DiscordSocketClient _discordClient;
 
         private readonly HttpClient _httpClient = new()
