@@ -19,7 +19,7 @@ namespace DiscordEventBot.Common.Resources {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -511,6 +511,60 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New description for the given event ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_param_description_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_param_description_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New duration for the given event ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_param_duration_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_param_duration_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The id of the event you want to edit ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_param_eventid_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_param_eventid_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New start date and time for the given event ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_param_startdate_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_param_startdate_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New title for the given event. ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_param_subject_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_param_subject_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This method allows you to update an existing event. You need to provide only the parameters you wish to change. ähnelt.
+        /// </summary>
+        public static string txt_mod_event_cmd_update_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_event_cmd_update_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Event Commands ähnelt.
         /// </summary>
         public static string txt_mod_event_name {
@@ -922,6 +976,15 @@ namespace DiscordEventBot.Common.Resources {
         public static string txt_msg_eventupcomming {
             get {
                 return ResourceManager.GetString("txt_msg_eventupcomming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The following event has been updated: ähnelt.
+        /// </summary>
+        public static string txt_msg_eventupdated {
+            get {
+                return ResourceManager.GetString("txt_msg_eventupdated", resourceCulture);
             }
         }
         

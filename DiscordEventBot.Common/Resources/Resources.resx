@@ -327,6 +327,24 @@
   <data name="txt_mod_event_cmd_show_sum" xml:space="preserve">
     <value>View details about the given event</value>
   </data>
+  <data name="txt_mod_event_cmd_update_param_description_sum" xml:space="preserve">
+    <value>New description for the given event</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_duration_sum" xml:space="preserve">
+    <value>New duration for the given event</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_eventid_sum" xml:space="preserve">
+    <value>The id of the event you want to edit</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_startdate_sum" xml:space="preserve">
+    <value>New start date and time for the given event</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_subject_sum" xml:space="preserve">
+    <value>New title for the given event.</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_sum" xml:space="preserve">
+    <value>This method allows you to update an existing event. You need to provide only the parameters you wish to change.</value>
+  </data>
   <data name="txt_mod_event_name" xml:space="preserve">
     <value>Event Commands</value>
   </data>
@@ -402,6 +420,9 @@ All parameters are separated by a space. If you want to use a space within a par
   </data>
   <data name="txt_msg_eventupcomming" xml:space="preserve">
     <value>This event is starting in {0}</value>
+  </data>
+  <data name="txt_msg_eventupdated" xml:space="preserve">
+    <value>The following event has been updated:</value>
   </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>This group is already full. Please join another group.</value>

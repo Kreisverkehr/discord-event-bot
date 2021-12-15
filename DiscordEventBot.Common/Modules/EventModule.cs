@@ -318,6 +318,46 @@ namespace DiscordEventBot.Common.Modules
             return await ResponseMessageResult.FromMessageAsync(new EventListMessage(upcommingEvents, Client));
         }
 
+        [Command("update")]
+        [Alias("mod", "ch")]
+        [RequireContext(ContextType.Guild)]
+        [LocalizedSummary("txt_mod_event_cmd_update_sum")]
+        public async Task<RuntimeResult> UpdateEventAsync(
+            [LocalizedSummary("txt_mod_event_cmd_update_param_eventid_sum")]
+            ulong eventId,
+            [LocalizedSummary("txt_mod_event_cmd_update_param_subject_sum")]
+            string subject = null,
+            [LocalizedSummary("txt_mod_event_cmd_update_param_startdate_sum")]
+            DateTime? startDate = null,
+            [LocalizedSummary("txt_mod_event_cmd_update_param_duration_sum")]
+            TimeSpan? duration = null,
+            [Remainder]
+            [LocalizedSummary("txt_mod_event_cmd_update_param_description_sum")]
+            string description = null)
+        {
+            Event evt = await DbContext.Events.FindAsync(eventId);
+
+            if (!string.IsNullOrWhiteSpace(subject))
+                evt.Subject = subject;
+            if (!string.IsNullOrWhiteSpace(description))
+                evt.Description = description;
+            if (startDate.HasValue)
+                evt.Start = startDate.Value;
+            if (duration.HasValue)
+                evt.Duration = duration.Value;
+
+            await DbContext.SaveChangesAsync();
+
+            var eventAnnouncement = await ResponseMessageResult.FromMessageAsync(new EventUpdatedMessage(evt, Client, DbContext)) as ResponseMessageResult;
+            if (evt.Guild.AnnouncementChannel != null)
+            {
+                var channel = Context.Guild.GetTextChannel(evt.Guild.AnnouncementChannel.ChannelId);
+                await eventAnnouncement.SendAsync(channel, TokenSource.Token);
+            }
+
+            return await ReactionResult.FromReactionIntendAsync(ReactionIntend.Success);
+        }
+
         #endregion Public Methods
 
         #region Public Classes

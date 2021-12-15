@@ -327,6 +327,24 @@
   <data name="txt_mod_event_cmd_show_sum" xml:space="preserve">
     <value>Zeigt Details über das angegebene Ereignis an</value>
   </data>
+  <data name="txt_mod_event_cmd_update_param_description_sum" xml:space="preserve">
+    <value>Neue Beschreibung für das angegebene Ereignis</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_duration_sum" xml:space="preserve">
+    <value>Neue Dauer für das angegebene Ereignis</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_eventid_sum" xml:space="preserve">
+    <value>Die ID des Ereignisses, das Sie bearbeiten möchten</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_startdate_sum" xml:space="preserve">
+    <value>Neues Startdatum und neue Startzeit für das angegebene Ereignis</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_param_subject_sum" xml:space="preserve">
+    <value>Neuer Titel für das angegebene Ereignis.</value>
+  </data>
+  <data name="txt_mod_event_cmd_update_sum" xml:space="preserve">
+    <value>Mit dieser Methode können Sie ein bestehendes Ereignis aktualisieren. Sie müssen nur die Parameter angeben, die Sie ändern möchten.</value>
+  </data>
   <data name="txt_mod_event_name" xml:space="preserve">
     <value>Ereignis-Befehle</value>
   </data>
@@ -402,6 +420,9 @@ Alle Parameter werden mit einem Leerzeichen voneinander getrennt. Wenn Sie ein L
   </data>
   <data name="txt_msg_eventupcomming" xml:space="preserve">
     <value>Dieses Ereignis beginnt in {0}</value>
+  </data>
+  <data name="txt_msg_eventupdated" xml:space="preserve">
+    <value>Das folgende Ereignis wurde geändert:</value>
   </data>
   <data name="txt_msg_groupfull" xml:space="preserve">
     <value>Diese Gruppe ist bereits voll. Bitte treten Sie einer anderen Gruppe bei.</value>
