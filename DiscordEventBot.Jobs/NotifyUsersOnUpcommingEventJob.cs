@@ -56,7 +56,7 @@ namespace DiscordEventBot.Jobs
 
                 if (eventsToNotify.Count() > 0)
                 {
-                    var channel = await usr.discordUser.GetOrCreateDMChannelAsync();
+                    var channel = await usr.discordUser.CreateDMChannelAsync();
                     using (channel.EnterTypingState())
                         foreach (var evt in eventsToNotify)
                         {

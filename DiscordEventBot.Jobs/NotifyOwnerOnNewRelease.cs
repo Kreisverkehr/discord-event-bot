@@ -47,7 +47,7 @@ namespace DiscordEventBot.Jobs
             if (!context.JobDetail.JobDataMap.GetBooleanValue(latestVersion.ToString()) && latestVersion > _currentVersion)
             {
                 var appInfo = await _discordClient.GetApplicationInfoAsync();
-                var ownerDmChannel = await appInfo.Owner.GetOrCreateDMChannelAsync();
+                var ownerDmChannel = await appInfo.Owner.CreateDMChannelAsync();
                 var latestVersionInfo = new EmbedBuilder()
                     .WithTitle(respObj["name"].ToObject<string>())
                     .WithTimestamp(respObj["published_at"].ToObject<DateTime>())

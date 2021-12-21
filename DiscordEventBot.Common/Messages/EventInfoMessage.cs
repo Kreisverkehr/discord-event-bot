@@ -119,7 +119,7 @@ namespace DiscordEventBot.Common.Messages
 
         #region Private Methods
 
-        private async Task HandleReaction(Cacheable<IUserMessage, ulong> msg, ISocketMessageChannel channel, SocketReaction reaction)
+        private async Task HandleReaction(Cacheable<IUserMessage, ulong> msg, Cacheable<IMessageChannel, ulong> channel, SocketReaction reaction)
         {
             if (msg.Id == _message.Id && reaction.UserId != _client.CurrentUser.Id)
             {
