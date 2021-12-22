@@ -133,7 +133,7 @@
     <value>The channel to be used</value>
   </data>
   <data name="txt_mod_admset_cmd_setac_sum" xml:space="preserve">
-    <value>Sets an announcement channel that the bot can use for announcements like new or upcomming events</value>
+    <value>Sets an announcement channel that the bot can use for new or upcomming events</value>
   </data>
   <data name="txt_mod_admset_cmd_setadminrole_param_role_sum" xml:space="preserve">
     <value>The role that should be given access to certain commands.</value>
@@ -143,6 +143,9 @@
   </data>
   <data name="txt_mod_admset_cmd_setbc_param_channel_sum" xml:space="preserve">
     <value>The channel in wich the bot reacts to commands.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setbc_sum" xml:space="preserve">
+    <value>Sets the channel to be used for commands</value>
   </data>
   <data name="txt_mod_admset_cmd_setlang_param_lang_sum" xml:space="preserve">
     <value>The language the bot should speak. E.g. "de" or "en"</value>
@@ -164,6 +167,9 @@
   </data>
   <data name="txt_mod_adm_name" xml:space="preserve">
     <value>Admin Commands</value>
+  </data>
+  <data name="txt_mod_adm_set_sum" xml:space="preserve">
+    <value>Use these commands to change admin settings of the bot.</value>
   </data>
   <data name="txt_mod_adm_sum" xml:space="preserve">
     <value>Provides administrative commands.</value>

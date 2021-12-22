@@ -133,7 +133,7 @@
     <value>Der zu verwendende Kanal</value>
   </data>
   <data name="txt_mod_admset_cmd_setac_sum" xml:space="preserve">
-    <value>Legt einen Ankündigungskanal fest, den der Bot für Ankündigungen wie neue oder anstehende Ereignisse verwenden kann</value>
+    <value>Legt einen Ankündigungskanal fest, den der Bot für neue oder anstehende Ereignisse verwenden kann</value>
   </data>
   <data name="txt_mod_admset_cmd_setadminrole_param_role_sum" xml:space="preserve">
     <value>Die Rolle, der der Zugriff auf bestimmte Befehle gewährt werden soll.</value>
@@ -143,6 +143,9 @@
   </data>
   <data name="txt_mod_admset_cmd_setbc_param_channel_sum" xml:space="preserve">
     <value>Der Kanal, in dem der Bot auf Befehle reagiert.</value>
+  </data>
+  <data name="txt_mod_admset_cmd_setbc_sum" xml:space="preserve">
+    <value>Legt den Kanal fest, der für Befehle verwendet werden soll</value>
   </data>
   <data name="txt_mod_admset_cmd_setlang_param_lang_sum" xml:space="preserve">
     <value>Die Sprache, die der Bot sprechen soll. Z.B. "de" oder "en"</value>
@@ -164,6 +167,9 @@
   </data>
   <data name="txt_mod_adm_name" xml:space="preserve">
     <value>Admin Befehle</value>
+  </data>
+  <data name="txt_mod_adm_set_sum" xml:space="preserve">
+    <value>Mit diesen Befehlen können Sie die Admin-Einstellungen des Bots ändern.</value>
   </data>
   <data name="txt_mod_adm_sum" xml:space="preserve">
     <value>Befehle zur verwaltung des Bots.</value>

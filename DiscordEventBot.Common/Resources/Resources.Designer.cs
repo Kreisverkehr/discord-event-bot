@@ -133,6 +133,15 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use these commands to change admin settings of the bot. ähnelt.
+        /// </summary>
+        public static string txt_mod_adm_set_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_adm_set_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Provides administrative commands. ähnelt.
         /// </summary>
         public static string txt_mod_adm_sum {
@@ -151,7 +160,7 @@ namespace DiscordEventBot.Common.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sets an announcement channel that the bot can use for announcements like new or upcomming events ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets an announcement channel that the bot can use for new or upcomming events ähnelt.
         /// </summary>
         public static string txt_mod_admset_cmd_setac_sum {
             get {
@@ -183,6 +192,15 @@ namespace DiscordEventBot.Common.Resources {
         public static string txt_mod_admset_cmd_setbc_param_channel_sum {
             get {
                 return ResourceManager.GetString("txt_mod_admset_cmd_setbc_param_channel_sum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sets the channel to be used for commands ähnelt.
+        /// </summary>
+        public static string txt_mod_admset_cmd_setbc_sum {
+            get {
+                return ResourceManager.GetString("txt_mod_admset_cmd_setbc_sum", resourceCulture);
             }
         }
         
