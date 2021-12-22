@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Interactions;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ namespace DiscordEventBot.Common.TypeConverters
         public override void Write(ApplicationCommandOptionProperties properties, IParameterInfo parameter)
         {
             base.Write(properties, parameter);
-            foreach (var culture in CultureInfo.GetCultures(CultureTypes.NeutralCultures))
+            foreach (var culture in SupportedLanguages())
             {
                 properties.Choices.Add(new()
                 {
@@ -43,6 +44,13 @@ namespace DiscordEventBot.Common.TypeConverters
                     Value = culture.Name
                 });
             }
+        }
+
+        private IEnumerable<CultureInfo> SupportedLanguages()
+        {
+            yield return new CultureInfo("en-US");
+            yield return new CultureInfo("en");
+            yield return new CultureInfo("de");
         }
 
         #endregion Public Methods
