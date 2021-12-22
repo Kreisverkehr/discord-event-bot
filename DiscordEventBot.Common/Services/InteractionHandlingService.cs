@@ -1,8 +1,11 @@
 ﻿using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using DiscordEventBot.Common.TypeConverters;
+using DiscordEventBot.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -33,6 +36,11 @@ namespace DiscordEventBot.Common.Services
                 await _commands.RegisterCommandsGloballyAsync();
 #endif
             };
+
+            _commands.AddTypeConverter<ICommandInfo>(new CommandInfoTypeConverter());
+            _commands.AddTypeConverter<ModuleInfo>(new ModuleInfoTypeConverter());
+            _commands.AddTypeConverter<CultureInfo>(new CultureInfoTypeConverter());
+            _commands.AddTypeConverter<EventTemplate>(new EventTemplateTypeConverter());
 
             // Add the public modules that inherit InteractionModuleBase<T> to the InteractionService
             await _commands.AddModulesAsync(Assembly.GetExecutingAssembly(), _services);
