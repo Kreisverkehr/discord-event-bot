@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Interactions;
 using Discord.WebSocket;
 using DiscordEventBot.Common;
 using DiscordEventBot.Common.Extensions;
@@ -22,6 +23,8 @@ namespace DiscordEventBot.Service
         private readonly CommandService _commandService;
         private readonly EventBotContext _dbContext;
         private readonly CommandHandlingService _handlingService;
+        private readonly InteractionHandlingService _interactionHandlingService;
+        private readonly InteractionService _interactionService;
         private readonly ILogger _logger;
         private readonly Settings _settings;
         private readonly CancellationTokenSource _tokenSource;
@@ -37,6 +40,8 @@ namespace DiscordEventBot.Service
             DiscordSocketClient client,
             CommandService commandService,
             CommandHandlingService handlingService,
+            InteractionHandlingService interactionHandlingService,
+            InteractionService interactionService,
             EventBotContext dbContext,
             CancellationTokenSource tokenSource)
         {
@@ -46,6 +51,8 @@ namespace DiscordEventBot.Service
             _dbContext = dbContext;
             _commandService = commandService;
             _handlingService = handlingService;
+            _interactionHandlingService = interactionHandlingService;
+            _interactionService = interactionService;
             _client = client;
             _tokenSource = tokenSource;
         }
@@ -59,12 +66,14 @@ namespace DiscordEventBot.Service
             _dbContext.Database.Migrate();
             _client.Log += Log;
             _commandService.Log += Log;
+            _interactionService.Log += Log;
 
             // Login and connect.
             await _client.LoginAsync(TokenType.Bot, _settings.Token);
             await _client.StartAsync();
 
             await _handlingService.InitializeAsync();
+            await _interactionHandlingService.InitializeAsync();
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)

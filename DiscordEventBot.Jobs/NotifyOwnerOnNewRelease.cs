@@ -52,7 +52,7 @@ namespace DiscordEventBot.Jobs
                     .WithTitle(respObj["name"].ToObject<string>())
                     .WithTimestamp(respObj["published_at"].ToObject<DateTime>())
                     .WithDescription(respObj["body"].ToObject<string>())
-                    .WithAuthor(_discordClient.GetUser("Kreisverkehr", "5046"))
+                    //.WithAuthor(_discordClient.GetUser("Kreisverkehr", "5046"))
                     .Build();
                 await ownerDmChannel.SendMessageAsync(text: "Hey!\nThere is a new version of me. Check it out. \nhttps://github.com/Kreisverkehr/discord-event-bot/releases/latest", embed: latestVersionInfo);
                 context.JobDetail.JobDataMap.Put(latestVersion.ToString(), true);
