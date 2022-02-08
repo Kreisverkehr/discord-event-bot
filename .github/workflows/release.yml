@@ -63,10 +63,8 @@ jobs:
       run: dotnet build DiscordEventBot.sln --no-restore
     - name: Publish
       run: dotnet publish DiscordEventBot.sln -p:PublishProfile=${{ matrix.profile }}
-    - uses: papeloto/action-zip@v1
-      with:
-        files: DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/
-        dest: ${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
+    - name: Zip Output
+      run: 7z a -tzip ${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/
     - name: Upload
       uses: actions/upload-artifact@v2.3.1
       with:
