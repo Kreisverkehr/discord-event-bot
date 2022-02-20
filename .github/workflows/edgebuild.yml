@@ -29,7 +29,7 @@ jobs:
     - name: Publish
       run: dotnet publish DiscordEventBot.sln -p:PublishProfile=${{ matrix.profile }}
     - name: Zip Output
-      run: 7z a -tzip ${{ github.event.repository.name }}-${{ matrix.profile }}-edge.zip DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/
+      run: 7z a -tzip ${{ github.event.repository.name }}-${{ matrix.profile }}-edge.zip ./DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/*
     - name: Upload
       uses: actions/upload-artifact@v2.3.1
       with:
@@ -88,8 +88,10 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: docker build -t ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-${{ matrix.tag }} -f ./${{ matrix.file }} --platform ${{ matrix.platform }} .  
-    - run: docker push ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-${{ matrix.tag }}
+    - name: Build docker image
+      run: docker build -t ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-${{ matrix.tag }} -f ./${{ matrix.file }} --platform ${{ matrix.platform }} .  
+    - name: Push docker image
+      run: docker push ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-${{ matrix.tag }}
   
   create-docker-manifest:
     runs-on: ubuntu-latest
@@ -100,5 +102,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: docker manifest create ${{ needs.init-docker-builds.outputs.docker-repo }}:edge ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-win-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-arm ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-arm64
-    - run: docker manifest push ${{ needs.init-docker-builds.outputs.docker-repo }}:edge
+    - name: create manifest
+      run: docker manifest create ${{ needs.init-docker-builds.outputs.docker-repo }}:edge ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-win-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-arm ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-x64 ${{ needs.init-docker-builds.outputs.docker-repo }}:edge-linux-arm64
+    - name: push manifest
+      run: docker manifest push ${{ needs.init-docker-builds.outputs.docker-repo }}:edge
