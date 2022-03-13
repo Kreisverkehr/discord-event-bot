@@ -66,7 +66,7 @@ jobs:
     - name: Zip Output
       run: 7z a -tzip ${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip ./DiscordEventBot.Service/bin/Release/net6.0/publish/${{ matrix.profile }}/*
     - name: Upload
-      uses: actions/upload-artifact@v2.3.1
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.profile }}
         path: ${{ github.workspace }}/${{ github.event.repository.name }}-${{ matrix.profile }}-${{ needs.set-version.outputs.version }}.zip
