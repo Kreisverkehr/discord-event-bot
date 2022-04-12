@@ -72,7 +72,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Download portable build
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: portable
     - run: 7z x ${{ github.event.repository.name }}-portable-edge.zip -oapp/
