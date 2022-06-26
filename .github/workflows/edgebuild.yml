@@ -79,7 +79,7 @@ jobs:
     - name: Set up QEMU
       if: runner.os != 'windows'
       id: qemu
-      uses: docker/setup-qemu-action@v1
+      uses: docker/setup-qemu-action@v2
       with:
         image: tonistiigi/binfmt:latest
         platforms: ${{ matrix.platform }}
