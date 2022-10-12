@@ -16,7 +16,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
